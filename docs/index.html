@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>KaneCode Studio - Documentation</title>
+
+    
+
+    <!-- Bootstrap core CSS -->
+		<link href="libs/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Prism.js -->
+		<link href="libs/prism.css" rel="stylesheet" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/docs.css" rel="stylesheet">
+  </head>
+  <body>
+    
+		<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+			<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="">KaneCode Studio</a>
+			<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+		</header>
+
+		<div class="container-fluid">
+			<div class="row">
+				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+					<div class="d-flex flex-column justify-content-between h-100">
+						<div class="position-sticky pt-3">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="index.html">
+										<span data-feather="home"></span>
+										Introduction
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="options.html">
+										<span data-feather="check-square"></span>
+										Options
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="methods.html">
+										<span data-feather="play"></span>
+										Methods
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="playground.html">
+										<span data-feather="flag"></span>
+										Playground
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="p-3">
+							<small class="text-muted">kanecode-studio v0.0.1</small>
+						</div>
+					</div>
+				</nav>
+
+				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+						<h1 class="m-0">Introduction</h1>
+					</div>
+					<p>KaneCode Studio is a web editor developed by KaneCode that allows you to easily edit any HTML code.</p>
+
+					<h2 id="css">CSS</h2>
+					<p>Copy-paste the stylesheet <code>&ltlink&gt</code> into your <code>&lthead&gt</code> before all other stylesheets to load our CSS.</p>
+					<pre><code class="language-html">&ltlink href="https://cdn.kanecode.com/libs/kanecode-studio@0.0.1/dist/css/kanecode-studio.min.css" &gt</code></pre>
+
+					<h2 id="css">JS</h2>
+					<p>Place the following <code>&ltscript&gt</code> near the end of your pages, right before the closing <code>&lt/body&gt</code> tag, to enable it.</p>
+					<pre><code class="language-html" data-prismjs-copy="Copy">&ltscript src="https://cdn.kanecode.com/libs/kanecode-studio@0.0.1/dist/js/kanecode-studio.min.js"&gt&lt/script&gt</code></pre>
+					
+					<h2 id="initialize">Initialize</h2>
+					<p>To use KaneCode Studio, a previous <code>&ltdiv&gt</code> element is required to initialize it. In addition, we can select some <a href="options.html">options</a> at the time the script is executed.</p>
+					<pre><code class="language-html" data-prismjs-copy="Copy">&lt!-- HTML: Create container element --&gt
+&ltdiv class="selector"&gt&lt/div&gt
+
+&lt!-- Script: Initialize KaneCode Studio --&gt
+&ltscript&gt
+	const studio = new KCStudio(document.querySelector('.selector'), {
+		border: false,		// Hide the border around the studio.
+	});
+&lt/script&gt</code></pre>
+				</main>
+			</div>
+		</div>
+
+
+    <script src="libs/bootstrap.bundle.min.js"></script>
+		<script src="libs/prism.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+		<script src="assets/docs.js"></script>
+  </body>
+</html>

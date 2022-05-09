@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>KaneCode Studio - Documentation</title>
+
+    
+
+    <!-- Bootstrap core CSS -->
+		<link href="libs/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Prism.js -->
+		<link href="libs/prism.css" rel="stylesheet" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/docs.css" rel="stylesheet">
+  </head>
+  <body>
+    
+		<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+			<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="">KaneCode Studio</a>
+			<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+		</header>
+
+		<div class="container-fluid">
+			<div class="row">
+				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+					<div class="d-flex flex-column justify-content-between h-100">
+						<div class="position-sticky pt-3">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link" href="index.html">
+										<span data-feather="home"></span>
+										Introduction
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="options.html" aria-current="page">
+										<span data-feather="check-square"></span>
+										Options
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="methods.html">
+										<span data-feather="play"></span>
+										Methods
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="playground.html">
+										<span data-feather="flag"></span>
+										Playground
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="p-3">
+							<small class="text-muted">kanecode-studio v0.0.1</small>
+						</div>
+					</div>
+				</nav>
+
+				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+						<h1 class="m-0">Options</h1>
+					</div>
+					<p>KaneCode Studio is a web editor developed by KaneCode that allows you to easily edit any HTML code.</p>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Option</th>
+								<th>Types</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><code>border</code></td>
+								<td><code class="text-dark">boolean</code></td>
+								<td>Show/Hide a border around the studio.</td>
+							</tr>
+							<tr>
+								<td><code>fullScreen</code></td>
+								<td><code class="text-dark">boolean</code></td>
+								<td>Enable/Disable the studio in full screen.</td>
+							</tr>
+							<tr>
+								<td><code>header</code></td>
+								<td><code class="text-dark">object</code></td>
+								<td>Options related to the interface header.</td>
+							</tr>
+							<tr>
+								<td><code>&nbsp;- show</code></td>
+								<td><code class="text-dark">boolean</code></td>
+								<td>Show/Hide the header.</td>
+							</tr>
+							<tr>
+								<td><code>menus</code></td>
+								<td><code class="text-dark">object</code></td>
+								<td>Options of the different menus.</td>
+							</tr>
+							<tr>
+								<td><code>&nbsp;- bottom</code></td>
+								<td><code class="text-dark">object</code></td>
+								<td>Options related to the bottom menu.</td>
+							</tr>
+							<tr>
+								<td><code>&nbsp; &nbsp; - show</code></td>
+								<td><code class="text-dark">boolean</code></td>
+								<td>Show/Hide the bottom menu.</td>
+							</tr>
+							<tr>
+								<td><code>&nbsp;- left</code></td>
+								<td><code class="text-dark">object</code></td>
+								<td>Options related to the left menu.</td>
+							</tr>
+							<tr>
+								<td><code>&nbsp; &nbsp; - show</code></td>
+								<td><code class="text-dark">boolean</code></td>
+								<td>Show/Hide the left menu.</td>
+							</tr>
+							<tr>
+								<td><code>&nbsp;- right</code></td>
+								<td><code class="text-dark">object</code></td>
+								<td>Options related to the right menu.</td>
+							</tr>
+							<tr>
+								<td><code>&nbsp; &nbsp; - show</code></td>
+								<td><code class="text-dark">boolean</code></td>
+								<td>Show/Hide the right menu.</td>
+							</tr>
+							<tr>
+								<td><a href="#onsave"><code>onsave</code></a></td>
+								<td><code class="text-dark">function</code></td>
+								<td>The described function takes care of saving the content of the page.</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3 id="onsave" class="fw-bold"><code>onsave</code></h3>
+					<p>The function described in <code>onsave</code> takes care of saving the content of the page. This option works when the <a href="methods.html#save">save()</a> method is executed. The received parameter is a text with all the content.</p>
+					<h5>Default function</h5>
+					<pre><code class="language-js" data-prismjs-copy="Copy">var database = '';		// Variable where data is saved
+
+new KCStudio(element, {
+	onsave: (html) => {
+		database = html;
+		return true;		// Is necessary to indicate that file has been saved.
+	}
+});</code></pre>
+					
+					<h5>Async function</h5>
+					<p>Returns a promise to save the data asynchronously.</p>
+					<div class="alert alert-warning" role="alert">
+						If the function duration is more than <b>30 seconds</b> to execute, the program will understand that it could not be saved correctly and <b>will report an error</b> when saving.
+					</div>
+					<pre><code class="language-js" data-prismjs-copy="Copy">new KCStudio(element, {
+	onsave: (html) => {
+		return new Promise((resolve, reject) => {	 // Returns a value of type Promise
+			var form = new FormData();
+			form.append('content', html);
+			fetch('save-data.php', { body: form })
+				.then((res) => res.json())
+				.then((data) => {
+					if (data === true) {
+
+						// Call the resolve function to indicate
+						// that it has been saved successfully.
+						resolve();
+
+					} else {
+
+						// Call the resolve function to indicate
+						// that an error has occurred.
+						reject();
+
+					}
+				});
+		});
+	}
+});</code></pre>
+
+				</main>
+			</div>
+		</div>
+
+
+    <script src="libs/bootstrap.bundle.min.js"></script>
+		<script src="libs/prism.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+		<script src="assets/docs.js"></script>
+  </body>
+</html>

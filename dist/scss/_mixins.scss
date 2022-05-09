@@ -1,0 +1,108 @@
+@mixin button($transparent: false) {
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: $spacer / 4;
+	padding: $spacer / 2;
+	color: $button-color;
+	border-radius: $button-border-radius;
+	font-weight: bold;
+	outline: none;
+	text-align: center;
+	@if $transparent == true {
+		border: $button-border-width solid transparent;
+		background-color: transparent;
+	} @else {
+		border: $button-border-width solid $button-border-color;
+		background-color: $button-background;
+	}
+	svg.kcs-icon {
+		display: flex;
+		width: 22px;
+		height: 22px;
+	}
+
+	@if $transparent != true {
+		&:hover,
+		&:focus {
+			background-color: $button-background-hover;
+		}
+		&:active {
+			background-color: $button-background-active;
+			border-color: $button-background-active;
+		}
+	}
+
+	&.active {
+		color: $button-color-active;
+	}
+
+	&:focus {
+		@if $transparent == true {
+			background-color: $button-background-hover;
+		} @else {
+			border-color: $button-border-color-focus;
+		}
+	}
+
+	&[disabled] {
+		pointer-events: none;
+		opacity: .5;
+	}
+}
+
+@mixin dropdown-button {
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: $spacer / 4;
+	padding: $spacer / 2 $spacer;
+	color: $dropdown-button-color;
+	border-radius: $dropdown-button-border-radius;
+	font-weight: normal;
+	outline: none;
+	text-align: center;
+	border: $dropdown-button-border-width solid $dropdown-button-border-color;
+	background-color: $dropdown-button-background;
+	svg.kcs-icon {
+		display: flex;
+		width: 22px;
+		height: 22px;
+	}
+
+	.kcs-dropdown-arrow {
+		display: flex;
+		flex: 0 0 0;
+		svg.kcs-icon {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&:hover {
+		background-color: $dropdown-button-background-hover;
+	}
+	&:active {
+		border-color: $dropdown-button-background-active;
+	}
+
+	&.active {
+		color: $dropdown-button-color-active;
+		.kcs-dropdown-arrow {
+			svg.kcs-icon {
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+	&:focus {
+		border-color: $button-border-color-focus;
+	}
+
+	&[disabled] {
+		pointer-events: none;
+		opacity: .5;
+	}
+}

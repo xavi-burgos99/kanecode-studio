@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>KaneCode Studio - Documentation</title>
+
+    
+
+    <!-- Bootstrap core CSS -->
+		<link href="libs/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Prism.js -->
+		<link href="libs/prism.css" rel="stylesheet" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/docs.css" rel="stylesheet">
+  </head>
+  <body>
+    
+		<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+			<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="">KaneCode Studio</a>
+			<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+		</header>
+
+		<div class="container-fluid">
+			<div class="row">
+				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+					<div class="d-flex flex-column justify-content-between h-100">
+						<div class="position-sticky pt-3">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link" href="index.html">
+										<span data-feather="home"></span>
+										Introduction
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="options.html">
+										<span data-feather="check-square"></span>
+										Options
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="methods.html" aria-current="page">
+										<span data-feather="play"></span>
+										Methods
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="playground.html">
+										<span data-feather="flag"></span>
+										Playground
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="p-3">
+							<small class="text-muted">kanecode-studio v0.0.1</small>
+						</div>
+					</div>
+				</nav>
+
+				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+						<h1 class="m-0">Methods</h1>
+					</div>
+					<p>KaneCode Studio is a web editor developed by KaneCode that allows you to easily edit any HTML code.</p>
+
+					<h3 id="fullscreen" class="fw-bold" translate="no">fullscreen()</h3>
+					<p>Shows/Hides the studio in full screen.</p>
+					<pre><code class="language-js" data-prismjs-copy="Copy">studio.fullscreen();</code></pre>
+					
+					<h3 id="hideMenu" class="fw-bold" translate="no">hideMenu(<span class="text-muted">menu</span>)</h3>
+					<p>Hides the specified menu. The expected values (of type <code>string</code>) for the <code>menu</code> parameter could be <code>bottom</code>, <code>left</code> or <code>right</code>, depending on the menu that is expected to be hidden.</p>
+					<pre><code class="language-js" data-prismjs-copy="Copy">studio.hideMenu('bottom');	
+studio.hideMenu('left');
+studio.hideMenu('right');</code></pre>
+
+					<h3 id="open" class="fw-bold" translate="no">open(<span class="text-muted">content</span>)</h3>
+					<p>Open a new project. It receives a single input parameter (<code>content</code>) of type <code>string</code>, which is the web to load in HTML format.</p>
+					<pre><code class="language-js" data-prismjs-copy="Copy">var content = `
+&lthtml lang="en"&gt
+&lthead&gt&lttitle&gtDocument&lt/title&gt&lt/head&gt
+&ltbody&gt
+	&lth1&gtHello world!&lt/h1&gt
+	&ltp&gtI love kanecode :D&lt/p&gt
+&lt/body&gt
+&lt/html&gt`;
+
+studio.open(content);</code></pre>
+
+					<h3 id="preview" class="fw-bold" translate="no">preview()</h3>
+					<p>Hides the interface and loads the page for a real-time preview. Calling the function again will do the opposite.</p>
+					<pre><code class="language-js" data-prismjs-copy="Copy">studio.preview();</code></pre>
+
+					<h3 id="save" class="fw-bold" translate="no">save()</h3>
+					<p>Save the current project. In order to work, it is necessary to have previously specified the <a href="options.html#onsave"><code>onsave</code></a> option. If the project gives an error when saving, this function will throw an error message.</p>
+					<pre><code class="language-js" data-prismjs-copy="Copy">var studio = new KCStudio(element, {
+	onsave: (html) => { database = studio }
+});
+
+studio.save();</code></pre>
+
+					<h3 id="showMenu" class="fw-bold" translate="no">showMenu(<span class="text-muted">menu</span>)</h3>
+					<p>Shows the specified menu. The expected values (of type <code>string</code>) for the <code>menu</code> parameter could be <code>bottom</code>, <code>left</code> or <code>right</code>, depending on the menu that is expected to be showed.</p>
+					<pre><code class="language-js" data-prismjs-copy="Copy">studio.showMenu('bottom');	
+studio.showMenu('left');
+studio.showMenu('right');</code></pre>
+
+					<h3 id="toggleMenu" class="fw-bold" translate="no">toggleMenu(<span class="text-muted">menu</span>)</h3>
+					<p>Shows/Hides the specified menu. The expected values (of type <code>string</code>) for the <code>menu</code> parameter could be <code>bottom</code>, <code>left</code> or <code>right</code>, depending on the menu that is expected to be showed/hidden.</p>
+					<pre><code class="language-js" data-prismjs-copy="Copy">studio.toggleMenu('bottom');	
+studio.toggleMenu('left');
+studio.toggleMenu('right');</code></pre>
+
+				</main>
+			</div>
+		</div>
+
+
+    <script src="libs/bootstrap.bundle.min.js"></script>
+		<script src="libs/prism.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+		<script src="assets/docs.js"></script>
+  </body>
+</html>

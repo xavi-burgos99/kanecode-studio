@@ -1,0 +1,65 @@
+/* Spacing */
+$spacer: 10px;
+
+
+/* Color */
+$blue: #08e;
+$yellow: #fc0;
+$white: #fff;
+$gray: #808080;
+$black: #000;
+
+$body: $black;
+$primary: $blue;
+$secondary: $blue;
+$background: $white;
+
+
+/* Border */
+$border-width: 1px;
+$border-color: #eee;
+
+$border-radius: 5px;
+$border-radius-sm: 2px;
+$border-radius-lg: 8px;
+
+
+/* Breakpoints */
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+
+/* Buttons */
+$button-background: #f8f8f8;
+$button-background-hover: #f0f0f0;
+$button-background-active: #e0e0e0;
+$button-color: #888;
+$button-color-active: $primary;
+
+$button-border-width: $border-width;
+$button-border-color: $border-color;
+$button-border-color-focus: #aaa;
+$button-border-radius: $border-radius;
+$button-border-radius-sm: $border-radius-sm;
+$button-border-radius-lg: $border-radius-lg;
+
+
+/* Dropdown */
+$dropdown-button-background: $background;
+$dropdown-button-background-hover: #f8f8f8;
+$dropdown-button-background-active: #f0f0f0;
+$dropdown-button-color: #666;
+$dropdown-button-color-active: $dropdown-button-color;
+
+$dropdown-button-border-width: $border-width;
+$dropdown-button-border-color: $border-color;
+$dropdown-button-border-color-focus: #aaa;
+$dropdown-button-border-radius: $border-radius;
+$dropdown-button-border-radius-sm: $border-radius-sm;
+$dropdown-button-border-radius-lg: $border-radius-lg;
