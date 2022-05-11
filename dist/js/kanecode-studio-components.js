@@ -41,7 +41,7 @@ KCStudioComponents['basics'].components['section'] = {
 		"en-US": ["paragraph"],
 		"es-ES": ["párrafo"],
 	},
-	icon: 'undefined',
+	icon: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/section.svg">',
 	options: {
 		inside: {
 			allow: true,
@@ -62,18 +62,18 @@ KCStudioComponents['basics'].components['section'] = {
 
 KCStudioComponents['basics'].components['column'] = {
 	title: {
-		"en-US": "Section",
-		"es-ES": "Sección",
+		"en-US": "Column",
+		"es-ES": "Columna",
 	},
 	description: {
-		"en-US": "This is a section.",
-		"es-ES": "Esto es una sección.",
+		"en-US": "This is a column.",
+		"es-ES": "Esto es una columna.",
 	},
 	tags: {
-		"en-US": ["paragraph"],
-		"es-ES": ["párrafo"],
+		"en-US": ["section"],
+		"es-ES": ["sección"],
 	},
-	icon: 'undefined',
+	icon: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/column.svg">',
 	options: {
 		inside: {
 			allow: true,
@@ -83,6 +83,32 @@ KCStudioComponents['basics'].components['column'] = {
 	html: (studio) => {
 		const element = document.createElement('div');
 		element.innerHTML = `<div class="container">
+			<p>${studio.loc({
+				"en-US": "Insert your text here",
+				"es-ES": "Inserta tu texto aquí",
+			})}</p>
+		</div>`;
+		return element.children[0];
+	},
+};
+
+KCStudioComponents['basics'].components['image'] = {
+	title: {
+		"en-US": "Image",
+		"es-ES": "Imagen",
+	},
+	description: {
+		"en-US": "This is an image.",
+		"es-ES": "Esto es una imagen.",
+	},
+	tags: {
+		"en-US": ["photo"],
+		"es-ES": ["foto"],
+	},
+	icon: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/image.svg">',
+	html: (studio) => {
+		const element = document.createElement('div');
+		element.innerHTML = `<div>
 			<p>${studio.loc({
 				"en-US": "Insert your text here",
 				"es-ES": "Inserta tu texto aquí",
@@ -105,7 +131,7 @@ KCStudioComponents['basics'].components['text'] = {
 		"en-US": ["paragraph"],
 		"es-ES": ["párrafo"],
 	},
-	icon: 'undefined',
+	icon: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/paragraph.svg">',
 	html: (studio) => {
 		const element = document.createElement('div');
 		element.innerHTML = `<div>
