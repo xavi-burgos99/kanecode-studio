@@ -411,8 +411,8 @@ svg.kcs-icon .fill {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 1px;
-  height: 1px;
+  width: 2px;
+  height: 2px;
   background-color: #08e;
 }
 

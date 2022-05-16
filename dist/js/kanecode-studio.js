@@ -189,9 +189,14 @@ class KCStudio {
 						group: group,
 						options: {
 							hidden: false,
-							in: false,
-							inElement: undefined,
 							removable: true,
+							inside: {
+								allow: false,
+								include: undefined,
+								exclude: undefined,
+								element: undefined,
+								horizontal: false,
+							}
 						},
 						tagName: (Array.isArray(this.loc(component.tagName))) ? this.loc(component.tagName) : [],
 						tags: (Array.isArray(this.loc(component.tag))) ? this.loc(component.tag) : [],
@@ -204,26 +209,39 @@ class KCStudio {
 					if (typeof component.options === 'object') {
 						if (typeof component.options.hidden === 'boolean')
 							this.#components[id].options.hidden = component.options.hidden;
-						const checkArrayOption = (option, byDefault) => {
-							if (Array.isArray(option)) {
-								const ids = [];
-								option.forEach(el => {
-									if (typeof el === 'string')
-										ids.push(el);
+						if (typeof component.options.inside === 'object') {
+							if (typeof component.options.inside.allow === 'boolean')
+								this.#components[id].options.inside.allow = component.options.inside.allow;
+							if (Array.isArray(component.options.inside.include)) {
+								this.#components[id].options.inside.include = [];
+								component.options.inside.include.forEach((comp) => {
+									if (typeof comp === 'string')
+										this.#components[id].options.inside.include.push(comp);
 								});
-								return ids;
 							}
-							if (typeof option === 'string')
-								return [option];
-							if (typeof option === 'boolean')
-								return option;
-							if (typeof byDefault !== 'undefined')
-								return byDefault;
-							return true;
-						};
-						this.#components[id].options.in = checkArrayOption(component.options.in, false);
-						if (typeof component.options.inElement === 'function')
-							this.#components[id].options.inElement = component.options.inElement;
+							if (typeof component.options.inside.include === 'string')
+								this.#components[id].options.inside.include = [component.options.inside.include];
+							if (Array.isArray(component.options.inside.exclude)) {
+								this.#components[id].options.inside.exclude = [];
+								component.options.inside.exclude.forEach((comp) => {
+									if (typeof comp === 'string')
+										this.#components[id].options.inside.exclude.push(comp);
+								});
+							}
+							if (typeof component.options.inside.exclude === 'string')
+								this.#components[id].options.inside.exclude = [component.options.inside.exclude];
+							if (Array.isArray(component.options.inside.element)) {
+								this.#components[id].options.inside.element = [];
+								component.options.inside.element.forEach((comp) => {
+									if (typeof comp === 'string')
+										this.#components[id].options.inside.element.push(comp);
+								});
+							}
+							if (typeof component.options.inside.element === 'string')
+								this.#components[id].options.inside.element = [component.options.inside.element];
+							if (typeof component.options.inside.horizontal === 'boolean')
+								this.#components[id].options.inside.horizontal = component.options.inside.horizontal;
+						}
 					}
 					this.#renderComponent(id);
 				}
@@ -831,6 +849,10 @@ class KCStudio {
 				const helper = document.createElement('div');
 				helper.className = 'kanecode-studio-component-helper';
 				helper.innerHTML = this.icon(component.icon);
+
+				let targetElement = null;
+				let targetPosition = null;
+				let nullTarget = null;
 				const _dragmove = (e) => {
 					if (document != e.path[e.path.length - 2]) {
 						coords.x += iframeBCR.left;
@@ -891,12 +913,134 @@ class KCStudio {
 					const dragmove = (e) => {
 						coords.x = e.clientX;
 						coords.y = e.clientY;
-						const target = this.#getStudioElement(e.target);
-						this.target = e.target;
+						
+						const list = [];
+						let target = e.target;
+						while (target) {
+							list.push(target);
+							if (target.parentElement)
+								target = target.parentElement;
+							else
+								break;
+						}
+						list.shift();
+						for (let i = list.length - 1; i >= 0; i--) {
+							const id = this.#getComponentType(list[i]);
+							if (id in this.#components) {
+								if (this.#components[id].options.inside.allow === false) {
+									list.splice(0, i + 1);
+									break;
+								}
+							} else {
+								list.splice(i, 1);
+							}
+						}
+						target = undefined;
+						for (let i = 0; i < list.length; i++) {
+							const _id = this.#getComponentType(list[i]);
+							if (_id in this.#components) {
+								if (this.#components[_id].options.inside.exclude?.includes?.(id))
+									continue;
+								if (typeof this.#components[_id].options.inside.include === 'undefined' || this.#components[_id].options.inside.include?.includes?.(id)) {
+									target = list[i];
+									break;
+								}
+							}
+						};
+
+						let orientation = 'vertical';
+						if (target) {
+							const id = this.#getComponentType(target);
+							if (id in this.#components) {
+								orientation = this.#components[id].options.inside.horizontal ? 'horizontal' : 'vertical';
+							}
+						};
+
+						function allowInside(component, id) {
+							if (component.options.inside.exclude?.includes?.(id))
+								return false;
+							if (typeof component.options.inside.include === 'undefined' || component.options.inside.include?.includes?.(id)) {
+								return true;
+							}
+							return false;
+						}
+
+						nullTarget = true;
+						if (!target)
+							target = this.#getStudioElement(e.target);
+						if (target) {
+							const _id = this.#getComponentType(target);
+							if (_id in this.#components) {
+								if (allowInside(this.#components[_id], id)) {
+									orientation = this.#components[_id].options.inside.horizontal ? 'horizontal' : 'vertical';
+									nullTarget = false;
+								}
+							}
+						}
+						const line = this.#element.querySelector('.kanecode-studio-line-target');
+						if (nullTarget) {
+							this.target = null;
+							line.style.top = null;
+							line.style.height = null;
+							line.style.left = null;
+							line.style.width = null;
+						} else {
+							this.target = target;
+							let start = 'top';
+							let end = 'bottom';
+							let width = 'height';
+							let coord = 'y';
+							if (orientation === 'horizontal') {
+								start = 'left';
+								end = 'right';
+								width = 'width';
+								coord = 'x';
+							}
+							const targetBCR = target.getBoundingClientRect();
+							let min = targetBCR[start];
+							let max = targetBCR[end];
+							const list = [];
+							[...target.children].forEach((el) => {
+								const elBCR = el.getBoundingClientRect();
+								list.push([el, coords[coord] - (elBCR[start] + elBCR[width] / 2)]);
+							});
+							list.sort((a, b) => Math.abs(a[1]) - Math.abs(b[1]));
+							targetElement = null;
+							targetPosition = 'next';
+							if (list.length > 0) {
+								targetElement = list[0][0];
+								const elBCR = targetElement.getBoundingClientRect();
+								if (list[0][1] < 0) {
+									targetPosition = 'prev';
+									max = elBCR[start];
+									if (targetElement.previousElementSibling)
+										min = targetElement.previousElementSibling.getBoundingClientRect()[end];
+								} else {
+									min = elBCR[end];
+									if (targetElement.nextElementSibling)
+										min = targetElement.nextElementSibling.getBoundingClientRect()[start];
+								}
+							}
+							const average = min + (max - min) / 2 - 1;
+							if (orientation === 'horizontal') {
+								line.style.top = `${targetBCR.top}px`;
+								line.style.height = `${targetBCR.height}px`;
+								line.style.left = `${average}px`;
+								line.style.width = null;
+							} else {
+								line.style.left = `${targetBCR.left}px`;
+								line.style.width = `${targetBCR.width}px`;
+								line.style.top = `${average}px`;
+								line.style.height = null;
+							}
+						}
 
 						_dragmove(e);
 					};
 					const dragend = (e) => {
+						if (!nullTarget) {
+							console.log(targetElement, targetPosition);
+						}
 						_dragend(e);
 						document.removeEventListener('mousemove', dragmove);
 						this.#document.removeEventListener('mousemove', dragmove);
@@ -976,11 +1120,14 @@ class KCStudio {
 	#getComponentType(element) {
 		if (!this.#error) {
 			if (element?.tagName) {
-				if (element.hasAttribute('data-kcs-component'))
-					return element.getAttribute('data-kcs-component');
+				if (element.hasAttribute('data-kcs-component')) {
+					const id = element.getAttribute('data-kcs-component');
+					if (id in this.#components)
+						return id;
+				}
 				let tagElement = null;
 				for (let id in this.#components) {
-					if (this.#components[id].class.includes(element.class))
+					if (this.#components[id].class.some((c) => element.classList.contains(c)))
 						return id;
 					if (tagElement == null)
 						if (this.#components[id].tagName.find(tagName => tagName.toLowerCase().trim() === element.tagName.toLowerCase()))

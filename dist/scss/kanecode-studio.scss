@@ -205,12 +205,16 @@ svg.kcs-icon {
 					.kanecode-studio-frame-selected-tools {
 						background-color: $primary;
 					}
+					$line-width: $border-width;
+					@if $border-width % 2 == 1 {
+						$line-width: $border-width + 1;
+					}
 					.kanecode-studio-line-target {
 						pointer-events: none;
 						position: absolute;
 						display: flex;
-						width: $border-width;
-						height: $border-width;
+						width: $line-width;
+						height: $line-width;
 						background-color: $primary;
 						&[disabled] {
 							display: none;
