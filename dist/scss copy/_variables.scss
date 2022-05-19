@@ -1,5 +1,5 @@
 /* Spacing */
-$spacer: 12px;
+$spacer: 10px;
 
 
 /* Color */
@@ -16,12 +16,12 @@ $background: $white;
 
 
 /* Border */
-$border-width: 2px;
-$border-color: rgba($white, .2);
+$border-width: 1px;
+$border-color: #eee;
 
-$border-radius: 8px;
-$border-radius-sm: 4px;
-$border-radius-lg: 12px;
+$border-radius: 5px;
+$border-radius-sm: 2px;
+$border-radius-lg: 8px;
 
 
 /* Breakpoints */
@@ -39,8 +39,8 @@ $grid-breakpoints: (
 $button-background: #f8f8f8;
 $button-background-hover: #f0f0f0;
 $button-background-active: #e0e0e0;
-$button-color: #fff8;
-$button-color-active: #fffc;
+$button-color: #888;
+$button-color-active: $primary;
 
 $button-border-width: $border-width;
 $button-border-color: $border-color;
@@ -54,7 +54,7 @@ $button-border-radius-lg: $border-radius-lg;
 $dropdown-button-background: $background;
 $dropdown-button-background-hover: #f8f8f8;
 $dropdown-button-background-active: #f0f0f0;
-$dropdown-button-color: #fffc;
+$dropdown-button-color: #666;
 $dropdown-button-color-active: $dropdown-button-color;
 
 $dropdown-button-border-width: $border-width;

@@ -1018,7 +1018,7 @@ class KCStudio {
 								} else {
 									min = elBCR[end];
 									if (targetElement.nextElementSibling)
-										min = targetElement.nextElementSibling.getBoundingClientRect()[start];
+										max = targetElement.nextElementSibling.getBoundingClientRect()[start];
 								}
 							}
 							const average = min + (max - min) / 2 - 1;

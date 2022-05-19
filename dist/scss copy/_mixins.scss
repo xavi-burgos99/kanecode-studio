@@ -1,15 +1,11 @@
-@mixin glass($force: 3) {
-	backdrop-filter: blur(6px + $force);
-	background-color: rgba($white, .07 * $force);
-}
-
 @mixin button($transparent: false) {
 	user-select: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: $spacer / 4;
-	padding: $spacer / 4 $spacer / 2;
+	padding: $spacer / 2;
+	color: $button-color;
 	border-radius: $button-border-radius;
 	font-weight: bold;
 	outline: none;
@@ -17,11 +13,9 @@
 	@if $transparent == true {
 		border: $button-border-width solid transparent;
 		background-color: transparent;
-		color: rgba($white, .25);
 	} @else {
-		border: $button-border-width solid transparent;
-		color: $button-color;
-		@include glass(0);
+		border: $button-border-width solid $button-border-color;
+		background-color: $button-background;
 	}
 	svg.kcs-icon {
 		display: flex;
@@ -32,10 +26,10 @@
 	@if $transparent != true {
 		&:hover,
 		&:focus {
-			@include glass(2);
+			background-color: $button-background-hover;
 		}
 		&:active {
-			@include glass(2);
+			background-color: $button-background-active;
 			border-color: $button-background-active;
 		}
 	}
@@ -46,7 +40,7 @@
 
 	&:focus {
 		@if $transparent == true {
-			@include glass(0);
+			background-color: $button-background-hover;
 		} @else {
 			border-color: $button-border-color-focus;
 		}
@@ -54,7 +48,7 @@
 
 	&[disabled] {
 		pointer-events: none;
-		opacity: .25;
+		opacity: .5;
 	}
 }
 
@@ -70,8 +64,8 @@
 	font-weight: normal;
 	outline: none;
 	text-align: center;
-	border: $dropdown-button-border-width solid transparent;
-	@include glass(0);
+	border: $dropdown-button-border-width solid $dropdown-button-border-color;
+	background-color: $dropdown-button-background;
 	svg.kcs-icon {
 		display: flex;
 		width: 22px;
@@ -88,7 +82,7 @@
 	}
 
 	&:hover {
-		@include glass(1);
+		background-color: $dropdown-button-background-hover;
 	}
 	&:active {
 		border-color: $dropdown-button-background-active;
@@ -96,7 +90,6 @@
 
 	&.active {
 		color: $dropdown-button-color-active;
-		@include glass(1);
 		.kcs-dropdown-arrow {
 			svg.kcs-icon {
 				transform: rotate(180deg);
@@ -110,6 +103,6 @@
 
 	&[disabled] {
 		pointer-events: none;
-		opacity: .25;
+		opacity: .5;
 	}
 }
