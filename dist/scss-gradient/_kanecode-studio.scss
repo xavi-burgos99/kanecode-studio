@@ -48,20 +48,21 @@ svg.kcs-icon {
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
-	background-color: $background;
+	background: linear-gradient(135deg, #af02, #04f4), #111;
 	font-family: 'Lato', sans-serif;
 	outline: none;
 	* {
 		box-sizing: border-box;
 	}
 	.kanecode-studio-header {
+		@include glass(2.5);
 		display: none;
 		flex-direction: row;
 		flex: 0 0 $kanecode-studio-header-height;
 		align-items: center;
 		justify-content: space-between;
-		border-bottom: $border-width solid $border-color;
-		> * {
+		//border-bottom: $border-width solid $border-color;
+		/* > * {
 			border-left: $border-width solid $border-color;
 			border-right: $border-width solid $border-color;
 			&:first-child {
@@ -70,7 +71,7 @@ svg.kcs-icon {
 			&:last-child {
 				border-right: none;
 			}
-		}
+		} */
 	}
 	.kanecode-studio-body {
 		position: relative;
@@ -78,12 +79,13 @@ svg.kcs-icon {
 		flex-direction: row;
 		flex: 1 0 0;
 		.kanecode-studio-menu-left {
+			@include glass(1);
 			display: none;
 			flex-direction: column;
 			flex: 0 0 $kanecode-studio-menu-left-width;
 			min-width: $kanecode-studio-menu-min-width;
 			max-width: $kanecode-studio-menu-max-width;
-			border-right: $border-width solid $border-color;
+			//border-right: $border-width solid $border-color;
 			.kanecode-studio-components-list {
 				display: flex;
 				flex-direction: column;
@@ -95,7 +97,7 @@ svg.kcs-icon {
 				}
 				.kanecode-studio-components-list-grid {
 					display: none;
-					grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+					grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 					grid-gap: $spacer/2;
 					margin-bottom: $spacer*2;
 					.kanecode-studio-component-card {
@@ -104,10 +106,11 @@ svg.kcs-icon {
 						display: flex;
 						flex-direction: column;
 						padding: $spacer;
-						border: $border-width solid $border-color;
+						//border: $border-width solid $border-color;
 						border-radius: $border-radius;
 						overflow: hidden;
 						aspect-ratio: 1;
+						@include glass(1);
 						.kanecode-studio-component-card-icon {
 							display: flex;
 							align-items: center;
@@ -115,10 +118,13 @@ svg.kcs-icon {
 							font-size: 36px;
 							flex: 1 1 0;
 							line-height: 1;
-							color: $gray;
-							svg.kcs-icon {
-								width: 70%;
-								height: 70%;
+							color: rgba($white, 0.5);
+							img {
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+								padding: $spacer / 2;
+								opacity: .8;
 							}
 						}
 						.kanecode-studio-component-card-title {
@@ -128,6 +134,17 @@ svg.kcs-icon {
 							text-align: center;
 							line-height: 1;
 							font-size: 12px;
+							color: rgba($white, 0.5);
+						}
+						&:hover, &:active {
+							.kanecode-studio-component-card-icon {
+								img {
+									opacity: 1;
+								}
+							}
+							.kanecode-studio-component-card-title {
+								color: rgba($white, 0.8);
+							}
 						}
 						&:active {
 							cursor: grabbing;
@@ -223,21 +240,23 @@ svg.kcs-icon {
 				}
 			}
 			.kanecode-studio-menu-bottom {
+				@include glass(.75);
 				display: none;
 				flex-direction: column;
 				flex: 0 0 $kanecode-studio-menu-bottom-height;
 				min-height: $kanecode-studio-menu-min-height;
 				max-height: $kanecode-studio-menu-max-height;
-				border-top: $border-width solid $border-color;
+				//border-top: $border-width solid $border-color;
 			}
 		}
 		.kanecode-studio-menu-right {
+			@include glass(1);
 			display: none;
 			flex-direction: column;
 			flex: 0 0 $kanecode-studio-menu-left-width;
 			min-width: $kanecode-studio-menu-min-width;
 			max-width: $kanecode-studio-menu-max-width;
-			border-left: $border-width solid $border-color;
+			//border-left: $border-width solid $border-color;
 		}
 		.kanecode-studio-process {
 			position: absolute;
@@ -281,7 +300,7 @@ svg.kcs-icon {
 		padding: 0 $spacer;
 		button:not(.transparent) {
 			@include button;
-			margin: $spacer / 4;
+			margin: 0 $spacer / 3;
 		}
 		button.transparent {
 			@include button(true);
@@ -289,9 +308,10 @@ svg.kcs-icon {
 		.separator {
 			display: flex;
 			width: $border-width;
-			height: 100%;
+			height: $spacer * 2;
 			margin: 0 $spacer - $border-width;
-			background-color: $border-color;
+			border-radius: $border-radius-sm;
+			@include glass(0);
 		}
 	}
 }
@@ -357,7 +377,7 @@ svg.kcs-icon {
 		display: flex;
 	}
 	[data-kcs-action="menu-bottom"] {
-		color: $blue;
+		color: $white;
 	}
 }
 .kanecode-studio.show-menu-left {
@@ -365,7 +385,7 @@ svg.kcs-icon {
 		display: flex;
 	}
 	[data-kcs-action="menu-left"] {
-		color: $blue;
+		color: $white;
 	}
 }
 .kanecode-studio.show-menu-right {
@@ -373,7 +393,7 @@ svg.kcs-icon {
 		display: flex;
 	}
 	[data-kcs-action="menu-right"] {
-		color: $blue;
+		color: $white;
 	}
 }
 .kanecode-studio.show-process {

@@ -1,38 +1,42 @@
+@mixin glass($force: 3) {
+	backdrop-filter: blur(6px + $force);
+	background-color: rgba($white, .07 * $force);
+}
+
 @mixin button($transparent: false) {
 	user-select: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: $spacer / 4;
-	padding: $spacer / 3 $spacer / 2;
-	color: $button-color;
+	padding: $spacer / 4 $spacer / 2;
 	border-radius: $button-border-radius;
 	font-weight: bold;
 	outline: none;
 	text-align: center;
 	@if $transparent == true {
-		border: $button-border-width solid $button-border-color;
+		border: $button-border-width solid transparent;
 		background-color: transparent;
+		color: rgba($white, .25);
 	} @else {
-		border: $button-border-width solid $button-border-color;
-		background-color: $button-background;
-		box-shadow: $button-shadow;
+		border: $button-border-width solid transparent;
+		color: $button-color;
+		@include glass(0);
 	}
 	svg.kcs-icon {
 		display: flex;
-		width: 20px;
-		height: 20px;
+		width: 22px;
+		height: 22px;
 	}
 
 	@if $transparent != true {
 		&:hover,
 		&:focus {
-			background-color: $button-background-hover;
+			@include glass(2);
 		}
 		&:active {
-			background-color: $button-background-active;
+			@include glass(2);
 			border-color: $button-background-active;
-			box-shadow: $button-shadow-active;
 		}
 	}
 
@@ -42,7 +46,7 @@
 
 	&:focus {
 		@if $transparent == true {
-			background-color: $button-background-hover;
+			@include glass(0);
 		} @else {
 			border-color: $button-border-color-focus;
 		}
@@ -50,7 +54,7 @@
 
 	&[disabled] {
 		pointer-events: none;
-		opacity: .5;
+		opacity: .25;
 	}
 }
 
@@ -66,8 +70,8 @@
 	font-weight: normal;
 	outline: none;
 	text-align: center;
-	border: $dropdown-button-border-width solid $dropdown-button-border-color;
-	background-color: $dropdown-button-background;
+	border: $dropdown-button-border-width solid transparent;
+	@include glass(0);
 	svg.kcs-icon {
 		display: flex;
 		width: 22px;
@@ -84,7 +88,7 @@
 	}
 
 	&:hover {
-		background-color: $dropdown-button-background-hover;
+		@include glass(1);
 	}
 	&:active {
 		border-color: $dropdown-button-background-active;
@@ -92,6 +96,7 @@
 
 	&.active {
 		color: $dropdown-button-color-active;
+		@include glass(1);
 		.kcs-dropdown-arrow {
 			svg.kcs-icon {
 				transform: rotate(180deg);
@@ -105,6 +110,6 @@
 
 	&[disabled] {
 		pointer-events: none;
-		opacity: .5;
+		opacity: .25;
 	}
 }
