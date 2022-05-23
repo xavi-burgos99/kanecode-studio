@@ -1,27 +1,28 @@
 /* Spacing */
-$spacer: 10px;
+$spacer: 12px !default;
 
 
 /* Color */
-$blue: #0bf;
-$yellow: #fc0;
-$white: #fff;
-$gray: #808080;
-$black: #000;
+$blue: #0bf !default;
+$yellow: #fc0 !default;
+$white: #fff !default;
+$red: #f40 !default;
+$gray: #888 !default;
+$black: #000 !default;
 
-$body: $black;
-$primary: $blue;
-$secondary: $blue;
-$background: #f1f3f8;
+$body: $black !default;
+$primary: $blue !default;
+$secondary: $blue !default;
+$background: #f1f3f8 !default;
 
 
 /* Border */
 $border-width: 1px;
 $border-color: #8881;
 
-$border-radius: 5px;
-$border-radius-sm: 2px;
-$border-radius-lg: 8px;
+$border-radius: 6px;
+$border-radius-sm: 3px;
+$border-radius-lg: 9px;
 
 
 /* Breakpoints */
@@ -34,13 +35,16 @@ $grid-breakpoints: (
   xxl: 1400px
 );
 
+/* Neumorphism */
+$neumorphism-dark: #dfe4ea !default;
+$neumorphism-light: #fff !default;
 
 /* Buttons */
 $button-background: $background;
-$button-shadow: 6px 6px 12px #e0e2e5, -6px -6px 12px #fff;
+$button-shadow: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light;
 $button-background-hover: #f0f0f0;
 $button-background-active: transparent;
-$button-shadow-active: 2px 2px 2px 0 #dfe4ea inset, -2px -2px 2px 0 #fff inset;;
+$button-shadow-active: 2px 2px 2px $neumorphism-dark inset, -2px -2px 2px $neumorphism-light inset;
 $button-color: #666;
 $button-color-active: $primary;
 

@@ -39,7 +39,7 @@
     <link href="assets/docs.css" rel="stylesheet">
 
 		<!-- KaneCode Studio files -->
-		<link rel="stylesheet" href="../dist/css/kanecode-studio.css">
+		<link id="kanecode-studio-stylesheet" rel="stylesheet" href="../dist/css/kanecode-studio-dark.css">
 		<script src="../dist/js/kanecode-studio-utils.js"></script>
 		<script src="../dist/js/kanecode-studio-components.js"></script>
 		<script src="../dist/js/kanecode-studio.js"></script>
@@ -170,59 +170,95 @@
 				</nav>
 
 				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-full">
-					<div class="studio" style="width: 100%;"></div>
-					<script>
-						const studio = new KCStudio(document.querySelector('.studio'), {
-							fullscreen: true,
-							menus: {
-								right: {
-									show: false,
-								}
-							},
-							onsave: (html) => {
-								return new Promise((resolve, reject) => {
-									setTimeout(() => {
-										resolve();
-									}, 1000);
-								}); 
-							}
-						});
-						const html = `
-							<style data-kcs-styles>
-								[data-kcs-id="fjwJAJBP"] {
-									color: #000000;
-								}
-								[data-kcs-id="geuRMAfk"] {
-									color: #808080;
-								}
-							</style>
-							<div class="container-fluid" data-kcs-component="section" data-kcs-id="hosIWerT">
-								<div class="row">
-									<div class="col" data-kcs-id="dgWrTYNd">
-										<div data-kcs-component="heading" data-kcs-id="fjwJAJBP">
-											<h1>Main title</h1>
-										</div>
-										<div data-kcs-component="text" data-kcs-id="geuRMAfk">
-											<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur omnis saepe porro, provident tempore quisquam iste, adipisci a architecto, asperiores sunt. Quaerat adipisci minus impedit, debitis ut earum nam modi.</p>
-										</div>
-									</div>
-									<div class="col" data-kcs-id="dgWrTYNd">
-										<div data-kcs-component="heading" data-kcs-id="fjwJAJBP">
-											<h1>Main title</h1>
-										</div>
-										<div data-kcs-component="text" data-kcs-id="geuRMAfk">
-											<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur omnis saepe porro, provident tempore quisquam iste, adipisci a architecto, asperiores sunt. Quaerat adipisci minus impedit, debitis ut earum nam modi.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							`;
-						studio.open(html);
-					</script>
+					<div class="d-flex flex-column w-100">
+						<div class="mb-3">
+							<label for="theme" class="form-label mb-1">Select a theme:</label>
+							<select id="theme" class="form-select form-select-sm" aria-label="Theme selector">
+								<option value="auto" selected>Automatic</option>
+								<option value="light">Light</option>
+								<option value="dark">Dark</option>
+							</select>
+						</div>
+						<div class="studio rounded-3 overflow-hidden" style="display: flex; width: 100%; flex: 1 0 0;"></div>
+					</div>
 				</main>
 			</div>
 		</div>
 
+		<script>
+			// This part of code changes the #kanecode-studio-stylesheet to the selected theme.
+			document.getElementById('theme').addEventListener('input', (e) => {
+				const theme = e.target.value;
+				const stylesheet = document.getElementById('kanecode-studio-stylesheet');
+				if (theme === 'auto')
+					stylesheet.href = '../dist/css/kanecode-studio.css';
+				else
+					stylesheet.href = '../dist/css/kanecode-studio-' + theme + '.css';
+			});
+			const studio = new KCStudio(document.querySelector('.studio'), {
+				border: false,
+				fullscreen: true,
+				menus: {
+					right: {
+						show: false,
+					}
+				},
+				onsave: (html) => {
+					return new Promise((resolve, reject) => {
+						setTimeout(() => {
+							resolve();
+						}, 1000);
+					}); 
+				}
+			});
+			const html = `
+				<style data-kcs-styles>
+					[data-kcs-id="fjwJAJBP"] {
+						color: #000000;
+					}
+					[data-kcs-id="geuRMAfk"] {
+						color: #808080;
+					}
+				</style>
+				<div class="container-fluid" data-kcs-component="section" data-kcs-id="hosIWerT">
+					<div class="row">
+						<div class="col" data-kcs-id="dgWrTYNd">
+							<div data-kcs-component="heading" data-kcs-id="fjwJAJBP">
+								<h1>Main title</h1>
+							</div>
+							<div data-kcs-component="text" data-kcs-id="geuRMAfk">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur omnis saepe porro, provident tempore quisquam iste, adipisci a architecto, asperiores sunt. Quaerat adipisci minus impedit, debitis ut earum nam modi.</p>
+							</div>
+						</div>
+						<div class="col" data-kcs-id="dgWrTYNd">
+							<div data-kcs-component="heading" data-kcs-id="fjwJAJBP">
+								<h1>Main title</h1>
+							</div>
+							<div data-kcs-component="text" data-kcs-id="geuRMAfk">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur omnis saepe porro, provident tempore quisquam iste, adipisci a architecto, asperiores sunt. Quaerat adipisci minus impedit, debitis ut earum nam modi.</p>
+							</div>
+						</div>
+						<div class="col" data-kcs-id="dgWrTYNd">
+							<div data-kcs-component="heading" data-kcs-id="fjwJAJBP">
+								<h1>Main title</h1>
+							</div>
+							<div data-kcs-component="text" data-kcs-id="geuRMAfk">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur omnis saepe porro, provident tempore quisquam iste, adipisci a architecto, asperiores sunt. Quaerat adipisci minus impedit, debitis ut earum nam modi.</p>
+							</div>
+						</div>
+						<div class="col" data-kcs-id="dgWrTYNd">
+							<div data-kcs-component="heading" data-kcs-id="fjwJAJBP">
+								<h1>Main title</h1>
+							</div>
+							<div data-kcs-component="text" data-kcs-id="geuRMAfk">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur omnis saepe porro, provident tempore quisquam iste, adipisci a architecto, asperiores sunt. Quaerat adipisci minus impedit, debitis ut earum nam modi.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				`;
+			studio.open(html);
+		</script>
 
     <script src="libs/bootstrap.bundle.min.js"></script>
 		<script src="libs/prism.js"></script>

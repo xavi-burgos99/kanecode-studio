@@ -552,7 +552,7 @@ class KCStudio {
 			if (this.#config.dragging) {
 				line.removeAttribute('disabled');
 				//frameTarget.setAttribute('disabled', '');
-				refreshFrame(frameTarget, this.target);
+				//refreshFrame(frameTarget, this.target);
 				frameSelected.setAttribute('disabled', '');
 				frameTarget.nextElementSibling.setAttribute('disabled', '');
 				frameSelected.nextElementSibling.setAttribute('disabled', '');
@@ -853,10 +853,16 @@ class KCStudio {
 				let targetElement = null;
 				let targetPosition = null;
 				let nullTarget = null;
+				const line = this.#element.querySelector('.kanecode-studio-line-target');
 				const _dragmove = (e) => {
 					if (document != e.path[e.path.length - 2]) {
 						coords.x += iframeBCR.left;
 						coords.y += iframeBCR.top;
+					} else {
+						line.style.left = null;
+						line.style.top = null;
+						line.style.width = null;
+						line.style.height = null;
 					}
 					helper.style.left = `${coords.x}px`;
 					helper.style.top = `${coords.y}px`;
@@ -999,8 +1005,23 @@ class KCStudio {
 							const targetBCR = target.getBoundingClientRect();
 							let min = targetBCR[start];
 							let max = targetBCR[end];
+							let targetInElement = target;
+							const targetID = this.#getComponentType(target);
+							if (targetID in this.#components) {
+								if (Array.isArray(this.#components[targetID].options.inside.element)) {
+									for (const element of this.#components[targetID].options.inside.element) {
+										if (typeof element === 'string') {
+											const el = target.querySelector(element);
+											if (el) {
+												targetInElement = el;
+												break;
+											}
+										}
+									}
+								}
+							}
 							const list = [];
-							[...target.children].forEach((el) => {
+							[...targetInElement.children].forEach((el) => {
 								const elBCR = el.getBoundingClientRect();
 								list.push([el, coords[coord] - (elBCR[start] + elBCR[width] / 2)]);
 							});
