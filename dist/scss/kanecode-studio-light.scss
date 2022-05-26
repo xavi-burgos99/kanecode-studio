@@ -215,9 +215,11 @@ svg.kcs-icon {
 						display: flex;
 						width: $line-width;
 						height: $line-width;
-						background-color: rgba($primary, .5);
+						background-color: rgba($primary, .4);
 						box-shadow: 0 0 8px rgba($primary, .25), 0 0 15px rgba($primary, .25);
 						border-radius: $border-radius-sm;
+						transition: top, left, width, height;
+						transition-duration: 200ms;
 						&[disabled] {
 							display: none;
 						}

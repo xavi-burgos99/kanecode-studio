@@ -1042,17 +1042,30 @@ class KCStudio {
 										max = targetElement.nextElementSibling.getBoundingClientRect()[start];
 								}
 							}
-							const average = min + (max - min) / 2 - 1;
+							let _start = min;
+							let _width = max - min;
+							if (_width < 6) {
+								_start -= 3;
+								_width += 6;
+								console.log(_start + _width, iframeBCR[width]);
+								if (_start < 0) {
+									_start = -3;
+									_width += 3;
+								} else if (_start + _width > iframeBCR[width]) {
+									_start -= 3;
+									_width += 3;
+								}
+							}
 							if (orientation === 'horizontal') {
 								line.style.top = `${targetBCR.top}px`;
 								line.style.height = `${targetBCR.height}px`;
-								line.style.left = `${average}px`;
-								line.style.width = null;
+								line.style.left = `${_start}px`;
+								line.style.width = `${_width}px`;
 							} else {
 								line.style.left = `${targetBCR.left}px`;
 								line.style.width = `${targetBCR.width}px`;
-								line.style.top = `${average}px`;
-								line.style.height = null;
+								line.style.top = `${_start}px`;
+								line.style.height = `${_width}px`;
 							}
 						}
 
