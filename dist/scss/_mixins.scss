@@ -24,14 +24,18 @@
 		height: 1em;
 	}
 
-	@if $transparent != true {
+	@if $transparent == true {
 		&:hover,
 		&:focus {
 			background-color: $button-background-hover;
 		}
+	}
+	@else {
+		&:hover,
+		&:focus {
+			box-shadow: $button-shadow-hover;
+		}
 		&:active {
-			background-color: $button-background-active;
-			border-color: $button-background-active;
 			box-shadow: $button-shadow-active;
 		}
 	}

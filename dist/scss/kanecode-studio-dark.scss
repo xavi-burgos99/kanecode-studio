@@ -1,9 +1,14 @@
 /* Color */
 $blue: #22b8ff !default;
 $body: #fff !default;
-$background: #111318 !default;
+$background: #212328 !default;
 
-$neumorphism-dark: #000 !default;
-$neumorphism-light: #181c22 !default;
+$neumorphism-dark: #111318 !default;
+$neumorphism-light: #282c32 !default;
 
-@import 'kanecode-studio-light';
+/* Buttons */
+$button-color: #888;
+
+
+@import 'studio';
+

@@ -185,7 +185,7 @@ class KCStudio {
 						class: (Array.isArray(this.loc(component.class))) ? this.loc(component.class) : [],
 						description: (typeof this.loc(component.description) === 'string') ? this.loc(component.description) : null,
 						html: null,
-						icon: (typeof component.icon === 'string') ? component.icon : '?',
+						icon: (typeof component.icon === 'string') ? component.icon : (typeof component.icon === 'object') ? component.icon : '?',
 						group: group,
 						options: {
 							hidden: false,
@@ -1225,9 +1225,13 @@ class KCStudio {
 							if (list.children[0] == button)
 								button.classList.add('active');
 						}
+						let icon = this.icon(component.icon);
+						if (component?.icon?.light && component?.icon?.dark) {
+							icon = `<div class="kcs-icon-light">${this.icon(component.icon.light)}</div><div class="kcs-icon-dark">${this.icon(component.icon.dark)}</div>`;
+						}
 						const card = document.createElement('div');
 						card.className = 'kanecode-studio-component-card';
-						card.innerHTML = `<div class="kanecode-studio-component-card-icon">${this.icon(component.icon)}</div><div class="kanecode-studio-component-card-title">${component.title}</div>`;
+						card.innerHTML = `<div class="kanecode-studio-component-card-icon">${icon}</div><div class="kanecode-studio-component-card-title">${component.title}</div>`;
 						grid.append(card);
 						
 						let element = document.createElement('div');

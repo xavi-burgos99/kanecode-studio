@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+@import "variables";
+@import "mixins";
+
+$kanecode-studio-header-height: 50px;
+$kanecode-studio-menu-left-width: 25%;
+$kanecode-studio-menu-right-width: 25%;
+$kanecode-studio-menu-min-width: 250px;
+$kanecode-studio-menu-max-width: 350px;
+$kanecode-studio-menu-bottom-height: 35%;
+$kanecode-studio-menu-min-height: 250px;
+$kanecode-studio-menu-max-height: 800px;
+
+svg.kcs-icon {
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 5px;
+	stroke: currentColor;
+	fill: none;
+	
+	.fill {
+		fill: currentColor;
+	}
+}
+
+.kcs-spinner {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	border: 2px solid $border-color;
+	border-right-color: $primary;
+	animation: kcs-spin 1s linear infinite;
+}
+@keyframes kcs-spin {
+	from {
+		transform: rotateZ(0deg);
+	}
+	to {
+		transform: rotateZ(359deg);
+	}
+}
+
+.kanecode-studio {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	background-color: $background;
+	font-family: 'Lato', sans-serif;
+	outline: none;
+	* {
+		box-sizing: border-box;
+	}
+	.kanecode-studio-header {
+		display: none;
+		flex-direction: row;
+		flex: 0 0 $kanecode-studio-header-height;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: $border-width solid $border-color;
+		> * {
+			border-left: $border-width solid $border-color;
+			border-right: $border-width solid $border-color;
+			&:first-child {
+				border-left: none;
+			}
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
+	.kanecode-studio-body {
+		position: relative;
+		display: none;
+		flex-direction: row;
+		flex: 1 0 0;
+		.kanecode-studio-menu-left {
+			display: none;
+			flex-direction: column;
+			flex: 0 0 $kanecode-studio-menu-left-width;
+			min-width: $kanecode-studio-menu-min-width;
+			max-width: $kanecode-studio-menu-max-width;
+			border-right: $border-width solid $border-color;
+			.kanecode-studio-components-list {
+				display: flex;
+				flex-direction: column;
+				overflow-y: auto;
+				padding: $spacer;
+				.kanecode-studio-components-list-button {
+					@include dropdown-button;
+					margin-bottom: $spacer/2;
+				}
+				.kanecode-studio-components-list-grid {
+					display: none;
+					grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+					grid-gap: $spacer/2;
+					margin-bottom: $spacer*2;
+					.kanecode-studio-component-card {
+						cursor: grab;
+						user-select: none;
+						display: flex;
+						flex-direction: column;
+						padding: $spacer;
+						border: $border-width solid $border-color;
+						border-radius: $border-radius;
+						overflow: hidden;
+						aspect-ratio: 1;
+						.kanecode-studio-component-card-icon {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							font-size: 36px;
+							flex: 1 1 0;
+							line-height: 1;
+							color: $gray;
+							svg.kcs-icon {
+								width: 70%;
+								height: 70%;
+							}
+							img {
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+							}
+						}
+						.kanecode-studio-component-card-title {
+							display: flex;
+							justify-content: center;
+							flex: 0 0 0;
+							text-align: center;
+							line-height: 1;
+							font-size: 12px;
+						}
+						&:active {
+							cursor: grabbing;
+							opacity: .5;
+							transform: scale(.95);
+						}
+					}
+				}
+				.kanecode-studio-components-list-button.active + .kanecode-studio-components-list-grid {
+					display: grid;
+				}
+			}
+		}
+		.kanecode-studio-center {
+			display: flex;
+			flex-direction: column;
+			flex: 1 0 0;
+			.kanecode-studio-canvas {
+				display: flex;
+				flex-direction: column;
+				flex: 1 0 0;
+				align-items: center;
+				justify-content: center;
+				padding: $spacer;
+				.kanecode-studio-canvas-area {
+					position: relative;
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+					height: 100%;
+					border: $border-width solid $border-color;
+					border-radius: $border-radius;
+					overflow: hidden;
+					iframe {
+						width: 100%;
+						height: 100%;
+					}
+					.kanecode-studio-frame-target,
+					.kanecode-studio-frame-selected {
+						pointer-events: none;
+						position: absolute;
+						display: flex;
+						width: 0;
+						height: 0;
+						border: $border-width solid rgba($primary, .25);
+						&[disabled] {
+							display: none;
+						}
+					}
+					.kanecode-studio-frame-selected {
+						border-color: $primary;
+					}
+					.kanecode-studio-frame-target-tools,
+					.kanecode-studio-frame-selected-tools {
+						pointer-events: none;
+						position: absolute;
+						display: flex;
+						align-items: center;
+						min-width: 12px;
+						max-width: 150px;
+						height: 12px;
+						background-color: rgba($primary, .25);
+						border-radius: $border-radius-sm;
+						font-size: 10px;
+						line-height: 1;
+						font-weight: bold;
+						color: $white;
+						&[disabled] {
+							display: none;
+						}
+						.kanecode-studio-frame-tools-label {
+							padding: 0 $spacer / 3;
+						}
+					}
+					.kanecode-studio-frame-selected-tools {
+						background-color: $primary;
+					}
+					$line-width: $border-width;
+					@if $border-width % 2 == 1 {
+						$line-width: $border-width + 1;
+					}
+					.kanecode-studio-line-target {
+						pointer-events: none;
+						position: absolute;
+						display: flex;
+						width: $line-width;
+						height: $line-width;
+						background-color: rgba($primary, .4);
+						box-shadow: 0 0 8px rgba($primary, .25), 0 0 15px rgba($primary, .25);
+						border-radius: $border-radius-sm;
+						transition: top, left, width, height;
+						transition-duration: 200ms;
+						&[disabled] {
+							display: none;
+						}
+					}
+				}
+			}
+			.kanecode-studio-menu-bottom {
+				display: none;
+				flex-direction: column;
+				flex: 0 0 $kanecode-studio-menu-bottom-height;
+				min-height: $kanecode-studio-menu-min-height;
+				max-height: $kanecode-studio-menu-max-height;
+				border-top: $border-width solid $border-color;
+			}
+		}
+		.kanecode-studio-menu-right {
+			display: none;
+			flex-direction: column;
+			flex: 0 0 $kanecode-studio-menu-left-width;
+			min-width: $kanecode-studio-menu-min-width;
+			max-width: $kanecode-studio-menu-max-width;
+			border-left: $border-width solid $border-color;
+		}
+		.kanecode-studio-process {
+			position: absolute;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			.kanecode-studio-process-message {
+				pointer-events: all;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				gap: $spacer;
+				padding: $spacer $spacer * 2;
+				border-radius: $border-radius;
+				border: $border-width solid $border-color;
+				background-color: $background;
+				font-size: 1rem;
+				font-weight: bold;
+				text-align: center;
+			}
+		}
+	}
+	.kanecode-studio-error {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 0;
+	}
+}
+
+.kanecode-studio-header {
+	nav {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		padding: 0 $spacer;
+		button:not(.transparent) {
+			@include button;
+			margin: 0 $spacer / 3;
+		}
+		button.transparent {
+			@include button(true);
+		}
+		.separator {
+			display: flex;
+			width: $border-width;
+			height: 100%;
+			margin: 0 $spacer - $border-width;
+			background-color: $border-color;
+		}
+	}
+}
+
+.kanecode-studio-component-helper {
+	pointer-events: none;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1;
+	width: 30px;
+	height: 30px;
+	border: $border-width solid $border-color;
+	border-radius: $border-radius;
+	background-color: $background;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+	color: $gray;
+	svg.kcs-icon {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+
+
+.kanecode-studio {
+	[data-kcs-action="fullscreen"] {
+		[data-kcs-value="maximize"] {
+			display: flex;
+		}
+		[data-kcs-value="minimize"] {
+			display: none;
+		}
+	}
+}
+.kanecode-studio.show-border {
+	border: $border-width solid $border-color;
+}
+.kanecode-studio.fullscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 999999;
+	border: none;
+	[data-kcs-action="fullscreen"] {
+		[data-kcs-value="minimize"] {
+			display: flex;
+		}
+		[data-kcs-value="maximize"] {
+			display: none;
+		}
+	}
+}
+.kanecode-studio.hide-header .kanecode-studio-header {
+	display: none;
+}
+.kanecode-studio.show-menu-bottom {
+	.kanecode-studio-body .kanecode-studio-center  .kanecode-studio-menu-bottom {
+		display: flex;
+	}
+	[data-kcs-action="menu-bottom"] {
+		color: $blue;
+	}
+}
+.kanecode-studio.show-menu-left {
+	.kanecode-studio-body .kanecode-studio-menu-left {
+		display: flex;
+	}
+	[data-kcs-action="menu-left"] {
+		color: $blue;
+	}
+}
+.kanecode-studio.show-menu-right {
+	.kanecode-studio-body .kanecode-studio-menu-right {
+		display: flex;
+	}
+	[data-kcs-action="menu-right"] {
+		color: $blue;
+	}
+}
+.kanecode-studio.show-process {
+	pointer-events: none;
+	.kanecode-studio-header {
+		opacity: .85;
+	}
+	.kanecode-studio-body {
+		> * {
+			opacity: .85;
+		}
+		> .kanecode-studio-process {
+			display: flex;
+			opacity: 1;
+		}
+	}
+}
+.kanecode-studio.grabbing {
+	cursor: grabbing !important;
+	* {
+		cursor: grabbing !important;
+	}
+	
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+	.kanecode-studio {
+		.kanecode-studio-header,
+		.kanecode-studio-body {
+			display: flex;
+		}
+		.kanecode-studio-error {
+			display: none;
+		}
+	}
+}

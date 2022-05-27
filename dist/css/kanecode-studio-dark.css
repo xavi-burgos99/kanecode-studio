@@ -1,4 +1,5 @@
 /* Color */
+/* Buttons */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 /* Spacing */
 /* Color */
@@ -64,7 +65,7 @@ svg.kcs-icon .fill {
   height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: #111318;
+  background-color: #212328;
   font-family: 'Lato', sans-serif;
   outline: none;
 }
@@ -165,7 +166,7 @@ svg.kcs-icon .fill {
   outline: none;
   text-align: center;
   border: 1px solid #8881;
-  background-color: #111318;
+  background-color: #212328;
   margin-bottom: 6px;
 }
 
@@ -267,6 +268,13 @@ svg.kcs-icon .fill {
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .kanecode-studio-component-card-icon svg.kcs-icon {
   width: 70%;
   height: 70%;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .kanecode-studio-component-card-icon img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .kanecode-studio-component-card-title {
@@ -415,10 +423,14 @@ svg.kcs-icon .fill {
   display: flex;
   width: 2px;
   height: 2px;
-  background-color: rgba(34, 184, 255, 0.25);
+  background-color: rgba(34, 184, 255, 0.4);
   -webkit-box-shadow: 0 0 8px rgba(34, 184, 255, 0.25), 0 0 15px rgba(34, 184, 255, 0.25);
           box-shadow: 0 0 8px rgba(34, 184, 255, 0.25), 0 0 15px rgba(34, 184, 255, 0.25);
   border-radius: 3px;
+  -webkit-transition: top, left, width, height;
+  transition: top, left, width, height;
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-center .kanecode-studio-canvas .kanecode-studio-canvas-area .kanecode-studio-line-target[disabled] {
@@ -487,7 +499,7 @@ svg.kcs-icon .fill {
   padding: 12px 24px;
   border-radius: 6px;
   border: 1px solid #8881;
-  background-color: #111318;
+  background-color: #212328;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
@@ -533,15 +545,15 @@ svg.kcs-icon .fill {
           justify-content: center;
   gap: 3px;
   padding: 4px 6px;
-  color: #666;
+  color: #888;
   border-radius: 6px;
   font-weight: bold;
   outline: none;
   text-align: center;
   border: 0 solid #8881;
-  background-color: #111318;
-  -webkit-box-shadow: 6px 6px 8px #000, -6px -6px 8px #181c22;
-          box-shadow: 6px 6px 8px #000, -6px -6px 8px #181c22;
+  background-color: #212328;
+  -webkit-box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32;
+          box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32;
   margin: 0 4px;
 }
 
@@ -554,14 +566,13 @@ svg.kcs-icon .fill {
 }
 
 .kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
-  background-color: #f0f0f0;
+  -webkit-box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32, 6px 6px 8px rgba(17, 19, 24, 0.5) inset, -6px -6px 8px rgba(40, 44, 50, 0.5) inset;
+          box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32, 6px 6px 8px rgba(17, 19, 24, 0.5) inset, -6px -6px 8px rgba(40, 44, 50, 0.5) inset;
 }
 
 .kanecode-studio-header nav button:not(.transparent):active {
-  background-color: transparent;
-  border-color: transparent;
-  -webkit-box-shadow: 2px 2px 2px #000 inset, -2px -2px 2px #181c22 inset;
-          box-shadow: 2px 2px 2px #000 inset, -2px -2px 2px #181c22 inset;
+  -webkit-box-shadow: 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
+          box-shadow: 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
 }
 
 .kanecode-studio-header nav button:not(.transparent).active {
@@ -593,7 +604,7 @@ svg.kcs-icon .fill {
           justify-content: center;
   gap: 3px;
   padding: 4px 6px;
-  color: #666;
+  color: #888;
   border-radius: 6px;
   font-weight: bold;
   outline: none;
@@ -610,12 +621,16 @@ svg.kcs-icon .fill {
   height: 1em;
 }
 
+.kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 .kanecode-studio-header nav button.transparent.active {
   color: #22b8ff;
 }
 
 .kanecode-studio-header nav button.transparent:focus {
-  background-color: #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .kanecode-studio-header nav button.transparent[disabled] {
@@ -650,7 +665,7 @@ svg.kcs-icon .fill {
   height: 30px;
   border: 1px solid #8881;
   border-radius: 6px;
-  background-color: #111318;
+  background-color: #212328;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   overflow: hidden;

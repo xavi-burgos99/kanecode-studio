@@ -40,32 +40,33 @@ $neumorphism-dark: #dfe4ea !default;
 $neumorphism-light: #fff !default;
 
 /* Buttons */
-$button-background: $background;
+$button-background: $background !default;
 $button-shadow: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light;
-$button-background-hover: #f0f0f0;
-$button-background-active: transparent;
-$button-shadow-active: 2px 2px 2px $neumorphism-dark inset, -2px -2px 2px $neumorphism-light inset;
-$button-color: #666;
-$button-color-active: $primary;
+$button-background-hover: rgba($body, .05) !default;
+$button-shadow-hover: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light, 6px 6px 8px rgba($neumorphism-dark, .5) inset, -6px -6px 8px rgba($neumorphism-light, .5) inset;
+$button-background-active: transparent !default;
+$button-shadow-active: 3px 3px 6px $neumorphism-dark inset, -3px -3px 6px $neumorphism-light inset;
+$button-color: #666 !default;
+$button-color-active: $primary !default;
 
 $button-border-width: 0;
-$button-border-color: $border-color;
-$button-border-color-focus: #aaa;
+$button-border-color: $border-color !default;
+$button-border-color-focus: #aaa !default;
 $button-border-radius: $border-radius;
 $button-border-radius-sm: $border-radius-sm;
 $button-border-radius-lg: $border-radius-lg;
 
 
 /* Dropdown */
-$dropdown-button-background: $background;
-$dropdown-button-background-hover: #f8f8f8;
-$dropdown-button-background-active: #f0f0f0;
-$dropdown-button-color: #666;
-$dropdown-button-color-active: $dropdown-button-color;
+$dropdown-button-background: $background !default;
+$dropdown-button-background-hover: #f8f8f8 !default;
+$dropdown-button-background-active: #f0f0f0 !default;
+$dropdown-button-color: #666 !default;
+$dropdown-button-color-active: $dropdown-button-color !default;
 
 $dropdown-button-border-width: $border-width;
 $dropdown-button-border-color: $border-color;
-$dropdown-button-border-color-focus: #aaa;
+$dropdown-button-border-color-focus: #aaa !default;
 $dropdown-button-border-radius: $border-radius;
 $dropdown-button-border-radius-sm: $border-radius-sm;
 $dropdown-button-border-radius-lg: $border-radius-lg;
