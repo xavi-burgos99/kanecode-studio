@@ -849,7 +849,9 @@ class KCStudio {
 				const helper = document.createElement('div');
 				helper.className = 'kanecode-studio-component-helper';
 				helper.innerHTML = this.icon(component.icon);
-
+				if (component?.icon?.light && component?.icon?.dark) {
+					helper.innerHTML = `<div class="kcs-icon-light">${this.icon(component.icon.light)}</div><div class="kcs-icon-dark">${this.icon(component.icon.dark)}</div>`;
+				}
 				let targetElement = null;
 				let targetPosition = null;
 				let nullTarget = null;

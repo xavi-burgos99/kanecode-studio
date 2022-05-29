@@ -2,6 +2,7 @@
 /* Spacing */
 /* Color */
 /* Border */
+/* Shadows */
 /* Breakpoints */
 /* Neumorphism */
 /* Buttons */
@@ -66,6 +67,7 @@ svg.kcs-icon .fill {
   background-color: #f1f3f8;
   font-family: 'Lato', sans-serif;
   outline: none;
+  color: #000;
 }
 
 .kanecode-studio * {
@@ -429,6 +431,8 @@ svg.kcs-icon .fill {
   transition: top, left, width, height;
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-center .kanecode-studio-canvas .kanecode-studio-canvas-area .kanecode-studio-line-target[disabled] {
@@ -548,42 +552,7 @@ svg.kcs-icon .fill {
   font-weight: bold;
   outline: none;
   text-align: center;
-  border: 0 solid #8881;
-  background-color: #f1f3f8;
-  -webkit-box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff;
-          box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff;
   margin: 0 4px;
-}
-
-.kanecode-studio-header nav button:not(.transparent) svg.kcs-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 1em;
-  height: 1em;
-}
-
-.kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
-  -webkit-box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff, 6px 6px 8px rgba(223, 228, 234, 0.5) inset, -6px -6px 8px rgba(255, 255, 255, 0.5) inset;
-          box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff, 6px 6px 8px rgba(223, 228, 234, 0.5) inset, -6px -6px 8px rgba(255, 255, 255, 0.5) inset;
-}
-
-.kanecode-studio-header nav button:not(.transparent):active {
-  -webkit-box-shadow: 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-          box-shadow: 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-}
-
-.kanecode-studio-header nav button:not(.transparent).active {
-  color: #0bf;
-}
-
-.kanecode-studio-header nav button:not(.transparent):focus {
-  border-color: #aaa;
-}
-
-.kanecode-studio-header nav button:not(.transparent)[disabled] {
-  pointer-events: none;
-  opacity: .5;
 }
 
 .kanecode-studio-header nav button.transparent {
@@ -611,31 +580,6 @@ svg.kcs-icon .fill {
   background-color: transparent;
 }
 
-.kanecode-studio-header nav button.transparent svg.kcs-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 1em;
-  height: 1em;
-}
-
-.kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.kanecode-studio-header nav button.transparent.active {
-  color: #0bf;
-}
-
-.kanecode-studio-header nav button.transparent:focus {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.kanecode-studio-header nav button.transparent[disabled] {
-  pointer-events: none;
-  opacity: .5;
-}
-
 .kanecode-studio-header nav .separator {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -659,11 +603,14 @@ svg.kcs-icon .fill {
       -ms-flex-pack: center;
           justify-content: center;
   z-index: 1;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
+  padding: 3px;
   border: 1px solid #8881;
   border-radius: 6px;
   background-color: #f1f3f8;
+  -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   overflow: hidden;
@@ -671,6 +618,13 @@ svg.kcs-icon .fill {
 }
 
 .kanecode-studio-component-helper svg.kcs-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.kanecode-studio-component-helper .kcs-icon-light,
+.kanecode-studio-component-helper .kcs-icon-dark,
+.kanecode-studio-component-helper img {
   width: 100%;
   height: 100%;
 }
@@ -782,5 +736,15 @@ svg.kcs-icon .fill {
   .kanecode-studio .kanecode-studio-error {
     display: none;
   }
+}
+
+.kcs-icon-light {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.kcs-icon-dark {
+  display: none;
 }
 /*# sourceMappingURL=kanecode-studio-light.css.map */

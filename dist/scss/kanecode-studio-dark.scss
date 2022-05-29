@@ -1,6 +1,6 @@
 /* Color */
 $blue: #22b8ff !default;
-$body: #fff !default;
+$body: #ccc !default;
 $background: #212328 !default;
 
 $neumorphism-dark: #111318 !default;
@@ -12,3 +12,9 @@ $button-color: #888;
 
 @import 'studio';
 
+.kcs-icon-light {
+	display: none;
+}
+.kcs-icon-dark {
+	display: flex;
+}

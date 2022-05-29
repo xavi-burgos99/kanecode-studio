@@ -20,8 +20,8 @@
 	}
 	svg.kcs-icon {
 		display: flex;
-		width: 1em;
-		height: 1em;
+		width: 1.25em;
+		height: 1.25em;
 	}
 
 	@if $transparent == true {
@@ -48,13 +48,31 @@
 		@if $transparent == true {
 			background-color: $button-background-hover;
 		} @else {
-			border-color: $button-border-color-focus;
+			border-color: $button-border-color-hover;
 		}
 	}
 
 	&[disabled] {
 		pointer-events: none;
 		opacity: .5;
+	}
+}
+
+@mixin button($transparent: false) {
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: $spacer / 4;
+	padding: $spacer / 3 $spacer / 2;
+	color: $button-color;
+	border-radius: $button-border-radius;
+	font-weight: bold;
+	outline: none;
+	text-align: center;
+	@if $transparent == true {
+		border: $button-border-width solid $button-border-color;
+		background-color: transparent;
 	}
 }
 
@@ -104,7 +122,7 @@
 	}
 
 	&:focus {
-		border-color: $button-border-color-focus;
+		border-color: $button-border-color-hover;
 	}
 
 	&[disabled] {

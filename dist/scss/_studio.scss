@@ -51,6 +51,7 @@ svg.kcs-icon {
 	background-color: $background;
 	font-family: 'Lato', sans-serif;
 	outline: none;
+	color: $body;
 	* {
 		box-sizing: border-box;
 	}
@@ -225,6 +226,7 @@ svg.kcs-icon {
 						border-radius: $border-radius-sm;
 						transition: top, left, width, height;
 						transition-duration: 200ms;
+						transition-timing-function: ease-in-out;
 						&[disabled] {
 							display: none;
 						}
@@ -312,15 +314,23 @@ svg.kcs-icon {
 	align-items: center;
 	justify-content: center;
 	z-index: 1;
-	width: 30px;
-	height: 30px;
+	width: 36px;
+	height: 36px;
+	padding: $spacer / 4;
 	border: $border-width solid $border-color;
 	border-radius: $border-radius;
 	background-color: $background;
+	box-shadow: $box-shadow;
 	transform: translate(-50%, -50%);
 	overflow: hidden;
 	color: $gray;
 	svg.kcs-icon {
+		width: 100%;
+		height: 100%;
+	}
+	.kcs-icon-light,
+	.kcs-icon-dark,
+	img {
 		width: 100%;
 		height: 100%;
 	}

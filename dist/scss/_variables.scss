@@ -25,6 +25,12 @@ $border-radius-sm: 3px;
 $border-radius-lg: 9px;
 
 
+/* Shadows */
+$box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+$box-shadow-sm: 2px 2px 10px rgba(0, 0, 0, 0.2);
+$box-shadow-lg: 5px 5px 30px rgba(0, 0, 0, 0.2);
+
+
 /* Breakpoints */
 $grid-breakpoints: (
   xs: 0,
@@ -40,21 +46,28 @@ $neumorphism-dark: #dfe4ea !default;
 $neumorphism-light: #fff !default;
 
 /* Buttons */
-$button-background: $background !default;
-$button-shadow: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light;
-$button-background-hover: rgba($body, .05) !default;
-$button-shadow-hover: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light, 6px 6px 8px rgba($neumorphism-dark, .5) inset, -6px -6px 8px rgba($neumorphism-light, .5) inset;
-$button-background-active: transparent !default;
-$button-shadow-active: 3px 3px 6px $neumorphism-dark inset, -3px -3px 6px $neumorphism-light inset;
 $button-color: #666 !default;
+$button-color-hover: $button-color !default;
 $button-color-active: $primary !default;
 
-$button-border-width: 0;
+$button-background: $background !default;
+$button-background-hover: rgba($body, .05) !default;
+$button-background-active: $background !default;
+
+$button-shadow: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light;
+$button-shadow-hover: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light, 6px 6px 8px rgba($neumorphism-dark, .5) inset, -6px -6px 8px rgba($neumorphism-light, .5) inset;
+$button-shadow-active: 3px 3px 6px $neumorphism-dark inset, -3px -3px 6px $neumorphism-light inset;
+
 $button-border-color: $border-color !default;
-$button-border-color-focus: #aaa !default;
-$button-border-radius: $border-radius;
-$button-border-radius-sm: $border-radius-sm;
-$button-border-radius-lg: $border-radius-lg;
+$button-border-color-hover: #aaa !default;
+$button-border-color-active: #aaa !default;
+
+$button-border-radius: $border-radius !default;
+$button-border-radius-sm: $border-radius-sm !default;
+$button-border-radius-lg: $border-radius-lg !default;
+
+$button-border-width: 0;
+$button-transition: .2s;
 
 
 /* Dropdown */
