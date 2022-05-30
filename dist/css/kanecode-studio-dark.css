@@ -417,14 +417,16 @@ svg.kcs-icon .fill {
   background-color: #22b8ff;
 }
 
-.kanecode-studio .kanecode-studio-body .kanecode-studio-center .kanecode-studio-canvas .kanecode-studio-canvas-area .kanecode-studio-line-target {
+.kanecode-studio .kanecode-studio-body .kanecode-studio-center .kanecode-studio-canvas .kanecode-studio-canvas-area .kanecode-studio-drag-area {
   pointer-events: none;
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 2px;
-  height: 2px;
+  top: calc(100% - 10px);
+  left: calc(50% - 3px);
+  width: 24px;
+  height: 6px;
   background-color: rgba(34, 184, 255, 0.4);
   -webkit-box-shadow: 0 0 8px rgba(34, 184, 255, 0.25), 0 0 15px rgba(34, 184, 255, 0.25);
           box-shadow: 0 0 8px rgba(34, 184, 255, 0.25), 0 0 15px rgba(34, 184, 255, 0.25);
@@ -437,7 +439,7 @@ svg.kcs-icon .fill {
           transition-timing-function: ease-in-out;
 }
 
-.kanecode-studio .kanecode-studio-body .kanecode-studio-center .kanecode-studio-canvas .kanecode-studio-canvas-area .kanecode-studio-line-target[disabled] {
+.kanecode-studio .kanecode-studio-body .kanecode-studio-center .kanecode-studio-canvas .kanecode-studio-canvas-area .kanecode-studio-drag-area[disabled] {
   display: none;
 }
 
@@ -554,7 +556,38 @@ svg.kcs-icon .fill {
   font-weight: bold;
   outline: none;
   text-align: center;
+  border: 0 solid #8881;
+  background-color: #212328;
+  -webkit-box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32;
+          box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32;
   margin: 0 4px;
+}
+
+.kanecode-studio-header nav button:not(.transparent) svg.kcs-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
+  -webkit-box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32, 6px 6px 8px rgba(17, 19, 24, 0.5) inset, -6px -6px 8px rgba(40, 44, 50, 0.5) inset;
+          box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32, 6px 6px 8px rgba(17, 19, 24, 0.5) inset, -6px -6px 8px rgba(40, 44, 50, 0.5) inset;
+}
+
+.kanecode-studio-header nav button:not(.transparent):active {
+  -webkit-box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
+          box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
+}
+
+.kanecode-studio-header nav button:not(.transparent).active {
+  color: #22b8ff;
+}
+
+.kanecode-studio-header nav button:not(.transparent)[disabled] {
+  pointer-events: none;
+  opacity: .5;
 }
 
 .kanecode-studio-header nav button.transparent {
@@ -578,8 +611,38 @@ svg.kcs-icon .fill {
   font-weight: bold;
   outline: none;
   text-align: center;
-  border: 0 solid #8881;
+  border: 0 solid transparent;
   background-color: transparent;
+}
+
+.kanecode-studio-header nav button.transparent svg.kcs-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
+  background-color: rgba(204, 204, 204, 0.05);
+}
+
+.kanecode-studio-header nav button.transparent:active {
+  background-color: #212328;
+}
+
+.kanecode-studio-header nav button.transparent:active {
+  -webkit-box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
+          box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
+}
+
+.kanecode-studio-header nav button.transparent.active {
+  color: #22b8ff;
+}
+
+.kanecode-studio-header nav button.transparent[disabled] {
+  pointer-events: none;
+  opacity: .5;
 }
 
 .kanecode-studio-header nav .separator {
@@ -728,7 +791,18 @@ svg.kcs-icon .fill {
   cursor: grabbing !important;
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: map-get($grid-breakpoints, "lg")) {
+	.kanecode-studio {
+		.kanecode-studio-header,
+		.kanecode-studio-body {
+			display: flex;
+		}
+		.kanecode-studio-error {
+			display: none;
+		}
+	}
+} */
+@media (min-width: 768px) {
   .kanecode-studio .kanecode-studio-header,
   .kanecode-studio .kanecode-studio-body {
     display: -webkit-box;

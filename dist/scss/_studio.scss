@@ -215,12 +215,14 @@ svg.kcs-icon {
 					@if $border-width % 2 == 1 {
 						$line-width: $border-width + 1;
 					}
-					.kanecode-studio-line-target {
+					.kanecode-studio-drag-area {
 						pointer-events: none;
 						position: absolute;
 						display: flex;
-						width: $line-width;
-						height: $line-width;
+						top: calc(100% - 10px);
+						left: calc(50% - 3px);
+						width: 24px;
+						height: 6px;
 						background-color: rgba($primary, .4);
 						box-shadow: 0 0 8px rgba($primary, .25), 0 0 15px rgba($primary, .25);
 						border-radius: $border-radius-sm;
@@ -418,7 +420,19 @@ svg.kcs-icon {
 	
 }
 
-@media (min-width: map-get($grid-breakpoints, "lg")) {
+/* @media (min-width: map-get($grid-breakpoints, "lg")) {
+	.kanecode-studio {
+		.kanecode-studio-header,
+		.kanecode-studio-body {
+			display: flex;
+		}
+		.kanecode-studio-error {
+			display: none;
+		}
+	}
+} */
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
 	.kanecode-studio {
 		.kanecode-studio-header,
 		.kanecode-studio-body {

@@ -46,7 +46,7 @@ $neumorphism-dark: #dfe4ea !default;
 $neumorphism-light: #fff !default;
 
 /* Buttons */
-$button-color: #666 !default;
+$button-color: #777 !default;
 $button-color-hover: $button-color !default;
 $button-color-active: $primary !default;
 
@@ -56,7 +56,7 @@ $button-background-active: $background !default;
 
 $button-shadow: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light;
 $button-shadow-hover: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light, 6px 6px 8px rgba($neumorphism-dark, .5) inset, -6px -6px 8px rgba($neumorphism-light, .5) inset;
-$button-shadow-active: 3px 3px 6px $neumorphism-dark inset, -3px -3px 6px $neumorphism-light inset;
+$button-shadow-active: 6px 6px 8px rgba($neumorphism-dark, .25), -6px -6px 8px rgba($neumorphism-light, .25), 3px 3px 6px $neumorphism-dark inset, -3px -3px 6px $neumorphism-light inset;
 
 $button-border-color: $border-color !default;
 $button-border-color-hover: #aaa !default;

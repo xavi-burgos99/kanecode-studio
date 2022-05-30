@@ -81,7 +81,7 @@ class KCStudio {
 									<div class="kanecode-studio-frame-selected-tools" disabled>
 										<span class="kanecode-studio-frame-tools-label"></span>
 									</div>
-									<div class="kanecode-studio-line-target" disabled></div>
+									<div class="kanecode-studio-drag-area" disabled></div>
 								</div>
 							</div>
 							<div class="kanecode-studio-menu-bottom"></div>
@@ -174,6 +174,32 @@ class KCStudio {
 		} else {
 			this.#error('The "element" parameter in constructor is not an element.');
 			return;
+		}
+	}
+
+	add(element, target, index) {
+		if (!this.#error && this.#enabled && this.#document) {
+			if (element?.nodeName && target?.nodeName && typeof index === 'number') {
+				if (this.#document.documentElement.contains(target)) {
+					const max = target.childNodes.length;
+					if (index < 0)
+						index = 0;
+					if (index > max)
+						index = max;
+					if (index == 0)
+						target.prepend(element);
+					else {
+						index++;
+						if (index > max)
+							target.append(element);
+						else
+							target.insertBefore(element, target.childNodes[index]);
+					}
+				}
+			} else {
+				//todo
+				return;
+			}
 		}
 	}
 
@@ -522,7 +548,6 @@ class KCStudio {
 
 	refresh() {
 		if (!this.#error && this.#enabled) {
-			const line = this.#element.querySelector('.kanecode-studio-line-target');
 			const frameTarget = this.#element.querySelector('.kanecode-studio-frame-target');
 			const frameSelected = this.#element.querySelector('.kanecode-studio-frame-selected');
 			const refreshFrame = (frame, element) => {
@@ -550,7 +575,6 @@ class KCStudio {
 				}
 			};
 			if (this.#config.dragging) {
-				line.removeAttribute('disabled');
 				//frameTarget.setAttribute('disabled', '');
 				//refreshFrame(frameTarget, this.target);
 				frameSelected.setAttribute('disabled', '');
@@ -559,7 +583,6 @@ class KCStudio {
 			} else {
 				refreshFrame(frameTarget, this.target);
 				refreshFrame(frameSelected, this.selected);
-				line.setAttribute('disabled', '');
 			}
 		}
 	}
@@ -852,29 +875,206 @@ class KCStudio {
 				if (component?.icon?.light && component?.icon?.dark) {
 					helper.innerHTML = `<div class="kcs-icon-light">${this.icon(component.icon.light)}</div><div class="kcs-icon-dark">${this.icon(component.icon.dark)}</div>`;
 				}
-				let targetElement = null;
-				let targetPosition = null;
-				let nullTarget = null;
-				const line = this.#element.querySelector('.kanecode-studio-line-target');
+
+				const addInfo = {
+					parent: null,
+					child: null,
+					enabled: false,
+				};
+
+				const area = this.#element.querySelector('.kanecode-studio-drag-area');
+				const hideArea = () => {
+					area.setAttribute('disabled', '');
+				}
+				const showArea = () => {
+					area.removeAttribute('disabled');
+				}
+				const setArea = (top, left, width, height) => {
+					area.style.top = `${top}px`;
+					area.style.left = `${left}px`;
+					area.style.width = `${width}px`;
+					area.style.height = `${height}px`;
+					showArea();
+				}
+				const resetArea = () => {
+					area.style.top = null;
+					area.style.height = null;
+					area.style.left = null;
+					area.style.width = null;
+					hideArea();
+					addInfo.enabled = false;
+				};
+
+				const showAreaByElement = (element) => {
+					// Get the path to the element where the mouse is currently hovering.
+					const getElementPath = (element) => {
+						const path = [];
+						while (element) {
+							path.push(element);
+							if (element.parentElement)
+								element = element.parentElement;
+							else
+								break;
+						}
+						return path;
+					};
+
+					// Remove the elements that don't allow the user to drag a component inside.
+					const removeNotAllowedElements = (path) => {
+						for (let i = path.length - 1; i >= 0; i--) {
+							const id = this.#getComponentType(path[i]);
+							if (id in this.#components) {
+								if (this.#components[id].options.inside.allow === false) {
+									path.splice(0, i + 1);
+									break;
+								}
+							} else {
+								path.splice(i, 1);
+							}
+						}
+						return path;
+					};
+
+					// Get the target element from path.
+					const getTargetElement = (path) => {
+						for (let i = 0; i < path.length; i++) {
+							const _id = this.#getComponentType(path[i]);
+							if (_id in this.#components) {
+								if (this.#components[_id].options.inside.exclude?.includes?.(id))
+									continue;
+								if (typeof this.#components[_id].options.inside.include === 'undefined' || this.#components[_id].options.inside.include?.includes?.(id)) {
+									return path[i];
+								}
+							}
+						}
+						return undefined;
+					};
+
+					// Get target element's orientation.
+					const getElementOrientation = (target) => {
+						if (target) {
+							const id = this.#getComponentType(target);
+							if (id in this.#components)
+								if (this.#components[id].options.inside.horizontal)
+									return 'horizontal';
+						};
+						return 'vertical';
+					};
+
+					// Get the element inside component where components are inserted.
+					const getParentContainer = (element) => {
+						const id = this.#getComponentType(element);
+						if (id in this.#components) {
+							if (Array.isArray(this.#components[id].options.inside.element)) {
+								for (const selector of this.#components[id].options.inside.element) {
+									if (typeof selector === 'string') {
+										const el = element.querySelector(selector);
+										if (el) return el;
+									}
+								}
+							}
+						}
+						return element;
+					}
+
+					// Calculate the area where the component can be dropped.
+					const calculateArea = (target, orientation) => {
+						if (target) {
+							let start = (orientation === 'horizontal') ? 'left'  : 'top';
+							let end   = (orientation === 'horizontal') ? 'right' : 'bottom';
+							let width = (orientation === 'horizontal') ? 'width' : 'height';
+							let coord = (orientation === 'horizontal') ? 'x'     : 'y';
+
+							const getNearChildToCursor = (container) => {
+								const list = [];
+								[...container.children].forEach((el) => {
+									const elBCR = el.getBoundingClientRect();
+									list.push([el, coords[coord] - (elBCR[start] + elBCR[width] / 2)]);
+								});
+								list.sort((a, b) => Math.abs(a[1]) - Math.abs(b[1]));
+								if (list.length > 0) {
+									const element = list[0][0];
+									if (list[0][1] < 0)
+										return element.previousElementSibling;
+									return element;
+								}
+								return undefined;
+							};
+
+							const targetBCR = target.getBoundingClientRect();
+							let min = targetBCR[start];
+							let max = targetBCR[end];
+							
+							const container = getParentContainer(target);
+							addInfo.parent = container;
+							addInfo.enabled = true;
+
+							addInfo.child = 0;
+							const nearPrev = getNearChildToCursor(container);
+
+							if (nearPrev) {
+								const nearNext = nearPrev.nextElementSibling;
+								const nearPrevBCR = nearPrev.getBoundingClientRect();
+								min = nearPrevBCR[end];
+								if (nearNext) {
+									const nearNextBCR = nearNext.getBoundingClientRect();
+									max = nearNextBCR[start];
+								}
+								addInfo.child = [...container.children].indexOf(nearPrev) + 1;
+							} else if (container.children.length > 0) {
+								const nearNext = container.children[0];
+								const nearNextBCR = nearNext.getBoundingClientRect();
+								max = nearNextBCR[start];
+							}
+
+							let _start = min;
+							let _width = max - min;
+							if (_width < 6) {
+								_start -= 3;
+								_width += 6;
+								if (_start < 0) {
+									_start = -3;
+									_width += 3;
+								} else if (_start + _width > iframeBCR[width]) {
+									_start -= 3;
+									_width += 3;
+								}
+							}
+							if (orientation === 'horizontal') {
+								setArea(targetBCR.top, _start, _width, targetBCR.height);
+							} else {
+								setArea(_start, targetBCR.left, targetBCR.width, _width);
+							}
+						} else {
+							resetArea();
+						}
+					};
+
+					const path = removeNotAllowedElements(getElementPath(element));
+					let target = getTargetElement(path);
+					let orientation = getElementOrientation(target);
+
+					calculateArea(target, orientation);
+					
+				}
+
 				const _dragmove = (e) => {
 					if (document != e.path[e.path.length - 2]) {
 						coords.x += iframeBCR.left;
 						coords.y += iframeBCR.top;
 					} else {
-						line.style.left = null;
-						line.style.top = null;
-						line.style.width = null;
-						line.style.height = null;
+						resetArea();
 					}
 					helper.style.left = `${coords.x}px`;
 					helper.style.top = `${coords.y}px`;
 				};
 				const _dragend = (e) => {
 					if (this.target) {
-
+						
 					} else {
 						this.#target = selected;
 					}
+					resetArea();
 					helper.remove();
 					this.#document.documentElement.style.scrollBehavior = scrollType;
 					this.#config.edges.enabled = false;
@@ -921,161 +1121,16 @@ class KCStudio {
 					const dragmove = (e) => {
 						coords.x = e.clientX;
 						coords.y = e.clientY;
-						
-						const list = [];
-						let target = e.target;
-						while (target) {
-							list.push(target);
-							if (target.parentElement)
-								target = target.parentElement;
-							else
-								break;
-						}
-						list.shift();
-						for (let i = list.length - 1; i >= 0; i--) {
-							const id = this.#getComponentType(list[i]);
-							if (id in this.#components) {
-								if (this.#components[id].options.inside.allow === false) {
-									list.splice(0, i + 1);
-									break;
-								}
-							} else {
-								list.splice(i, 1);
-							}
-						}
-						target = undefined;
-						for (let i = 0; i < list.length; i++) {
-							const _id = this.#getComponentType(list[i]);
-							if (_id in this.#components) {
-								if (this.#components[_id].options.inside.exclude?.includes?.(id))
-									continue;
-								if (typeof this.#components[_id].options.inside.include === 'undefined' || this.#components[_id].options.inside.include?.includes?.(id)) {
-									target = list[i];
-									break;
-								}
-							}
-						};
 
-						let orientation = 'vertical';
-						if (target) {
-							const id = this.#getComponentType(target);
-							if (id in this.#components) {
-								orientation = this.#components[id].options.inside.horizontal ? 'horizontal' : 'vertical';
-							}
-						};
-
-						function allowInside(component, id) {
-							if (component.options.inside.exclude?.includes?.(id))
-								return false;
-							if (typeof component.options.inside.include === 'undefined' || component.options.inside.include?.includes?.(id)) {
-								return true;
-							}
-							return false;
-						}
-
-						nullTarget = true;
-						if (!target)
-							target = this.#getStudioElement(e.target);
-						if (target) {
-							const _id = this.#getComponentType(target);
-							if (_id in this.#components) {
-								if (allowInside(this.#components[_id], id)) {
-									orientation = this.#components[_id].options.inside.horizontal ? 'horizontal' : 'vertical';
-									nullTarget = false;
-								}
-							}
-						}
-						const line = this.#element.querySelector('.kanecode-studio-line-target');
-						if (nullTarget) {
-							this.target = null;
-							line.style.top = null;
-							line.style.height = null;
-							line.style.left = null;
-							line.style.width = null;
-						} else {
-							this.target = target;
-							let start = 'top';
-							let end = 'bottom';
-							let width = 'height';
-							let coord = 'y';
-							if (orientation === 'horizontal') {
-								start = 'left';
-								end = 'right';
-								width = 'width';
-								coord = 'x';
-							}
-							const targetBCR = target.getBoundingClientRect();
-							let min = targetBCR[start];
-							let max = targetBCR[end];
-							let targetInElement = target;
-							const targetID = this.#getComponentType(target);
-							if (targetID in this.#components) {
-								if (Array.isArray(this.#components[targetID].options.inside.element)) {
-									for (const element of this.#components[targetID].options.inside.element) {
-										if (typeof element === 'string') {
-											const el = target.querySelector(element);
-											if (el) {
-												targetInElement = el;
-												break;
-											}
-										}
-									}
-								}
-							}
-							const list = [];
-							[...targetInElement.children].forEach((el) => {
-								const elBCR = el.getBoundingClientRect();
-								list.push([el, coords[coord] - (elBCR[start] + elBCR[width] / 2)]);
-							});
-							list.sort((a, b) => Math.abs(a[1]) - Math.abs(b[1]));
-							targetElement = null;
-							targetPosition = 'next';
-							if (list.length > 0) {
-								targetElement = list[0][0];
-								const elBCR = targetElement.getBoundingClientRect();
-								if (list[0][1] < 0) {
-									targetPosition = 'prev';
-									max = elBCR[start];
-									if (targetElement.previousElementSibling)
-										min = targetElement.previousElementSibling.getBoundingClientRect()[end];
-								} else {
-									min = elBCR[end];
-									if (targetElement.nextElementSibling)
-										max = targetElement.nextElementSibling.getBoundingClientRect()[start];
-								}
-							}
-							let _start = min;
-							let _width = max - min;
-							if (_width < 6) {
-								_start -= 3;
-								_width += 6;
-								console.log(_start + _width, iframeBCR[width]);
-								if (_start < 0) {
-									_start = -3;
-									_width += 3;
-								} else if (_start + _width > iframeBCR[width]) {
-									_start -= 3;
-									_width += 3;
-								}
-							}
-							if (orientation === 'horizontal') {
-								line.style.top = `${targetBCR.top}px`;
-								line.style.height = `${targetBCR.height}px`;
-								line.style.left = `${_start}px`;
-								line.style.width = `${_width}px`;
-							} else {
-								line.style.left = `${targetBCR.left}px`;
-								line.style.width = `${targetBCR.width}px`;
-								line.style.top = `${_start}px`;
-								line.style.height = `${_width}px`;
-							}
-						}
+						showAreaByElement(e.target);
 
 						_dragmove(e);
 					};
 					const dragend = (e) => {
-						if (!nullTarget) {
-							console.log(targetElement, targetPosition);
+						if (addInfo.enabled) {
+							const target = addInfo.parent;
+							const index = addInfo.child;
+							this.add(element, target, index);
 						}
 						_dragend(e);
 						document.removeEventListener('mousemove', dragmove);
