@@ -59,8 +59,10 @@ KCStudioComponents['basics'].components['section'] = {
 	html: (studio) => {
 		const element = document.createElement('div');
 		element.innerHTML = `
-		<div class="container py-2">
-			<div class="row"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col" data-kcs-id="${studio.utils.uuid()}"></div>
+			</div>
 		</div>`;
 		return element.children[0];
 	},
@@ -98,26 +100,31 @@ KCStudioComponents['basics'].components['column'] = {
 	},
 };
 
-KCStudioComponents['basics'].components['image'] = {
+KCStudioComponents['basics'].components['heading'] = {
 	title: {
-		"en-US": "Image",
-		"es-ES": "Imagen",
+		"en-US": "Heading",
+		"es-ES": "Cabecera",
 	},
 	description: {
-		"en-US": "This is an image.",
-		"es-ES": "Esto es una imagen.",
+		"en-US": "Headings are used to organize content.",
+		"es-ES": "Las cabeceras se usan para organizar el contenido.",
 	},
 	tags: {
-		"en-US": ["photo"],
-		"es-ES": ["foto"],
+		"en-US": ["text"],
+		"es-ES": ["texto"],
 	},
 	icon: {
-		light: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/image_light.svg">',
-		dark: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/image_dark.svg">',
+		light: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/heading_light.svg">',
+		dark: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/heading_dark.svg">',
 	},
 	html: (studio) => {
 		const element = document.createElement('div');
-		element.innerHTML = `<img src="" alt="">`;
+		element.innerHTML = `<div>
+			<h1>${studio.loc({
+				"en-US": "Insert your text here",
+				"es-ES": "Inserta tu texto aquí",
+			})}</h1>
+		</div>`;
 		return element.children[0];
 	},
 };
@@ -147,6 +154,30 @@ KCStudioComponents['basics'].components['text'] = {
 				"es-ES": "Inserta tu texto aquí",
 			})}</p>
 		</div>`;
+		return element.children[0];
+	},
+};
+
+KCStudioComponents['basics'].components['image'] = {
+	title: {
+		"en-US": "Image",
+		"es-ES": "Imagen",
+	},
+	description: {
+		"en-US": "This is an image.",
+		"es-ES": "Esto es una imagen.",
+	},
+	tags: {
+		"en-US": ["photo"],
+		"es-ES": ["foto"],
+	},
+	icon: {
+		light: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/image_light.svg">',
+		dark: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/image_dark.svg">',
+	},
+	html: (studio) => {
+		const element = document.createElement('div');
+		element.innerHTML = `<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/preview-image.png" alt="">`;
 		return element.children[0];
 	},
 };

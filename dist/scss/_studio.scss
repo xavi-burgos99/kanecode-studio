@@ -96,13 +96,15 @@ svg.kcs-icon {
 				}
 				.kanecode-studio-components-list-grid {
 					display: none;
-					grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+					grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 					grid-gap: $spacer/2;
 					margin-bottom: $spacer*2;
 					.kanecode-studio-component-card {
 						cursor: grab;
 						user-select: none;
 						display: flex;
+						align-items: center;
+						justify-content: space-between;
 						flex-direction: column;
 						padding: $spacer;
 						border: $border-width solid $border-color;
@@ -133,7 +135,7 @@ svg.kcs-icon {
 							flex: 0 0 0;
 							text-align: center;
 							line-height: 1;
-							font-size: 12px;
+							font-size: 10px;
 						}
 						&:active {
 							cursor: grabbing;
@@ -253,6 +255,7 @@ svg.kcs-icon {
 			border-left: $border-width solid $border-color;
 		}
 		.kanecode-studio-process {
+			pointer-events: none;
 			position: absolute;
 			display: none;
 			align-items: center;
@@ -287,6 +290,7 @@ svg.kcs-icon {
 }
 
 .kanecode-studio-header {
+	user-select: none;
 	nav {
 		display: flex;
 		align-items: center;
@@ -406,6 +410,11 @@ svg.kcs-icon {
 		> * {
 			opacity: .85;
 		}
+	}
+}
+.kanecode-studio.show-process,
+.kanecode-studio.show-process-cursor {
+	.kanecode-studio-body {
 		> .kanecode-studio-process {
 			display: flex;
 			opacity: 1;

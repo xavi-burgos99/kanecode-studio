@@ -5303,4 +5303,311 @@ body * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  min-height: 2rem;
+}
+
+.col {
+  min-height: 2rem;
+}
+
+.col-xs-1 {
+  min-height: 2rem;
+}
+
+.col-xs-2 {
+  min-height: 2rem;
+}
+
+.col-xs-3 {
+  min-height: 2rem;
+}
+
+.col-xs-4 {
+  min-height: 2rem;
+}
+
+.col-xs-5 {
+  min-height: 2rem;
+}
+
+.col-xs-6 {
+  min-height: 2rem;
+}
+
+.col-xs-7 {
+  min-height: 2rem;
+}
+
+.col-xs-8 {
+  min-height: 2rem;
+}
+
+.col-xs-9 {
+  min-height: 2rem;
+}
+
+.col-xs-10 {
+  min-height: 2rem;
+}
+
+.col-xs-11 {
+  min-height: 2rem;
+}
+
+.col-xs-12 {
+  min-height: 2rem;
+}
+
+.col-sm-1 {
+  min-height: 2rem;
+}
+
+.col-sm-2 {
+  min-height: 2rem;
+}
+
+.col-sm-3 {
+  min-height: 2rem;
+}
+
+.col-sm-4 {
+  min-height: 2rem;
+}
+
+.col-sm-5 {
+  min-height: 2rem;
+}
+
+.col-sm-6 {
+  min-height: 2rem;
+}
+
+.col-sm-7 {
+  min-height: 2rem;
+}
+
+.col-sm-8 {
+  min-height: 2rem;
+}
+
+.col-sm-9 {
+  min-height: 2rem;
+}
+
+.col-sm-10 {
+  min-height: 2rem;
+}
+
+.col-sm-11 {
+  min-height: 2rem;
+}
+
+.col-sm-12 {
+  min-height: 2rem;
+}
+
+.col-md-1 {
+  min-height: 2rem;
+}
+
+.col-md-2 {
+  min-height: 2rem;
+}
+
+.col-md-3 {
+  min-height: 2rem;
+}
+
+.col-md-4 {
+  min-height: 2rem;
+}
+
+.col-md-5 {
+  min-height: 2rem;
+}
+
+.col-md-6 {
+  min-height: 2rem;
+}
+
+.col-md-7 {
+  min-height: 2rem;
+}
+
+.col-md-8 {
+  min-height: 2rem;
+}
+
+.col-md-9 {
+  min-height: 2rem;
+}
+
+.col-md-10 {
+  min-height: 2rem;
+}
+
+.col-md-11 {
+  min-height: 2rem;
+}
+
+.col-md-12 {
+  min-height: 2rem;
+}
+
+.col-lg-1 {
+  min-height: 2rem;
+}
+
+.col-lg-2 {
+  min-height: 2rem;
+}
+
+.col-lg-3 {
+  min-height: 2rem;
+}
+
+.col-lg-4 {
+  min-height: 2rem;
+}
+
+.col-lg-5 {
+  min-height: 2rem;
+}
+
+.col-lg-6 {
+  min-height: 2rem;
+}
+
+.col-lg-7 {
+  min-height: 2rem;
+}
+
+.col-lg-8 {
+  min-height: 2rem;
+}
+
+.col-lg-9 {
+  min-height: 2rem;
+}
+
+.col-lg-10 {
+  min-height: 2rem;
+}
+
+.col-lg-11 {
+  min-height: 2rem;
+}
+
+.col-lg-12 {
+  min-height: 2rem;
+}
+
+.col-xl-1 {
+  min-height: 2rem;
+}
+
+.col-xl-2 {
+  min-height: 2rem;
+}
+
+.col-xl-3 {
+  min-height: 2rem;
+}
+
+.col-xl-4 {
+  min-height: 2rem;
+}
+
+.col-xl-5 {
+  min-height: 2rem;
+}
+
+.col-xl-6 {
+  min-height: 2rem;
+}
+
+.col-xl-7 {
+  min-height: 2rem;
+}
+
+.col-xl-8 {
+  min-height: 2rem;
+}
+
+.col-xl-9 {
+  min-height: 2rem;
+}
+
+.col-xl-10 {
+  min-height: 2rem;
+}
+
+.col-xl-11 {
+  min-height: 2rem;
+}
+
+.col-xl-12 {
+  min-height: 2rem;
+}
+
+.col-xxl-1 {
+  min-height: 2rem;
+}
+
+.col-xxl-2 {
+  min-height: 2rem;
+}
+
+.col-xxl-3 {
+  min-height: 2rem;
+}
+
+.col-xxl-4 {
+  min-height: 2rem;
+}
+
+.col-xxl-5 {
+  min-height: 2rem;
+}
+
+.col-xxl-6 {
+  min-height: 2rem;
+}
+
+.col-xxl-7 {
+  min-height: 2rem;
+}
+
+.col-xxl-8 {
+  min-height: 2rem;
+}
+
+.col-xxl-9 {
+  min-height: 2rem;
+}
+
+.col-xxl-10 {
+  min-height: 2rem;
+}
+
+.col-xxl-11 {
+  min-height: 2rem;
+}
+
+.col-xxl-12 {
+  min-height: 2rem;
+}
+
+[data-kcs-component="image"] {
+  max-width: 100%;
+  height: auto;
+}
 /*# sourceMappingURL=kc-studio.css.map */

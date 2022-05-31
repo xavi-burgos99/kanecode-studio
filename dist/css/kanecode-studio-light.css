@@ -220,8 +220,8 @@ svg.kcs-icon .fill {
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid {
   display: none;
-  -ms-grid-columns: (minmax(80px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  -ms-grid-columns: (minmax(70px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   grid-gap: 6px;
   margin-bottom: 24px;
 }
@@ -236,6 +236,12 @@ svg.kcs-icon .fill {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -289,7 +295,7 @@ svg.kcs-icon .fill {
           flex: 0 0 0;
   text-align: center;
   line-height: 1;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card:active {
@@ -470,6 +476,7 @@ svg.kcs-icon .fill {
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-process {
+  pointer-events: none;
   position: absolute;
   display: none;
   -webkit-box-align: center;
@@ -520,6 +527,13 @@ svg.kcs-icon .fill {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 0px;
           flex: 1 0 0;
+}
+
+.kanecode-studio-header {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .kanecode-studio-header nav {
@@ -772,7 +786,8 @@ svg.kcs-icon .fill {
   opacity: .85;
 }
 
-.kanecode-studio.show-process .kanecode-studio-body > .kanecode-studio-process {
+.kanecode-studio.show-process .kanecode-studio-body > .kanecode-studio-process,
+.kanecode-studio.show-process-cursor .kanecode-studio-body > .kanecode-studio-process {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

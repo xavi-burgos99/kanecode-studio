@@ -189,12 +189,12 @@ class KCStudio {
 					if (index == 0)
 						target.prepend(element);
 					else {
-						index++;
 						if (index > max)
 							target.append(element);
 						else
-							target.insertBefore(element, target.childNodes[index]);
+							target.insertBefore(element, target.children[index]);
 					}
+					this.#action(() => { this.add(element, target, index) }, () => { this.remove(element) }, 'Add component');
 				}
 			} else {
 				//todo
@@ -514,7 +514,7 @@ class KCStudio {
 					}
 				}
 				if (res) {
-					this.#process(`${this.loc('Redo')} "${this.loc(action[2])}"`, { disable: false });
+					this.#process(`${this.loc('Redo')} "${this.loc(action[2])}"`, { disable: false, cursor: true });
 					if (typeof this._undoRedoAnimation !== 'undefined') {
 						clearTimeout(this._undoRedoAnimation);
 						this._undoRedoAnimation = undefined;
@@ -583,6 +583,29 @@ class KCStudio {
 			} else {
 				refreshFrame(frameTarget, this.target);
 				refreshFrame(frameSelected, this.selected);
+			}
+		}
+	}
+
+	remove(element) {
+		if (!this.#error && this.#enabled && this.#document) {
+			if (element?.nodeName) {
+				if (this.#document.documentElement.contains(element)) {
+					const parent = element.parentNode;
+					const index = [...element.parentElement.children].indexOf(element);
+					this.#action(() => {
+						this.remove(element)
+					}, () => {
+						this.add(element, parent, index);
+					}, 'Remove component');
+
+					element.remove();
+					this.target = null;
+					this.selected = null;
+				}
+			} else {
+				//todo
+				return;
 			}
 		}
 	}
@@ -721,7 +744,7 @@ class KCStudio {
 					}
 				}
 				if (res) {
-					this.#process(`${this.loc('Undo')} "${this.loc(action[2])}"`, { disable: false });
+					this.#process(`${this.loc('Undo')} "${this.loc(action[2])}"`, { disable: false, cursor: true });
 					if (typeof this._undoRedoAnimation !== 'undefined') {
 						clearTimeout(this._undoRedoAnimation);
 						this._undoRedoAnimation = undefined;
@@ -1234,23 +1257,30 @@ class KCStudio {
 	#process(message, options) {
 		const _options = {
 			spinner: false,
-			disable: true
+			disable: true,
+			cursor: false,
 		};
 		if (typeof options === 'object') {
 			if (typeof options.spinner === 'boolean')
 				_options.spinner = options.spinner;
 			if (typeof options.disable === 'boolean')
 				_options.disable = options.disable;
+			if (typeof options.cursor === 'boolean')
+				_options.cursor = options.cursor;
 		}
 		const process = this.#element.querySelector('.kanecode-studio-process-message');
 		process.innerHTML = '';
 		if (message === null) {
 			this.#element.classList.remove('show-process');
+			this.#element.classList.remove('show-process-cursor');
 			this.enable();
 		} else {
 			if (_options.disable)
 				this.disable();
-			this.#element.classList.add('show-process');
+			if (_options.cursor)
+				this.#element.classList.add('show-process-cursor');
+			else
+				this.#element.classList.add('show-process');
 			if (_options.spinner)
 				process.innerHTML = '<div class="kcs-spinner"></div>';
 			if (typeof message !== 'string')
@@ -1299,8 +1329,8 @@ class KCStudio {
 						element = element.children[0];
 						element.setAttribute('data-kcs-component', id);
 						const dragstart = (e) => {
-							element = element.cloneNode(true);
-							this.#dragElement(e, element);
+							const newElement = element.cloneNode(true);
+							this.#dragElement(e, newElement);
 						};
 						card.addEventListener('mousedown', dragstart);
 						card.addEventListener('touchstart', dragstart);
@@ -1357,9 +1387,11 @@ class KCStudio {
 	#language = 'es-ES';
 	#languages = {
 		"es-ES": {
+			"Add component": "Añadir componente",
 			"Opening": "Abriendo",
 			"Preview": "Vista previa",
 			"Redo": "Rehacer",
+			"Remove component": "Eliminar componente",
 			"Save": "Guardar",
 			"Saving": "Guardando",
 			"Undo": "Deshacer",
@@ -1446,7 +1478,7 @@ class KCStudio {
 		win: { key: 'Delete' },
 		mac: { key: 'Backspace' },
 		input: false,
-		fn: (e) => { this.remove() },
+		fn: (e) => { this.remove(this.selected) },
 	}, {
 		win: { key: 'Escape' },
 		mac: { key: 'Escape' },
