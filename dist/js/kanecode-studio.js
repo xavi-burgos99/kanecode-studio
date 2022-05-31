@@ -181,7 +181,7 @@ class KCStudio {
 		if (!this.#error && this.#enabled && this.#document) {
 			if (element?.nodeName && target?.nodeName && typeof index === 'number') {
 				if (this.#document.documentElement.contains(target)) {
-					const max = target.childNodes.length;
+					const max = target.children.length;
 					if (index < 0)
 						index = 0;
 					if (index > max)
@@ -1299,6 +1299,7 @@ class KCStudio {
 						element = element.children[0];
 						element.setAttribute('data-kcs-component', id);
 						const dragstart = (e) => {
+							element = element.cloneNode(true);
 							this.#dragElement(e, element);
 						};
 						card.addEventListener('mousedown', dragstart);

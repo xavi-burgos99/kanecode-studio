@@ -58,11 +58,9 @@ KCStudioComponents['basics'].components['section'] = {
 	},
 	html: (studio) => {
 		const element = document.createElement('div');
-		element.innerHTML = `<div class="container">
-			<p>${studio.loc({
-				"en-US": "Insert your text here",
-				"es-ES": "Inserta tu texto aquí",
-			})}</p>
+		element.innerHTML = `
+		<div class="container py-2">
+			<div class="row"></div>
 		</div>`;
 		return element.children[0];
 	},
@@ -94,12 +92,8 @@ KCStudioComponents['basics'].components['column'] = {
 	},
 	html: (studio) => {
 		const element = document.createElement('div');
-		element.innerHTML = `<div class="container">
-			<p>${studio.loc({
-				"en-US": "Insert your text here",
-				"es-ES": "Inserta tu texto aquí",
-			})}</p>
-		</div>`;
+		element.innerHTML = `
+		<div class="col py-2"></div>`;
 		return element.children[0];
 	},
 };
@@ -123,12 +117,7 @@ KCStudioComponents['basics'].components['image'] = {
 	},
 	html: (studio) => {
 		const element = document.createElement('div');
-		element.innerHTML = `<div>
-			<p>${studio.loc({
-				"en-US": "Insert your text here",
-				"es-ES": "Inserta tu texto aquí",
-			})}</p>
-		</div>`;
+		element.innerHTML = `<img src="" alt="">`;
 		return element.children[0];
 	},
 };
