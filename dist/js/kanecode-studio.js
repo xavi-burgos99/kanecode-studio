@@ -588,26 +588,29 @@ class KCStudio {
 	}
 
 	remove(element) {
-		if (!this.#error && this.#enabled && this.#document) {
-			if (element?.nodeName) {
-				if (this.#document.documentElement.contains(element)) {
-					const parent = element.parentNode;
-					const index = [...element.parentElement.children].indexOf(element);
-					this.#action(() => {
-						this.remove(element)
-					}, () => {
-						this.add(element, parent, index);
-					}, 'Remove component');
-
-					element.remove();
-					this.target = null;
-					this.selected = null;
-				}
-			} else {
-				//todo
-				return;
-			}
+		if (this.#error || this.#enabled) {
+			this.#errorLog('Cannot remove the element because the editor is not enabled or there is an error. Please try again later.');
+			return false;
 		}
+		if (!element?.nodeName) {
+			this.#errorLog('Cannot remove the element because it is not a valid element.');
+			return false;
+		}
+		if (!this.#document.documentElement.contains(element)) {
+			this.#errorLog('Cannot remove the element because it is not inside the document.');
+			return false;
+		}
+		const parent = element.parentNode;
+		const index = [...element.parentElement.children].indexOf(element);
+		this.#action(() => {
+			this.remove(element)
+		}, () => {
+			this.add(element, parent, index);
+		}, 'Remove component');
+
+		element.remove();
+		this.target = null;
+		this.selected = null;
 	}
 
 	resize(resolution) {
@@ -1259,6 +1262,7 @@ class KCStudio {
 			spinner: false,
 			disable: true,
 			cursor: false,
+			time: null,
 		};
 		if (typeof options === 'object') {
 			if (typeof options.spinner === 'boolean')
@@ -1267,6 +1271,8 @@ class KCStudio {
 				_options.disable = options.disable;
 			if (typeof options.cursor === 'boolean')
 				_options.cursor = options.cursor;
+			if (typeof options.time === 'number' && options.time > 0)
+				_options.time = options.time;
 		}
 		const process = this.#element.querySelector('.kanecode-studio-process-message');
 		process.innerHTML = '';
@@ -1286,6 +1292,12 @@ class KCStudio {
 			if (typeof message !== 'string')
 				message = 'Loading';
 			process.innerHTML += this.loc(message);
+			if (_options.time)
+				this.#processTimeout = setTimeout(() => {
+					this.#process(null);
+				}, _options.time);
+			if (this.#processTimeout)
+				clearTimeout(this.#processTimeout);
 		}
 	}
 
@@ -1340,12 +1352,20 @@ class KCStudio {
 		}
 	}
 
-	#callError(message) {
+	#errorLog(message) {
 		if (typeof message !== 'string' && message === '') {
 			message = this.loc('An error has occured.');
 		}
 		this.#error = true;
 		console.error(`KaneCode Studio -> ${this.loc(message)}`);
+	}
+	
+	#warnLog(message) {
+		if (typeof message !== 'string' && message === '') {
+			message = this.loc('An error has occured.');
+		}
+		this.#error = true;
+		console.warn(`KaneCode Studio -> ${this.loc(message)}`);
 	}
 
 	#componentGroups = {};
@@ -1396,6 +1416,9 @@ class KCStudio {
 			"Saving": "Guardando",
 			"Undo": "Deshacer",
 			"An error has occured.": "Ha habido un error.",
+			"Cannot remove the element because the editor is not enabled or there is an error. Please try again later.": "No se puede eliminar el elemento porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
+			"Cannot remove the element because it is not a valid element.": "No se puede eliminar el elemento porque no es un elemento válido.",
+			"Cannot remove the element because it is not inside the document.": "No se puede eliminar el elemento porque no está dentro del documento.",
 			"Creating KaneCode Studio structure": "Creando la estructura de KaneCode Studio",
 			"Loading initial canvas": "Cargando lienzo inicial",
 			"The \"element\" parameter in constructor is not an element.": "El parámetro \"element\" en el constructor no es un elemento.",
@@ -1404,6 +1427,7 @@ class KCStudio {
 			"The page has been loaded!": "La página se ha cargado!",
 			"There was an error saving.": "Ha habido un error al guardar.",
 			"There was an error loading the page.": "Ha habido un error al cargar la página.",
+			"This element is not removable.": "Este elemento no se puede eliminar.",
 		}
 	};
 	#menus = {};
