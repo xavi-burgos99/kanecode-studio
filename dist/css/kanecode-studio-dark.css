@@ -1,6 +1,114 @@
+@charset "UTF-8";
 /* Color */
 /* Buttons */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@font-face {
+  font-family: "ki-solid";
+  src: url("fonts/ki-solid.eot?7au5xg");
+  src: url("fonts/ki-solid.eot?7au5xg#iefix") format("embedded-opentype"), url("fonts/ki-solid.ttf?7au5xg") format("truetype"), url("fonts/ki-solid.woff?7au5xg") format("woff"), url("fonts/ki-solid.svg?7au5xg#ki-solid") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ki-"], [class*=" ki-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "ki-solid" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ki-angle-bottom:before {
+  content: "";
+}
+
+.ki-angle-left:before {
+  content: "";
+}
+
+.ki-angle-right:before {
+  content: "";
+}
+
+.ki-angle-top:before {
+  content: "";
+}
+
+.ki-desktop:before {
+  content: "";
+}
+
+.ki-download:before {
+  content: "";
+}
+
+.ki-eye:before {
+  content: "";
+}
+
+.ki-list-tree:before {
+  content: "";
+}
+
+.ki-maximize:before {
+  content: "";
+}
+
+.ki-maximize-wide:before {
+  content: "";
+}
+
+.ki-menu-bottom:before {
+  content: "";
+}
+
+.ki-menu-left:before {
+  content: "";
+}
+
+.ki-menu-right:before {
+  content: "";
+}
+
+.ki-menu-top:before {
+  content: "";
+}
+
+.ki-minimize:before {
+  content: "";
+}
+
+.ki-minimize-wide:before {
+  content: "";
+}
+
+.ki-mobile:before {
+  content: "";
+}
+
+.ki-sign-in:before {
+  content: "";
+}
+
+.ki-sign-out:before {
+  content: "";
+}
+
+.ki-tablet:before {
+  content: "";
+}
+
+.ki-upload:before {
+  content: "";
+}
+
 /* Spacing */
 /* Color */
 /* Border */

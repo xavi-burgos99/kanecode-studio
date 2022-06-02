@@ -1,0 +1,400 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?y2crji');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?y2crji#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?y2crji') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?y2crji') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?y2crji##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ki-"], [class*=" ki-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ki-angle-bottom .path1 {
+  &:before {
+    content: $ki-angle-bottom-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-angle-bottom .path2 {
+  &:before {
+    content: $ki-angle-bottom-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-angle-left .path1 {
+  &:before {
+    content: $ki-angle-left-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-angle-left .path2 {
+  &:before {
+    content: $ki-angle-left-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-angle-right .path1 {
+  &:before {
+    content: $ki-angle-right-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-angle-right .path2 {
+  &:before {
+    content: $ki-angle-right-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-angle-top .path1 {
+  &:before {
+    content: $ki-angle-top-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-angle-top .path2 {
+  &:before {
+    content: $ki-angle-top-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-desktop .path1 {
+  &:before {
+    content: $ki-desktop-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-desktop .path2 {
+  &:before {
+    content: $ki-desktop-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-download .path1 {
+  &:before {
+    content: $ki-download-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-download .path2 {
+  &:before {
+    content: $ki-download-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-eye .path1 {
+  &:before {
+    content: $ki-eye-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-eye .path2 {
+  &:before {
+    content: $ki-eye-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-list-tree .path1 {
+  &:before {
+    content: $ki-list-tree-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-list-tree .path2 {
+  &:before {
+    content: $ki-list-tree-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-list-tree .path3 {
+  &:before {
+    content: $ki-list-tree-path3;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-list-tree .path4 {
+  &:before {
+    content: $ki-list-tree-path4;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-maximize-wide .path1 {
+  &:before {
+    content: $ki-maximize-wide-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-maximize-wide .path2 {
+  &:before {
+    content: $ki-maximize-wide-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-maximize-wide .path3 {
+  &:before {
+    content: $ki-maximize-wide-path3;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-maximize-wide .path4 {
+  &:before {
+    content: $ki-maximize-wide-path4;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-maximize .path1 {
+  &:before {
+    content: $ki-maximize-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-maximize .path2 {
+  &:before {
+    content: $ki-maximize-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-maximize .path3 {
+  &:before {
+    content: $ki-maximize-path3;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-maximize .path4 {
+  &:before {
+    content: $ki-maximize-path4;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-menu-bottom .path1 {
+  &:before {
+    content: $ki-menu-bottom-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-menu-bottom .path2 {
+  &:before {
+    content: $ki-menu-bottom-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-menu-left .path1 {
+  &:before {
+    content: $ki-menu-left-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-menu-left .path2 {
+  &:before {
+    content: $ki-menu-left-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-menu-right .path1 {
+  &:before {
+    content: $ki-menu-right-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-menu-right .path2 {
+  &:before {
+    content: $ki-menu-right-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-menu-top .path1 {
+  &:before {
+    content: $ki-menu-top-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-menu-top .path2 {
+  &:before {
+    content: $ki-menu-top-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-minimize-wide .path1 {
+  &:before {
+    content: $ki-minimize-wide-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-minimize-wide .path2 {
+  &:before {
+    content: $ki-minimize-wide-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-minimize-wide .path3 {
+  &:before {
+    content: $ki-minimize-wide-path3;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-minimize-wide .path4 {
+  &:before {
+    content: $ki-minimize-wide-path4;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-minimize .path1 {
+  &:before {
+    content: $ki-minimize-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-minimize .path2 {
+  &:before {
+    content: $ki-minimize-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-minimize .path3 {
+  &:before {
+    content: $ki-minimize-path3;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-minimize .path4 {
+  &:before {
+    content: $ki-minimize-path4;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-mobile .path1 {
+  &:before {
+    content: $ki-mobile-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-mobile .path2 {
+  &:before {
+    content: $ki-mobile-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-sign-in .path1 {
+  &:before {
+    content: $ki-sign-in-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-sign-in .path2 {
+  &:before {
+    content: $ki-sign-in-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-sign-out .path1 {
+  &:before {
+    content: $ki-sign-out-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-sign-out .path2 {
+  &:before {
+    content: $ki-sign-out-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-tablet .path1 {
+  &:before {
+    content: $ki-tablet-path1;  
+    color: rgb(0, 0, 0);
+  }
+}
+.ki-tablet .path2 {
+  &:before {
+    content: $ki-tablet-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-upload .path1 {
+  &:before {
+    content: $ki-upload-path1;  
+    color: rgb(0, 0, 0);  
+    opacity: 0.5;
+  }
+}
+.ki-upload .path2 {
+  &:before {
+    content: $ki-upload-path2;  
+    margin-left: -1em;  
+    color: rgb(0, 0, 0);
+  }
+}
+

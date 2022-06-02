@@ -43,7 +43,7 @@ class KCStudio {
 				<div class="kanecode-studio" tabindex="0">
 					<div class="kanecode-studio-header">
 						<nav>
-							<button data-kcs-action="menu-left">${this.icon('menu-left')}</button>
+							<button data-kcs-action="menu-left">${this.icon('ki-menu-left')}</button>
 							<div class="separator"></div>
 							<button data-kcs-action="save">${this.icon('save')}${this.loc('Save')}</button>
 							<div class="separator"></div>
@@ -848,6 +848,9 @@ class KCStudio {
 
 	icon(icon) {
 		if (typeof icon === 'string') {
+			if (icon.indexOf('ki-') === 0) {
+				return `<i class="${icon}"></i>`;
+			}
 			if (typeof this.#icons[icon] === 'string') {
 				return `<svg class="kcs-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">${this.#icons[icon]}</svg>`;
 			}
@@ -1470,6 +1473,7 @@ class KCStudio {
 				</html>`,
 		}
 	};
+	#processTimeout = null;
 	#redoList = [];
 	#refreshInterval = null;
 	#selected = null;

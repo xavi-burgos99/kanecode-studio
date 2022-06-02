@@ -1,0 +1,293 @@
+@font-face {
+  font-family: 'ki-duotone';
+  src:  url('fonts/ki-duotone.eot?y2crji');
+  src:  url('fonts/ki-duotone.eot?y2crji#iefix') format('embedded-opentype'),
+    url('fonts/ki-duotone.ttf?y2crji') format('truetype'),
+    url('fonts/ki-duotone.woff?y2crji') format('woff'),
+    url('fonts/ki-duotone.svg?y2crji#ki-duotone') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ki-"], [class*=" ki-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ki-duotone' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ki-angle-bottom .path1:before {
+  content: "\e900";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-angle-bottom .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-angle-left .path1:before {
+  content: "\e902";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-angle-left .path2:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-angle-right .path1:before {
+  content: "\e904";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-angle-right .path2:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-angle-top .path1:before {
+  content: "\e906";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-angle-top .path2:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-desktop .path1:before {
+  content: "\e908";
+  color: rgb(0, 0, 0);
+}
+.ki-desktop .path2:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-download .path1:before {
+  content: "\e90a";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-download .path2:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-eye .path1:before {
+  content: "\e90c";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-eye .path2:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-list-tree .path1:before {
+  content: "\e90e";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-list-tree .path2:before {
+  content: "\e90f";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-list-tree .path3:before {
+  content: "\e910";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-list-tree .path4:before {
+  content: "\e911";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-maximize-wide .path1:before {
+  content: "\e912";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-maximize-wide .path2:before {
+  content: "\e913";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-maximize-wide .path3:before {
+  content: "\e914";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-maximize-wide .path4:before {
+  content: "\e915";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-maximize .path1:before {
+  content: "\e916";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-maximize .path2:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-maximize .path3:before {
+  content: "\e918";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-maximize .path4:before {
+  content: "\e919";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-menu-bottom .path1:before {
+  content: "\e91a";
+  color: rgb(0, 0, 0);
+}
+.ki-menu-bottom .path2:before {
+  content: "\e91b";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-menu-left .path1:before {
+  content: "\e91c";
+  color: rgb(0, 0, 0);
+}
+.ki-menu-left .path2:before {
+  content: "\e91d";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-menu-right .path1:before {
+  content: "\e91e";
+  color: rgb(0, 0, 0);
+}
+.ki-menu-right .path2:before {
+  content: "\e91f";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-menu-top .path1:before {
+  content: "\e920";
+  color: rgb(0, 0, 0);
+}
+.ki-menu-top .path2:before {
+  content: "\e921";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-minimize-wide .path1:before {
+  content: "\e922";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-minimize-wide .path2:before {
+  content: "\e923";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-minimize-wide .path3:before {
+  content: "\e924";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-minimize-wide .path4:before {
+  content: "\e925";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-minimize .path1:before {
+  content: "\e926";
+  color: rgb(0, 0, 0);
+}
+.ki-minimize .path2:before {
+  content: "\e927";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-minimize .path3:before {
+  content: "\e928";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-minimize .path4:before {
+  content: "\e929";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-mobile .path1:before {
+  content: "\e92a";
+  color: rgb(0, 0, 0);
+}
+.ki-mobile .path2:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-sign-in .path1:before {
+  content: "\e92c";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-sign-in .path2:before {
+  content: "\e92d";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-sign-out .path1:before {
+  content: "\e92e";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-sign-out .path2:before {
+  content: "\e92f";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.ki-tablet .path1:before {
+  content: "\e930";
+  color: rgb(0, 0, 0);
+}
+.ki-tablet .path2:before {
+  content: "\e931";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-upload .path1:before {
+  content: "\e932";
+  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+.ki-upload .path2:before {
+  content: "\e933";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}

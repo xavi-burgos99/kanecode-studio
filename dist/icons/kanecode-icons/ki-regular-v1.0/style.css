@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'ki-regular';
+  src:  url('fonts/ki-regular.eot?kp160f');
+  src:  url('fonts/ki-regular.eot?kp160f#iefix') format('embedded-opentype'),
+    url('fonts/ki-regular.ttf?kp160f') format('truetype'),
+    url('fonts/ki-regular.woff?kp160f') format('woff'),
+    url('fonts/ki-regular.svg?kp160f#ki-regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ki-"], [class*=" ki-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ki-regular' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ki-angle-bottom:before {
+  content: "\e900";
+}
+.ki-angle-left:before {
+  content: "\e901";
+}
+.ki-angle-right:before {
+  content: "\e902";
+}
+.ki-angle-top:before {
+  content: "\e903";
+}
+.ki-desktop:before {
+  content: "\e904";
+}
+.ki-download:before {
+  content: "\e905";
+}
+.ki-eye:before {
+  content: "\e906";
+}
+.ki-list-tree:before {
+  content: "\e907";
+}
+.ki-maximize:before {
+  content: "\e908";
+}
+.ki-maximize-wide:before {
+  content: "\e909";
+}
+.ki-menu-bottom:before {
+  content: "\e90a";
+}
+.ki-menu-left:before {
+  content: "\e90b";
+}
+.ki-menu-right:before {
+  content: "\e90c";
+}
+.ki-menu-top:before {
+  content: "\e90d";
+}
+.ki-minimize:before {
+  content: "\e90e";
+}
+.ki-minimize-wide:before {
+  content: "\e90f";
+}
+.ki-mobile:before {
+  content: "\e910";
+}
+.ki-sign-in:before {
+  content: "\e911";
+}
+.ki-sign-out:before {
+  content: "\e912";
+}
+.ki-tablet:before {
+  content: "\e913";
+}
+.ki-upload:before {
+  content: "\e914";
+}
