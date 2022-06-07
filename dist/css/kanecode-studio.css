@@ -257,8 +257,8 @@
   }
   @font-face {
     font-family: "ki-duotone";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?y2crji");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?y2crji#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?y2crji") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?y2crji") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?y2crji#ki-duotone") format("svg");
+    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
+    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -339,155 +339,109 @@
   .ki-list-tree:after {
     content: "";
     margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-list-tree .path3:before {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-list-tree .path4:before {
-    content: "";
-    margin-left: -1em;
   }
   .ki-maximize-wide:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-maximize-wide:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-maximize-wide .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-maximize-wide .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-maximize:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-maximize:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-maximize .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-maximize .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-menu-bottom:before {
-    content: "";
+    content: "";
   }
   .ki-menu-bottom:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-left:before {
-    content: "";
+    content: "";
   }
   .ki-menu-left:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-right:before {
-    content: "";
+    content: "";
   }
   .ki-menu-right:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-top:before {
-    content: "";
+    content: "";
   }
   .ki-menu-top:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-minimize-wide:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-minimize-wide:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize-wide .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-minimize-wide .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-minimize:before {
-    content: "";
+    content: "";
+    opacity: 0.5;
   }
   .ki-minimize:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize .path3:before {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-mobile:before {
-    content: "";
+    content: "";
   }
   .ki-mobile:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-sign-in:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-sign-in:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-sign-out:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-sign-out:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-tablet:before {
-    content: "";
+    content: "";
   }
   .ki-tablet:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-upload:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-upload:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   /* Spacing */
@@ -1498,8 +1452,8 @@
   }
   @font-face {
     font-family: "ki-duotone";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?y2crji");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?y2crji#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?y2crji") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?y2crji") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?y2crji#ki-duotone") format("svg");
+    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
+    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -1580,155 +1534,109 @@
   .ki-list-tree:after {
     content: "";
     margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-list-tree .path3:before {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-list-tree .path4:before {
-    content: "";
-    margin-left: -1em;
   }
   .ki-maximize-wide:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-maximize-wide:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-maximize-wide .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-maximize-wide .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-maximize:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-maximize:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-maximize .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-maximize .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-menu-bottom:before {
-    content: "";
+    content: "";
   }
   .ki-menu-bottom:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-left:before {
-    content: "";
+    content: "";
   }
   .ki-menu-left:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-right:before {
-    content: "";
+    content: "";
   }
   .ki-menu-right:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-top:before {
-    content: "";
+    content: "";
   }
   .ki-menu-top:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-minimize-wide:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-minimize-wide:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize-wide .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-minimize-wide .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-minimize:before {
-    content: "";
+    content: "";
+    opacity: 0.5;
   }
   .ki-minimize:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize .path3:before {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-mobile:before {
-    content: "";
+    content: "";
   }
   .ki-mobile:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-sign-in:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-sign-in:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-sign-out:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-sign-out:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-tablet:before {
-    content: "";
+    content: "";
   }
   .ki-tablet:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-upload:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-upload:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   /* Spacing */
@@ -2741,8 +2649,8 @@
   }
   @font-face {
     font-family: "ki-duotone";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?y2crji");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?y2crji#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?y2crji") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?y2crji") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?y2crji#ki-duotone") format("svg");
+    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
+    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -2823,155 +2731,109 @@
   .ki-list-tree:after {
     content: "";
     margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-list-tree .path3:before {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-list-tree .path4:before {
-    content: "";
-    margin-left: -1em;
   }
   .ki-maximize-wide:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-maximize-wide:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-maximize-wide .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-maximize-wide .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-maximize:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-maximize:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-maximize .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-maximize .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-menu-bottom:before {
-    content: "";
+    content: "";
   }
   .ki-menu-bottom:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-left:before {
-    content: "";
+    content: "";
   }
   .ki-menu-left:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-right:before {
-    content: "";
+    content: "";
   }
   .ki-menu-right:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-menu-top:before {
-    content: "";
+    content: "";
   }
   .ki-menu-top:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-minimize-wide:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-minimize-wide:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize-wide .path3:before {
-    content: "";
-    margin-left: -1em;
-  }
-  .ki-minimize-wide .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-minimize:before {
-    content: "";
+    content: "";
+    opacity: 0.5;
   }
   .ki-minimize:after {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize .path3:before {
-    content: "";
-    margin-left: -1em;
-    opacity: 0.5;
-  }
-  .ki-minimize .path4:before {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-mobile:before {
-    content: "";
+    content: "";
   }
   .ki-mobile:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-sign-in:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-sign-in:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-sign-out:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-sign-out:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   .ki-tablet:before {
-    content: "";
+    content: "";
   }
   .ki-tablet:after {
-    content: "";
+    content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
   .ki-upload:before {
-    content: "";
+    content: "";
     opacity: 0.5;
   }
   .ki-upload:after {
-    content: "";
+    content: "";
     margin-left: -1em;
   }
   /* Spacing */
