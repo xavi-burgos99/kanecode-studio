@@ -1,4 +1,21 @@
+$icomoon-font-version: "1.0";
+
+$icomoon-font-family: "ki-solid";
+$icomoon-font-path: "https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
 @import "../icons/kanecode-icons/ki-solid-v1.0/style";
+
+$icomoon-font-family: "ki-regular";
+$icomoon-font-path: "https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
+@import "../icons/kanecode-icons/ki-regular-v1.0/style";
+
+$icomoon-font-family: "ki-light";
+$icomoon-font-path: "https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
+@import "../icons/kanecode-icons/ki-light-v1.0/style";
+
+$icomoon-font-family: "ki-duotone";
+$icomoon-font-path: "https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
+@import "../icons/kanecode-icons/ki-duotone-v1.0/style";
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 @import "variables";

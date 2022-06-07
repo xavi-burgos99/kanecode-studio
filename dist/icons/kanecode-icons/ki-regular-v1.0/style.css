@@ -1,90 +1,108 @@
+@charset "UTF-8";
 @font-face {
-  font-family: 'ki-regular';
-  src:  url('fonts/ki-regular.eot?kp160f');
-  src:  url('fonts/ki-regular.eot?kp160f#iefix') format('embedded-opentype'),
-    url('fonts/ki-regular.ttf?kp160f') format('truetype'),
-    url('fonts/ki-regular.woff?kp160f') format('woff'),
-    url('fonts/ki-regular.svg?kp160f#ki-regular') format('svg');
+  font-family: "ki-regular";
+  src: url("fonts/ki-regular.eot?kp160f");
+  src: url("fonts/ki-regular.eot?kp160f#iefix") format("embedded-opentype"), url("fonts/ki-regular.ttf?kp160f") format("truetype"), url("fonts/ki-regular.woff?kp160f") format("woff"), url("fonts/ki-regular.svg?kp160f#ki-regular") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="ki-"], [class*=" ki-"] {
+[class^="ki-regular ki-"], [class*=" ki-regular ki-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'ki-regular' !important;
+  font-family: "ki-regular" !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .ki-angle-bottom:before {
-  content: "\e900";
+  content: "";
 }
+
 .ki-angle-left:before {
-  content: "\e901";
+  content: "";
 }
+
 .ki-angle-right:before {
-  content: "\e902";
+  content: "";
 }
+
 .ki-angle-top:before {
-  content: "\e903";
+  content: "";
 }
+
 .ki-desktop:before {
-  content: "\e904";
+  content: "";
 }
+
 .ki-download:before {
-  content: "\e905";
+  content: "";
 }
+
 .ki-eye:before {
-  content: "\e906";
+  content: "";
 }
+
 .ki-list-tree:before {
-  content: "\e907";
+  content: "";
 }
+
 .ki-maximize:before {
-  content: "\e908";
+  content: "";
 }
+
 .ki-maximize-wide:before {
-  content: "\e909";
+  content: "";
 }
+
 .ki-menu-bottom:before {
-  content: "\e90a";
+  content: "";
 }
+
 .ki-menu-left:before {
-  content: "\e90b";
+  content: "";
 }
+
 .ki-menu-right:before {
-  content: "\e90c";
+  content: "";
 }
+
 .ki-menu-top:before {
-  content: "\e90d";
+  content: "";
 }
+
 .ki-minimize:before {
-  content: "\e90e";
+  content: "";
 }
+
 .ki-minimize-wide:before {
-  content: "\e90f";
+  content: "";
 }
+
 .ki-mobile:before {
-  content: "\e910";
+  content: "";
 }
+
 .ki-sign-in:before {
-  content: "\e911";
+  content: "";
 }
+
 .ki-sign-out:before {
-  content: "\e912";
+  content: "";
 }
+
 .ki-tablet:before {
-  content: "\e913";
+  content: "";
 }
+
 .ki-upload:before {
-  content: "\e914";
+  content: "";
 }
+/*# sourceMappingURL=style.css.map */

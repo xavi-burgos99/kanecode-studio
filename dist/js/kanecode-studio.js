@@ -43,24 +43,24 @@ class KCStudio {
 				<div class="kanecode-studio" tabindex="0">
 					<div class="kanecode-studio-header">
 						<nav>
-							<button data-kcs-action="menu-left">${this.icon('ki-menu-left')}</button>
+							<button data-kcs-action="menu-left">${this.icon('ki-duotone ki-menu-left')}</button>
 							<div class="separator"></div>
-							<button data-kcs-action="save">${this.icon('save')}${this.loc('Save')}</button>
+							<button data-kcs-action="save">${this.icon('ki-duotone ki-download')}${this.loc('Save')}</button>
 							<div class="separator"></div>
 							<button data-kcs-action="undo">${this.icon('undo')}</button>
 							<button data-kcs-action="redo">${this.icon('redo')}</button>
 						</nav>
 						<nav>
-							<button class="transparent" data-kcs-action="resize" data-kcs-value="desktop">${this.icon('desktop')}</button>
-							<button class="transparent" data-kcs-action="resize" data-kcs-value="tablet">${this.icon('tablet')}</button>
-							<button class="transparent" data-kcs-action="resize" data-kcs-value="mobile">${this.icon('mobile')}</button>
+							<button class="transparent" data-kcs-action="resize" data-kcs-value="desktop">${this.icon('ki-duotone ki-desktop')}</button>
+							<button class="transparent" data-kcs-action="resize" data-kcs-value="tablet">${this.icon('ki-duotone ki-tablet')}</button>
+							<button class="transparent" data-kcs-action="resize" data-kcs-value="mobile">${this.icon('ki-duotone ki-mobile')}</button>
 							<button disabled class="transparent" data-kcs-action="resize" data-kcs-value="custom">${this.icon('resize')}</button>
 						</nav>
 						<nav class="kanecode-studio-resizes">
-							<button data-kcs-action="preview">${this.icon('eye')}</button>
+							<button data-kcs-action="preview">${this.icon('ki-duotone ki-eye')}</button>
 							<button data-kcs-action="fullscreen">
-								<span data-kcs-value="maximize">${this.icon('maximize')}</span>
-								<span data-kcs-value="minimize">${this.icon('minimize')}</span>
+								<span data-kcs-value="maximize">${this.icon('ki-duotone ki-maximize')}</span>
+								<span data-kcs-value="minimize">${this.icon('ki-duotone ki-minimize')}</span>
 							</button>
 							<button data-kcs-action="menu-bottom">${this.icon('menu-bottom')}</button>
 							<button data-kcs-action="menu-right">${this.icon('menu-right')}</button>
@@ -849,6 +849,9 @@ class KCStudio {
 	icon(icon) {
 		if (typeof icon === 'string') {
 			if (icon.indexOf('ki-') === 0) {
+				if (icon.indexOf('ki-duotone ki-') === 0) {
+					return `<i class="${icon}"></i>`;
+				}
 				return `<i class="${icon}"></i>`;
 			}
 			if (typeof this.#icons[icon] === 'string') {
