@@ -13,12 +13,13 @@ $black: #000 !default;
 $body: $black !default;
 $primary: $blue !default;
 $secondary: $blue !default;
-$background: #f1f3f8 !default;
+$background: #f4f4f4 !default;
+$background2: $white !default;
 
 
 /* Border */
 $border-width: 1px;
-$border-color: #8881;
+$border-color: #eee;
 
 $border-radius: 6px;
 $border-radius-sm: 3px;
@@ -41,33 +42,39 @@ $grid-breakpoints: (
   xxl: 1400px
 );
 
-/* Neumorphism */
-$neumorphism-dark: #dfe4ea !default;
-$neumorphism-light: #fff !default;
-
 /* Buttons */
-$button-color: #777 !default;
-$button-color-hover: $button-color !default;
-$button-color-active: $primary !default;
+$button1-color: #777 !default;
+$button1-color-on: $primary !default;
+$button1-color-hover: $button1-color !default;
+$button1-color-active: $button1-color !default;
 
-$button-background: $background !default;
-$button-background-hover: rgba($body, .05) !default;
-$button-background-active: $background !default;
+$button1-shadow: none;
+$button1-shadow-on: none;
+$button1-shadow-hover: none;
+$button1-shadow-active: none;
 
-$button-shadow: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light;
-$button-shadow-hover: 6px 6px 8px $neumorphism-dark, -6px -6px 8px $neumorphism-light, 6px 6px 8px rgba($neumorphism-dark, .5) inset, -6px -6px 8px rgba($neumorphism-light, .5) inset;
-$button-shadow-active: 6px 6px 8px rgba($neumorphism-dark, .25), -6px -6px 8px rgba($neumorphism-light, .25), 3px 3px 6px $neumorphism-dark inset, -3px -3px 6px $neumorphism-light inset;
+$button1-border-color: $border-color !default;
+$button1-border-color-on: $button1-border-color !default;
+$button1-border-color-hover: #d5d5d5 !default;
+$button1-border-color-active: #d5d5d5 !default;
 
-$button-border-color: $border-color !default;
-$button-border-color-hover: #aaa !default;
-$button-border-color-active: #aaa !default;
 
-$button-border-radius: $border-radius !default;
-$button-border-radius-sm: $border-radius-sm !default;
-$button-border-radius-lg: $border-radius-lg !default;
+$button1-background: #f6f6f6 !default;
+$button1-background-on: $button1-background !default;
+$button1-background-hover: $button1-background !default;
+$button1-background-active: $button1-border-color !default;
 
-$button-border-width: 0;
-$button-transition: .2s;
+$button1-border-radius: $border-radius !default;
+$button1-border-radius-sm: $border-radius-sm !default;
+$button1-border-radius-lg: $border-radius-lg !default;
+
+$button1-border-width: 1px;
+$button1-transition: .2s;
+
+
+/* Separator */
+$separator-color: transparent !default;
+$separator-width: 0 !default;
 
 
 /* Dropdown */

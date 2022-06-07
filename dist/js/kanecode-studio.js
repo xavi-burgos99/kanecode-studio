@@ -47,23 +47,22 @@ class KCStudio {
 							<div class="separator"></div>
 							<button data-kcs-action="save">${this.icon('ki-duotone ki-download')}${this.loc('Save')}</button>
 							<div class="separator"></div>
-							<button data-kcs-action="undo">${this.icon('undo')}</button>
-							<button data-kcs-action="redo">${this.icon('redo')}</button>
+							<button data-kcs-action="undo">${this.icon('ki-solid ki-angle-left')}</button>
+							<button data-kcs-action="redo">${this.icon('ki-solid ki-angle-right')}</button>
 						</nav>
 						<nav>
 							<button class="transparent" data-kcs-action="resize" data-kcs-value="desktop">${this.icon('ki-duotone ki-desktop')}</button>
 							<button class="transparent" data-kcs-action="resize" data-kcs-value="tablet">${this.icon('ki-duotone ki-tablet')}</button>
 							<button class="transparent" data-kcs-action="resize" data-kcs-value="mobile">${this.icon('ki-duotone ki-mobile')}</button>
-							<button disabled class="transparent" data-kcs-action="resize" data-kcs-value="custom">${this.icon('resize')}</button>
 						</nav>
 						<nav class="kanecode-studio-resizes">
 							<button data-kcs-action="preview">${this.icon('ki-duotone ki-eye')}</button>
 							<button data-kcs-action="fullscreen">
-								<span data-kcs-value="maximize">${this.icon('ki-duotone ki-maximize')}</span>
-								<span data-kcs-value="minimize">${this.icon('ki-duotone ki-minimize')}</span>
+								<span data-kcs-value="maximize">${this.icon('ki-solid ki-maximize-wide')}</span>
+								<span data-kcs-value="minimize">${this.icon('ki-solid ki-minimize-wide')}</span>
 							</button>
-							<button data-kcs-action="menu-bottom">${this.icon('menu-bottom')}</button>
-							<button data-kcs-action="menu-right">${this.icon('menu-right')}</button>
+							<button data-kcs-action="menu-bottom">${this.icon('ki-duotone ki-menu-bottom')}</button>
+							<button data-kcs-action="menu-right">${this.icon('ki-duotone ki-menu-right')}</button>
 						</nav>
 					</div>
 					<div class="kanecode-studio-body">
@@ -588,7 +587,7 @@ class KCStudio {
 	}
 
 	remove(element) {
-		if (this.#error || this.#enabled) {
+		if (this.#error || !this.#enabled) {
 			this.#errorLog('Cannot remove the element because the editor is not enabled or there is an error. Please try again later.');
 			return false;
 		}

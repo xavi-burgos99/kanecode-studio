@@ -20,8 +20,6 @@ $icomoon-font-path: "../icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon
 
 @import "variables";
 @import "mixins";
-@import "utils";
-@import "icons";
 
 $kanecode-studio-header-height: 40px;
 $kanecode-studio-menu-left-width: 25%;
@@ -32,7 +30,35 @@ $kanecode-studio-menu-bottom-height: 35%;
 $kanecode-studio-menu-min-height: 250px;
 $kanecode-studio-menu-max-height: 800px;
 
-// Studio container
+svg.kcs-icon {
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 5px;
+	stroke: currentColor;
+	fill: none;
+	
+	.fill {
+		fill: currentColor;
+	}
+}
+
+.kcs-spinner {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	border: 2px solid $border-color;
+	border-right-color: $primary;
+	animation: kcs-spin 1s linear infinite;
+}
+@keyframes kcs-spin {
+	from {
+		transform: rotateZ(0deg);
+	}
+	to {
+		transform: rotateZ(359deg);
+	}
+}
+
 .kanecode-studio {
 	position: relative;
 	display: flex;
@@ -49,7 +75,24 @@ $kanecode-studio-menu-max-height: 800px;
 	* {
 		box-sizing: border-box;
 	}
-	
+	.kanecode-studio-header {
+		display: none;
+		flex-direction: row;
+		flex: 0 0 $kanecode-studio-header-height;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: $border-width solid $border-color;
+		> * {
+			border-left: $border-width solid $border-color;
+			border-right: $border-width solid $border-color;
+			&:first-child {
+				border-left: none;
+			}
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
 	.kanecode-studio-body {
 		position: relative;
 		display: none;
@@ -61,6 +104,7 @@ $kanecode-studio-menu-max-height: 800px;
 			flex: 0 0 $kanecode-studio-menu-left-width;
 			min-width: $kanecode-studio-menu-min-width;
 			max-width: $kanecode-studio-menu-max-width;
+			border-right: $border-width solid $border-color;
 			.kanecode-studio-components-list {
 				display: flex;
 				flex-direction: column;
@@ -219,6 +263,7 @@ $kanecode-studio-menu-max-height: 800px;
 				flex: 0 0 $kanecode-studio-menu-bottom-height;
 				min-height: $kanecode-studio-menu-min-height;
 				max-height: $kanecode-studio-menu-max-height;
+				border-top: $border-width solid $border-color;
 			}
 		}
 		.kanecode-studio-menu-right {
@@ -227,6 +272,7 @@ $kanecode-studio-menu-max-height: 800px;
 			flex: 0 0 $kanecode-studio-menu-left-width;
 			min-width: $kanecode-studio-menu-min-width;
 			max-width: $kanecode-studio-menu-max-width;
+			border-left: $border-width solid $border-color;
 		}
 		.kanecode-studio-process {
 			pointer-events: none;
@@ -263,31 +309,26 @@ $kanecode-studio-menu-max-height: 800px;
 	}
 }
 
-// Header
 .kanecode-studio-header {
 	user-select: none;
-	display: none;
-	flex-direction: row;
-	flex: 0 0 $kanecode-studio-header-height;
-	align-items: center;
-	justify-content: space-between;
-	background-color: $background2;
-	border-bottom: $border-width solid $border-color;
 	nav {
 		display: flex;
 		align-items: center;
 		height: 100%;
 		padding: 0 $spacer;
-		button {
-			@include button1;
-			margin: 0 $spacer / 6;
+		button:not(.transparent) {
+			@include button;
+			margin: 0 $spacer / 3;
+		}
+		button.transparent {
+			@include button(true);
 		}
 		.separator {
 			display: flex;
-			width: $separator-width;
+			width: $border-width;
 			height: 100%;
-			margin: 0 $spacer / 3 - $separator-width;
-			background-color: $separator-color;
+			margin: 0 $spacer - $border-width;
+			background-color: $border-color;
 		}
 	}
 }
@@ -309,6 +350,10 @@ $kanecode-studio-menu-max-height: 800px;
 	transform: translate(-50%, -50%);
 	overflow: hidden;
 	color: $gray;
+	svg.kcs-icon {
+		width: 100%;
+		height: 100%;
+	}
 	.kcs-icon-light,
 	.kcs-icon-dark,
 	img {

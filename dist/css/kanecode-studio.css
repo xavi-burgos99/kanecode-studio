@@ -5,8 +5,8 @@
 @media (prefers-color-scheme: no-preference) {
   @font-face {
     font-family: "ki-solid";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.ttf?7au5xg") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.woff?7au5xg") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.svg?7au5xg#ki-solid") format("svg");
+    src: url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg");
+    src: url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.ttf?7au5xg") format("truetype"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.woff?7au5xg") format("woff"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.svg?7au5xg#ki-solid") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -89,8 +89,8 @@
   }
   @font-face {
     font-family: "ki-regular";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.ttf?kp160f") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.woff?kp160f") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.svg?kp160f#ki-regular") format("svg");
+    src: url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f");
+    src: url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.ttf?kp160f") format("truetype"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.woff?kp160f") format("woff"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.svg?kp160f#ki-regular") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -173,8 +173,8 @@
   }
   @font-face {
     font-family: "ki-light";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.ttf?57t1vg") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.woff?57t1vg") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.svg?57t1vg#ki-light") format("svg");
+    src: url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg");
+    src: url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.ttf?57t1vg") format("truetype"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.woff?57t1vg") format("woff"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.svg?57t1vg#ki-light") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -257,8 +257,8 @@
   }
   @font-face {
     font-family: "ki-duotone";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
+    src: url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
+    src: url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -449,24 +449,15 @@
   /* Border */
   /* Shadows */
   /* Breakpoints */
-  /* Neumorphism */
   /* Buttons */
+  /* Separator */
   /* Dropdown */
-  svg.kcs-icon {
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 5px;
-    stroke: currentColor;
-    fill: none;
-  }
-  svg.kcs-icon .fill {
-    fill: currentColor;
-  }
+  /* Spinner */
   .kcs-spinner {
     width: 20px;
     height: 20px;
     border-radius: 10px;
-    border: 2px solid #8881;
+    border: 2px solid #eee;
     border-right-color: #0bf;
     -webkit-animation: kcs-spin 1s linear infinite;
             animation: kcs-spin 1s linear infinite;
@@ -491,6 +482,12 @@
               transform: rotateZ(359deg);
     }
   }
+  .ki-solid,
+  .ki-regular,
+  .ki-light,
+  .ki-duotone {
+    font-size: 1.25em;
+  }
   .kanecode-studio {
     position: relative;
     display: -webkit-box;
@@ -504,41 +501,16 @@
     height: 100%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    background-color: #f1f3f8;
+    background-color: #f4f4f4;
     font-family: 'Lato', sans-serif;
     outline: none;
     color: #000;
+    font-size: 14px;
+    line-height: 1.2;
   }
   .kanecode-studio * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-  }
-  .kanecode-studio .kanecode-studio-header {
-    display: none;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 50px;
-            flex: 0 0 50px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    border-bottom: 1px solid #8881;
-  }
-  .kanecode-studio .kanecode-studio-header > * {
-    border-left: 1px solid #8881;
-    border-right: 1px solid #8881;
-  }
-  .kanecode-studio .kanecode-studio-header > *:first-child {
-    border-left: none;
-  }
-  .kanecode-studio .kanecode-studio-header > *:last-child {
-    border-right: none;
   }
   .kanecode-studio .kanecode-studio-body {
     position: relative;
@@ -562,7 +534,6 @@
             flex: 0 0 25%;
     min-width: 250px;
     max-width: 350px;
-    border-right: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list {
     display: -webkit-box;
@@ -596,8 +567,8 @@
     font-weight: normal;
     outline: none;
     text-align: center;
-    border: 1px solid #8881;
-    background-color: #f1f3f8;
+    border: 1px solid #eee;
+    background-color: #f4f4f4;
     margin-bottom: 6px;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button svg.kcs-icon {
@@ -633,7 +604,7 @@
             transform: rotate(180deg);
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:focus {
-    border-color: #aaa;
+    border-color: #d5d5d5;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button[disabled] {
     pointer-events: none;
@@ -667,7 +638,7 @@
         -ms-flex-direction: column;
             flex-direction: column;
     padding: 12px;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
     overflow: hidden;
     aspect-ratio: 1;
@@ -766,7 +737,7 @@
             flex-direction: column;
     width: 100%;
     height: 100%;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
     overflow: hidden;
   }
@@ -858,7 +829,6 @@
             flex: 0 0 35%;
     min-height: 250px;
     max-height: 800px;
-    border-top: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-right {
     display: none;
@@ -871,7 +841,6 @@
             flex: 0 0 25%;
     min-width: 250px;
     max-width: 350px;
-    border-left: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-process {
     pointer-events: none;
@@ -906,8 +875,8 @@
     gap: 12px;
     padding: 12px 24px;
     border-radius: 6px;
-    border: 1px solid #8881;
-    background-color: #f1f3f8;
+    border: 1px solid #eee;
+    background-color: #f4f4f4;
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
@@ -929,6 +898,22 @@
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    display: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 40px;
+            flex: 0 0 40px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
   }
   .kanecode-studio-header nav {
     display: -webkit-box;
@@ -940,7 +925,7 @@
     height: 100%;
     padding: 0 12px;
   }
-  .kanecode-studio-header nav button:not(.transparent) {
+  .kanecode-studio-header nav button {
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -954,86 +939,36 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    gap: 3px;
+    gap: 6px;
     padding: 4px 6px;
     color: #777;
     border-radius: 6px;
     font-weight: bold;
     outline: none;
     text-align: center;
-    border: 0 solid #8881;
-    background-color: #f1f3f8;
-    -webkit-box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff;
-            box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff;
-    margin: 0 4px;
+    border: 1px solid #eee;
+    background-color: #f6f6f6;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    font-size: 12px;
+    margin: 0 2px;
   }
-  .kanecode-studio-header nav button:not(.transparent) svg.kcs-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 1.25em;
-    height: 1.25em;
+  .kanecode-studio-header nav button:hover, .kanecode-studio-header nav button:focus {
+    background-color: #f6f6f6;
+    border-color: #d5d5d5;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
-  .kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
-    -webkit-box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff, 6px 6px 8px rgba(223, 228, 234, 0.5) inset, -6px -6px 8px rgba(255, 255, 255, 0.5) inset;
-            box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff, 6px 6px 8px rgba(223, 228, 234, 0.5) inset, -6px -6px 8px rgba(255, 255, 255, 0.5) inset;
+  .kanecode-studio-header nav button:active {
+    background-color: #eee;
+    border-color: #d5d5d5;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
-  .kanecode-studio-header nav button:not(.transparent):active {
-    -webkit-box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-            box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-  }
-  .kanecode-studio-header nav button:not(.transparent).active {
+  .kanecode-studio-header nav button.active {
     color: #0bf;
   }
-  .kanecode-studio-header nav button:not(.transparent)[disabled] {
-    pointer-events: none;
-    opacity: .5;
-  }
-  .kanecode-studio-header nav button.transparent {
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    gap: 3px;
-    padding: 4px 6px;
-    color: #777;
-    border-radius: 6px;
-    font-weight: bold;
-    outline: none;
-    text-align: center;
-    border: 0 solid transparent;
-    background-color: transparent;
-  }
-  .kanecode-studio-header nav button.transparent svg.kcs-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 1.25em;
-    height: 1.25em;
-  }
-  .kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  .kanecode-studio-header nav button.transparent:active {
-    background-color: #f1f3f8;
-  }
-  .kanecode-studio-header nav button.transparent:active {
-    -webkit-box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-            box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-  }
-  .kanecode-studio-header nav button.transparent.active {
-    color: #0bf;
-  }
-  .kanecode-studio-header nav button.transparent[disabled] {
+  .kanecode-studio-header nav button[disabled] {
     pointer-events: none;
     opacity: .5;
   }
@@ -1041,10 +976,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 1px;
+    width: 0;
     height: 100%;
-    margin: 0 11px;
-    background-color: #8881;
+    margin: 0 4px;
+    background-color: transparent;
   }
   .kanecode-studio-component-helper {
     pointer-events: none;
@@ -1062,19 +997,15 @@
     width: 36px;
     height: 36px;
     padding: 3px;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
-    background-color: #f1f3f8;
+    background-color: #f4f4f4;
     -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
             box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     overflow: hidden;
     color: #888;
-  }
-  .kanecode-studio-component-helper svg.kcs-icon {
-    width: 100%;
-    height: 100%;
   }
   .kanecode-studio-component-helper .kcs-icon-light,
   .kanecode-studio-component-helper .kcs-icon-dark,
@@ -1091,7 +1022,7 @@
     display: none;
   }
   .kanecode-studio.show-border {
-    border: 1px solid #8881;
+    border: 1px solid #eee;
   }
   .kanecode-studio.fullscreen {
     position: fixed;
@@ -1200,8 +1131,8 @@
 @media (prefers-color-scheme: light) {
   @font-face {
     font-family: "ki-solid";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.ttf?7au5xg") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.woff?7au5xg") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.svg?7au5xg#ki-solid") format("svg");
+    src: url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg");
+    src: url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.ttf?7au5xg") format("truetype"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.woff?7au5xg") format("woff"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.svg?7au5xg#ki-solid") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -1284,8 +1215,8 @@
   }
   @font-face {
     font-family: "ki-regular";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.ttf?kp160f") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.woff?kp160f") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.svg?kp160f#ki-regular") format("svg");
+    src: url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f");
+    src: url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.ttf?kp160f") format("truetype"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.woff?kp160f") format("woff"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.svg?kp160f#ki-regular") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -1368,8 +1299,8 @@
   }
   @font-face {
     font-family: "ki-light";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.ttf?57t1vg") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.woff?57t1vg") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.svg?57t1vg#ki-light") format("svg");
+    src: url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg");
+    src: url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.ttf?57t1vg") format("truetype"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.woff?57t1vg") format("woff"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.svg?57t1vg#ki-light") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -1452,8 +1383,8 @@
   }
   @font-face {
     font-family: "ki-duotone";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
+    src: url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
+    src: url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -1644,24 +1575,15 @@
   /* Border */
   /* Shadows */
   /* Breakpoints */
-  /* Neumorphism */
   /* Buttons */
+  /* Separator */
   /* Dropdown */
-  svg.kcs-icon {
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 5px;
-    stroke: currentColor;
-    fill: none;
-  }
-  svg.kcs-icon .fill {
-    fill: currentColor;
-  }
+  /* Spinner */
   .kcs-spinner {
     width: 20px;
     height: 20px;
     border-radius: 10px;
-    border: 2px solid #8881;
+    border: 2px solid #eee;
     border-right-color: #0bf;
     -webkit-animation: kcs-spin 1s linear infinite;
             animation: kcs-spin 1s linear infinite;
@@ -1686,6 +1608,12 @@
               transform: rotateZ(359deg);
     }
   }
+  .ki-solid,
+  .ki-regular,
+  .ki-light,
+  .ki-duotone {
+    font-size: 1.25em;
+  }
   .kanecode-studio {
     position: relative;
     display: -webkit-box;
@@ -1699,41 +1627,16 @@
     height: 100%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    background-color: #f1f3f8;
+    background-color: #f4f4f4;
     font-family: 'Lato', sans-serif;
     outline: none;
     color: #000;
+    font-size: 14px;
+    line-height: 1.2;
   }
   .kanecode-studio * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-  }
-  .kanecode-studio .kanecode-studio-header {
-    display: none;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 50px;
-            flex: 0 0 50px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    border-bottom: 1px solid #8881;
-  }
-  .kanecode-studio .kanecode-studio-header > * {
-    border-left: 1px solid #8881;
-    border-right: 1px solid #8881;
-  }
-  .kanecode-studio .kanecode-studio-header > *:first-child {
-    border-left: none;
-  }
-  .kanecode-studio .kanecode-studio-header > *:last-child {
-    border-right: none;
   }
   .kanecode-studio .kanecode-studio-body {
     position: relative;
@@ -1757,7 +1660,6 @@
             flex: 0 0 25%;
     min-width: 250px;
     max-width: 350px;
-    border-right: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list {
     display: -webkit-box;
@@ -1791,8 +1693,8 @@
     font-weight: normal;
     outline: none;
     text-align: center;
-    border: 1px solid #8881;
-    background-color: #f1f3f8;
+    border: 1px solid #eee;
+    background-color: #f4f4f4;
     margin-bottom: 6px;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button svg.kcs-icon {
@@ -1828,7 +1730,7 @@
             transform: rotate(180deg);
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:focus {
-    border-color: #aaa;
+    border-color: #d5d5d5;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button[disabled] {
     pointer-events: none;
@@ -1862,7 +1764,7 @@
         -ms-flex-direction: column;
             flex-direction: column;
     padding: 12px;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
     overflow: hidden;
     aspect-ratio: 1;
@@ -1961,7 +1863,7 @@
             flex-direction: column;
     width: 100%;
     height: 100%;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
     overflow: hidden;
   }
@@ -2053,7 +1955,6 @@
             flex: 0 0 35%;
     min-height: 250px;
     max-height: 800px;
-    border-top: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-right {
     display: none;
@@ -2066,7 +1967,6 @@
             flex: 0 0 25%;
     min-width: 250px;
     max-width: 350px;
-    border-left: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-process {
     pointer-events: none;
@@ -2101,8 +2001,8 @@
     gap: 12px;
     padding: 12px 24px;
     border-radius: 6px;
-    border: 1px solid #8881;
-    background-color: #f1f3f8;
+    border: 1px solid #eee;
+    background-color: #f4f4f4;
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
@@ -2124,6 +2024,22 @@
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    display: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 40px;
+            flex: 0 0 40px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
   }
   .kanecode-studio-header nav {
     display: -webkit-box;
@@ -2135,7 +2051,7 @@
     height: 100%;
     padding: 0 12px;
   }
-  .kanecode-studio-header nav button:not(.transparent) {
+  .kanecode-studio-header nav button {
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -2149,86 +2065,36 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    gap: 3px;
+    gap: 6px;
     padding: 4px 6px;
     color: #777;
     border-radius: 6px;
     font-weight: bold;
     outline: none;
     text-align: center;
-    border: 0 solid #8881;
-    background-color: #f1f3f8;
-    -webkit-box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff;
-            box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff;
-    margin: 0 4px;
+    border: 1px solid #eee;
+    background-color: #f6f6f6;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    font-size: 12px;
+    margin: 0 2px;
   }
-  .kanecode-studio-header nav button:not(.transparent) svg.kcs-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 1.25em;
-    height: 1.25em;
+  .kanecode-studio-header nav button:hover, .kanecode-studio-header nav button:focus {
+    background-color: #f6f6f6;
+    border-color: #d5d5d5;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
-  .kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
-    -webkit-box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff, 6px 6px 8px rgba(223, 228, 234, 0.5) inset, -6px -6px 8px rgba(255, 255, 255, 0.5) inset;
-            box-shadow: 6px 6px 8px #dfe4ea, -6px -6px 8px #fff, 6px 6px 8px rgba(223, 228, 234, 0.5) inset, -6px -6px 8px rgba(255, 255, 255, 0.5) inset;
+  .kanecode-studio-header nav button:active {
+    background-color: #eee;
+    border-color: #d5d5d5;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
-  .kanecode-studio-header nav button:not(.transparent):active {
-    -webkit-box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-            box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-  }
-  .kanecode-studio-header nav button:not(.transparent).active {
+  .kanecode-studio-header nav button.active {
     color: #0bf;
   }
-  .kanecode-studio-header nav button:not(.transparent)[disabled] {
-    pointer-events: none;
-    opacity: .5;
-  }
-  .kanecode-studio-header nav button.transparent {
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    gap: 3px;
-    padding: 4px 6px;
-    color: #777;
-    border-radius: 6px;
-    font-weight: bold;
-    outline: none;
-    text-align: center;
-    border: 0 solid transparent;
-    background-color: transparent;
-  }
-  .kanecode-studio-header nav button.transparent svg.kcs-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 1.25em;
-    height: 1.25em;
-  }
-  .kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-  .kanecode-studio-header nav button.transparent:active {
-    background-color: #f1f3f8;
-  }
-  .kanecode-studio-header nav button.transparent:active {
-    -webkit-box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-            box-shadow: 6px 6px 8px rgba(223, 228, 234, 0.25), -6px -6px 8px rgba(255, 255, 255, 0.25), 3px 3px 6px #dfe4ea inset, -3px -3px 6px #fff inset;
-  }
-  .kanecode-studio-header nav button.transparent.active {
-    color: #0bf;
-  }
-  .kanecode-studio-header nav button.transparent[disabled] {
+  .kanecode-studio-header nav button[disabled] {
     pointer-events: none;
     opacity: .5;
   }
@@ -2236,10 +2102,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 1px;
+    width: 0;
     height: 100%;
-    margin: 0 11px;
-    background-color: #8881;
+    margin: 0 4px;
+    background-color: transparent;
   }
   .kanecode-studio-component-helper {
     pointer-events: none;
@@ -2257,19 +2123,15 @@
     width: 36px;
     height: 36px;
     padding: 3px;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
-    background-color: #f1f3f8;
+    background-color: #f4f4f4;
     -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
             box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     overflow: hidden;
     color: #888;
-  }
-  .kanecode-studio-component-helper svg.kcs-icon {
-    width: 100%;
-    height: 100%;
   }
   .kanecode-studio-component-helper .kcs-icon-light,
   .kanecode-studio-component-helper .kcs-icon-dark,
@@ -2286,7 +2148,7 @@
     display: none;
   }
   .kanecode-studio.show-border {
-    border: 1px solid #8881;
+    border: 1px solid #eee;
   }
   .kanecode-studio.fullscreen {
     position: fixed;
@@ -2397,8 +2259,8 @@
   /* Buttons */
   @font-face {
     font-family: "ki-solid";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.ttf?7au5xg") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.woff?7au5xg") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.svg?7au5xg#ki-solid") format("svg");
+    src: url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg");
+    src: url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.eot?7au5xg#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.ttf?7au5xg") format("truetype"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.woff?7au5xg") format("woff"), url("../icons/kanecode-icons/ki-solid-v1.0/fonts/ki-solid.svg?7au5xg#ki-solid") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -2481,8 +2343,8 @@
   }
   @font-face {
     font-family: "ki-regular";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.ttf?kp160f") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.woff?kp160f") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.svg?kp160f#ki-regular") format("svg");
+    src: url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f");
+    src: url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.eot?kp160f#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.ttf?kp160f") format("truetype"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.woff?kp160f") format("woff"), url("../icons/kanecode-icons/ki-regular-v1.0/fonts/ki-regular.svg?kp160f#ki-regular") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -2565,8 +2427,8 @@
   }
   @font-face {
     font-family: "ki-light";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.ttf?57t1vg") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.woff?57t1vg") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.svg?57t1vg#ki-light") format("svg");
+    src: url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg");
+    src: url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.eot?57t1vg#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.ttf?57t1vg") format("truetype"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.woff?57t1vg") format("woff"), url("../icons/kanecode-icons/ki-light-v1.0/fonts/ki-light.svg?57t1vg#ki-light") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -2649,8 +2511,8 @@
   }
   @font-face {
     font-family: "ki-duotone";
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
-    src: url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/dist/icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
+    src: url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d");
+    src: url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.eot?26ms2d#iefix") format("embedded-opentype"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.ttf?26ms2d") format("truetype"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.woff?26ms2d") format("woff"), url("../icons/kanecode-icons/ki-duotone-v1.0/fonts/ki-duotone.svg?26ms2d#ki-duotone") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -2841,24 +2703,15 @@
   /* Border */
   /* Shadows */
   /* Breakpoints */
-  /* Neumorphism */
   /* Buttons */
+  /* Separator */
   /* Dropdown */
-  svg.kcs-icon {
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 5px;
-    stroke: currentColor;
-    fill: none;
-  }
-  svg.kcs-icon .fill {
-    fill: currentColor;
-  }
+  /* Spinner */
   .kcs-spinner {
     width: 20px;
     height: 20px;
     border-radius: 10px;
-    border: 2px solid #8881;
+    border: 2px solid #eee;
     border-right-color: #22b8ff;
     -webkit-animation: kcs-spin 1s linear infinite;
             animation: kcs-spin 1s linear infinite;
@@ -2883,6 +2736,12 @@
               transform: rotateZ(359deg);
     }
   }
+  .ki-solid,
+  .ki-regular,
+  .ki-light,
+  .ki-duotone {
+    font-size: 1.25em;
+  }
   .kanecode-studio {
     position: relative;
     display: -webkit-box;
@@ -2900,37 +2759,12 @@
     font-family: 'Lato', sans-serif;
     outline: none;
     color: #ccc;
+    font-size: 14px;
+    line-height: 1.2;
   }
   .kanecode-studio * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-  }
-  .kanecode-studio .kanecode-studio-header {
-    display: none;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 50px;
-            flex: 0 0 50px;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    border-bottom: 1px solid #8881;
-  }
-  .kanecode-studio .kanecode-studio-header > * {
-    border-left: 1px solid #8881;
-    border-right: 1px solid #8881;
-  }
-  .kanecode-studio .kanecode-studio-header > *:first-child {
-    border-left: none;
-  }
-  .kanecode-studio .kanecode-studio-header > *:last-child {
-    border-right: none;
   }
   .kanecode-studio .kanecode-studio-body {
     position: relative;
@@ -2954,7 +2788,6 @@
             flex: 0 0 25%;
     min-width: 250px;
     max-width: 350px;
-    border-right: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list {
     display: -webkit-box;
@@ -2988,7 +2821,7 @@
     font-weight: normal;
     outline: none;
     text-align: center;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     background-color: #212328;
     margin-bottom: 6px;
   }
@@ -3025,7 +2858,7 @@
             transform: rotate(180deg);
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:focus {
-    border-color: #aaa;
+    border-color: #d5d5d5;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button[disabled] {
     pointer-events: none;
@@ -3059,7 +2892,7 @@
         -ms-flex-direction: column;
             flex-direction: column;
     padding: 12px;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
     overflow: hidden;
     aspect-ratio: 1;
@@ -3158,7 +2991,7 @@
             flex-direction: column;
     width: 100%;
     height: 100%;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
     overflow: hidden;
   }
@@ -3250,7 +3083,6 @@
             flex: 0 0 35%;
     min-height: 250px;
     max-height: 800px;
-    border-top: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-right {
     display: none;
@@ -3263,7 +3095,6 @@
             flex: 0 0 25%;
     min-width: 250px;
     max-width: 350px;
-    border-left: 1px solid #8881;
   }
   .kanecode-studio .kanecode-studio-body .kanecode-studio-process {
     pointer-events: none;
@@ -3298,7 +3129,7 @@
     gap: 12px;
     padding: 12px 24px;
     border-radius: 6px;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     background-color: #212328;
     font-size: 1rem;
     font-weight: bold;
@@ -3321,6 +3152,22 @@
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
+    display: none;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 40px;
+            flex: 0 0 40px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
   }
   .kanecode-studio-header nav {
     display: -webkit-box;
@@ -3332,7 +3179,7 @@
     height: 100%;
     padding: 0 12px;
   }
-  .kanecode-studio-header nav button:not(.transparent) {
+  .kanecode-studio-header nav button {
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -3346,86 +3193,36 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    gap: 3px;
+    gap: 6px;
     padding: 4px 6px;
-    color: #888;
+    color: #777;
     border-radius: 6px;
     font-weight: bold;
     outline: none;
     text-align: center;
-    border: 0 solid #8881;
-    background-color: #212328;
-    -webkit-box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32;
-            box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32;
-    margin: 0 4px;
+    border: 1px solid #eee;
+    background-color: #f6f6f6;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    font-size: 12px;
+    margin: 0 2px;
   }
-  .kanecode-studio-header nav button:not(.transparent) svg.kcs-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 1.25em;
-    height: 1.25em;
+  .kanecode-studio-header nav button:hover, .kanecode-studio-header nav button:focus {
+    background-color: #f6f6f6;
+    border-color: #d5d5d5;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
-  .kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
-    -webkit-box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32, 6px 6px 8px rgba(17, 19, 24, 0.5) inset, -6px -6px 8px rgba(40, 44, 50, 0.5) inset;
-            box-shadow: 6px 6px 8px #111318, -6px -6px 8px #282c32, 6px 6px 8px rgba(17, 19, 24, 0.5) inset, -6px -6px 8px rgba(40, 44, 50, 0.5) inset;
+  .kanecode-studio-header nav button:active {
+    background-color: #eee;
+    border-color: #d5d5d5;
+    -webkit-box-shadow: none;
+            box-shadow: none;
   }
-  .kanecode-studio-header nav button:not(.transparent):active {
-    -webkit-box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
-            box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
-  }
-  .kanecode-studio-header nav button:not(.transparent).active {
+  .kanecode-studio-header nav button.active {
     color: #22b8ff;
   }
-  .kanecode-studio-header nav button:not(.transparent)[disabled] {
-    pointer-events: none;
-    opacity: .5;
-  }
-  .kanecode-studio-header nav button.transparent {
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    gap: 3px;
-    padding: 4px 6px;
-    color: #888;
-    border-radius: 6px;
-    font-weight: bold;
-    outline: none;
-    text-align: center;
-    border: 0 solid transparent;
-    background-color: transparent;
-  }
-  .kanecode-studio-header nav button.transparent svg.kcs-icon {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 1.25em;
-    height: 1.25em;
-  }
-  .kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
-    background-color: rgba(204, 204, 204, 0.05);
-  }
-  .kanecode-studio-header nav button.transparent:active {
-    background-color: #212328;
-  }
-  .kanecode-studio-header nav button.transparent:active {
-    -webkit-box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
-            box-shadow: 6px 6px 8px rgba(17, 19, 24, 0.25), -6px -6px 8px rgba(40, 44, 50, 0.25), 3px 3px 6px #111318 inset, -3px -3px 6px #282c32 inset;
-  }
-  .kanecode-studio-header nav button.transparent.active {
-    color: #22b8ff;
-  }
-  .kanecode-studio-header nav button.transparent[disabled] {
+  .kanecode-studio-header nav button[disabled] {
     pointer-events: none;
     opacity: .5;
   }
@@ -3433,10 +3230,10 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 1px;
+    width: 0;
     height: 100%;
-    margin: 0 11px;
-    background-color: #8881;
+    margin: 0 4px;
+    background-color: transparent;
   }
   .kanecode-studio-component-helper {
     pointer-events: none;
@@ -3454,7 +3251,7 @@
     width: 36px;
     height: 36px;
     padding: 3px;
-    border: 1px solid #8881;
+    border: 1px solid #eee;
     border-radius: 6px;
     background-color: #212328;
     -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
@@ -3463,10 +3260,6 @@
             transform: translate(-50%, -50%);
     overflow: hidden;
     color: #888;
-  }
-  .kanecode-studio-component-helper svg.kcs-icon {
-    width: 100%;
-    height: 100%;
   }
   .kanecode-studio-component-helper .kcs-icon-light,
   .kanecode-studio-component-helper .kcs-icon-dark,
@@ -3483,7 +3276,7 @@
     display: none;
   }
   .kanecode-studio.show-border {
-    border: 1px solid #8881;
+    border: 1px solid #eee;
   }
   .kanecode-studio.fullscreen {
     position: fixed;
