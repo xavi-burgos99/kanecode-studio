@@ -24,67 +24,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-solid.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-solid.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-solid.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-solid.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-solid.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-solid.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-solid.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-solid.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-solid.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-solid.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-solid.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-solid.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-solid.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-solid.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-solid.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-solid.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-solid.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-solid.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-solid.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-solid.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-solid.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -108,67 +108,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-regular.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-regular.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-regular.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-regular.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-regular.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-regular.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-regular.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-regular.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-regular.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-regular.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-regular.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-regular.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-regular.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-regular.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-regular.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-regular.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-regular.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-regular.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-regular.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-regular.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-regular.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -192,67 +192,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-light.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-light.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-light.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-light.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-light.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-light.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-light.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-light.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-light.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-light.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-light.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-light.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-light.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-light.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-light.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-light.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-light.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-light.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-light.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-light.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-light.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -276,171 +276,171 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-duotone.ki-angle-bottom:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-bottom:after {
+  .ki-duotone.ki-angle-bottom:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-left:before {
+  .ki-duotone.ki-angle-left:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-left:after {
+  .ki-duotone.ki-angle-left:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-right:before {
+  .ki-duotone.ki-angle-right:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-right:after {
+  .ki-duotone.ki-angle-right:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-top:before {
+  .ki-duotone.ki-angle-top:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-top:after {
+  .ki-duotone.ki-angle-top:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-desktop:before {
+  .ki-duotone.ki-desktop:before {
     content: "";
   }
-  .ki-desktop:after {
+  .ki-duotone.ki-desktop:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-download:before {
+  .ki-duotone.ki-download:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-download:after {
+  .ki-duotone.ki-download:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-eye:before {
+  .ki-duotone.ki-eye:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-eye:after {
+  .ki-duotone.ki-eye:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-list-tree:before {
+  .ki-duotone.ki-list-tree:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-list-tree:after {
+  .ki-duotone.ki-list-tree:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-maximize-wide:before {
+  .ki-duotone.ki-maximize-wide:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-maximize-wide:after {
+  .ki-duotone.ki-maximize-wide:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-maximize:before {
+  .ki-duotone.ki-maximize:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-maximize:after {
+  .ki-duotone.ki-maximize:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-menu-bottom:before {
+  .ki-duotone.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-bottom:after {
+  .ki-duotone.ki-menu-bottom:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-left:before {
+  .ki-duotone.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-left:after {
+  .ki-duotone.ki-menu-left:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-right:before {
+  .ki-duotone.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-right:after {
+  .ki-duotone.ki-menu-right:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-top:before {
+  .ki-duotone.ki-menu-top:before {
     content: "";
   }
-  .ki-menu-top:after {
+  .ki-duotone.ki-menu-top:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-minimize-wide:before {
+  .ki-duotone.ki-minimize-wide:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-minimize-wide:after {
+  .ki-duotone.ki-minimize-wide:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-minimize:before {
+  .ki-duotone.ki-minimize:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-minimize:after {
+  .ki-duotone.ki-minimize:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-mobile:before {
+  .ki-duotone.ki-mobile:before {
     content: "";
   }
-  .ki-mobile:after {
+  .ki-duotone.ki-mobile:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-sign-in:before {
+  .ki-duotone.ki-sign-in:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-sign-in:after {
+  .ki-duotone.ki-sign-in:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-sign-out:before {
+  .ki-duotone.ki-sign-out:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-sign-out:after {
+  .ki-duotone.ki-sign-out:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-tablet:before {
+  .ki-duotone.ki-tablet:before {
     content: "";
   }
-  .ki-tablet:after {
+  .ki-duotone.ki-tablet:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-upload:before {
+  .ki-duotone.ki-upload:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-upload:after {
+  .ki-duotone.ki-upload:after {
     content: "";
     margin-left: -1em;
   }
@@ -1219,67 +1219,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-solid.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-solid.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-solid.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-solid.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-solid.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-solid.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-solid.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-solid.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-solid.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-solid.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-solid.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-solid.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-solid.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-solid.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-solid.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-solid.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-solid.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-solid.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-solid.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-solid.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-solid.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -1303,67 +1303,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-regular.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-regular.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-regular.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-regular.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-regular.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-regular.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-regular.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-regular.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-regular.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-regular.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-regular.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-regular.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-regular.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-regular.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-regular.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-regular.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-regular.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-regular.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-regular.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-regular.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-regular.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -1387,67 +1387,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-light.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-light.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-light.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-light.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-light.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-light.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-light.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-light.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-light.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-light.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-light.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-light.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-light.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-light.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-light.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-light.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-light.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-light.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-light.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-light.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-light.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -1471,171 +1471,171 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-duotone.ki-angle-bottom:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-bottom:after {
+  .ki-duotone.ki-angle-bottom:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-left:before {
+  .ki-duotone.ki-angle-left:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-left:after {
+  .ki-duotone.ki-angle-left:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-right:before {
+  .ki-duotone.ki-angle-right:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-right:after {
+  .ki-duotone.ki-angle-right:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-top:before {
+  .ki-duotone.ki-angle-top:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-top:after {
+  .ki-duotone.ki-angle-top:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-desktop:before {
+  .ki-duotone.ki-desktop:before {
     content: "";
   }
-  .ki-desktop:after {
+  .ki-duotone.ki-desktop:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-download:before {
+  .ki-duotone.ki-download:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-download:after {
+  .ki-duotone.ki-download:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-eye:before {
+  .ki-duotone.ki-eye:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-eye:after {
+  .ki-duotone.ki-eye:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-list-tree:before {
+  .ki-duotone.ki-list-tree:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-list-tree:after {
+  .ki-duotone.ki-list-tree:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-maximize-wide:before {
+  .ki-duotone.ki-maximize-wide:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-maximize-wide:after {
+  .ki-duotone.ki-maximize-wide:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-maximize:before {
+  .ki-duotone.ki-maximize:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-maximize:after {
+  .ki-duotone.ki-maximize:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-menu-bottom:before {
+  .ki-duotone.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-bottom:after {
+  .ki-duotone.ki-menu-bottom:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-left:before {
+  .ki-duotone.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-left:after {
+  .ki-duotone.ki-menu-left:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-right:before {
+  .ki-duotone.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-right:after {
+  .ki-duotone.ki-menu-right:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-top:before {
+  .ki-duotone.ki-menu-top:before {
     content: "";
   }
-  .ki-menu-top:after {
+  .ki-duotone.ki-menu-top:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-minimize-wide:before {
+  .ki-duotone.ki-minimize-wide:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-minimize-wide:after {
+  .ki-duotone.ki-minimize-wide:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-minimize:before {
+  .ki-duotone.ki-minimize:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-minimize:after {
+  .ki-duotone.ki-minimize:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-mobile:before {
+  .ki-duotone.ki-mobile:before {
     content: "";
   }
-  .ki-mobile:after {
+  .ki-duotone.ki-mobile:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-sign-in:before {
+  .ki-duotone.ki-sign-in:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-sign-in:after {
+  .ki-duotone.ki-sign-in:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-sign-out:before {
+  .ki-duotone.ki-sign-out:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-sign-out:after {
+  .ki-duotone.ki-sign-out:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-tablet:before {
+  .ki-duotone.ki-tablet:before {
     content: "";
   }
-  .ki-tablet:after {
+  .ki-duotone.ki-tablet:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-upload:before {
+  .ki-duotone.ki-upload:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-upload:after {
+  .ki-duotone.ki-upload:after {
     content: "";
     margin-left: -1em;
   }
@@ -2416,67 +2416,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-solid.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-solid.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-solid.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-solid.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-solid.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-solid.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-solid.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-solid.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-solid.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-solid.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-solid.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-solid.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-solid.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-solid.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-solid.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-solid.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-solid.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-solid.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-solid.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-solid.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-solid.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -2500,67 +2500,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-regular.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-regular.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-regular.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-regular.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-regular.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-regular.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-regular.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-regular.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-regular.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-regular.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-regular.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-regular.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-regular.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-regular.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-regular.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-regular.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-regular.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-regular.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-regular.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-regular.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-regular.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -2584,67 +2584,67 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-light.ki-angle-bottom:before {
     content: "";
   }
-  .ki-angle-left:before {
+  .ki-light.ki-angle-left:before {
     content: "";
   }
-  .ki-angle-right:before {
+  .ki-light.ki-angle-right:before {
     content: "";
   }
-  .ki-angle-top:before {
+  .ki-light.ki-angle-top:before {
     content: "";
   }
-  .ki-desktop:before {
+  .ki-light.ki-desktop:before {
     content: "";
   }
-  .ki-download:before {
+  .ki-light.ki-download:before {
     content: "";
   }
-  .ki-eye:before {
+  .ki-light.ki-eye:before {
     content: "";
   }
-  .ki-list-tree:before {
+  .ki-light.ki-list-tree:before {
     content: "";
   }
-  .ki-maximize:before {
+  .ki-light.ki-maximize:before {
     content: "";
   }
-  .ki-maximize-wide:before {
+  .ki-light.ki-maximize-wide:before {
     content: "";
   }
-  .ki-menu-bottom:before {
+  .ki-light.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-left:before {
+  .ki-light.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-right:before {
+  .ki-light.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-top:before {
+  .ki-light.ki-menu-top:before {
     content: "";
   }
-  .ki-minimize:before {
+  .ki-light.ki-minimize:before {
     content: "";
   }
-  .ki-minimize-wide:before {
+  .ki-light.ki-minimize-wide:before {
     content: "";
   }
-  .ki-mobile:before {
+  .ki-light.ki-mobile:before {
     content: "";
   }
-  .ki-sign-in:before {
+  .ki-light.ki-sign-in:before {
     content: "";
   }
-  .ki-sign-out:before {
+  .ki-light.ki-sign-out:before {
     content: "";
   }
-  .ki-tablet:before {
+  .ki-light.ki-tablet:before {
     content: "";
   }
-  .ki-upload:before {
+  .ki-light.ki-upload:before {
     content: "";
   }
   @font-face {
@@ -2668,171 +2668,171 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .ki-angle-bottom:before {
+  .ki-duotone.ki-angle-bottom:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-bottom:after {
+  .ki-duotone.ki-angle-bottom:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-left:before {
+  .ki-duotone.ki-angle-left:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-left:after {
+  .ki-duotone.ki-angle-left:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-right:before {
+  .ki-duotone.ki-angle-right:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-right:after {
+  .ki-duotone.ki-angle-right:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-angle-top:before {
+  .ki-duotone.ki-angle-top:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-angle-top:after {
+  .ki-duotone.ki-angle-top:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-desktop:before {
+  .ki-duotone.ki-desktop:before {
     content: "";
   }
-  .ki-desktop:after {
+  .ki-duotone.ki-desktop:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-download:before {
+  .ki-duotone.ki-download:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-download:after {
+  .ki-duotone.ki-download:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-eye:before {
+  .ki-duotone.ki-eye:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-eye:after {
+  .ki-duotone.ki-eye:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-list-tree:before {
+  .ki-duotone.ki-list-tree:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-list-tree:after {
+  .ki-duotone.ki-list-tree:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-maximize-wide:before {
+  .ki-duotone.ki-maximize-wide:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-maximize-wide:after {
+  .ki-duotone.ki-maximize-wide:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-maximize:before {
+  .ki-duotone.ki-maximize:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-maximize:after {
+  .ki-duotone.ki-maximize:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-menu-bottom:before {
+  .ki-duotone.ki-menu-bottom:before {
     content: "";
   }
-  .ki-menu-bottom:after {
+  .ki-duotone.ki-menu-bottom:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-left:before {
+  .ki-duotone.ki-menu-left:before {
     content: "";
   }
-  .ki-menu-left:after {
+  .ki-duotone.ki-menu-left:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-right:before {
+  .ki-duotone.ki-menu-right:before {
     content: "";
   }
-  .ki-menu-right:after {
+  .ki-duotone.ki-menu-right:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-menu-top:before {
+  .ki-duotone.ki-menu-top:before {
     content: "";
   }
-  .ki-menu-top:after {
+  .ki-duotone.ki-menu-top:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-minimize-wide:before {
+  .ki-duotone.ki-minimize-wide:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-minimize-wide:after {
+  .ki-duotone.ki-minimize-wide:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-minimize:before {
+  .ki-duotone.ki-minimize:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-minimize:after {
+  .ki-duotone.ki-minimize:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-mobile:before {
+  .ki-duotone.ki-mobile:before {
     content: "";
   }
-  .ki-mobile:after {
+  .ki-duotone.ki-mobile:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-sign-in:before {
+  .ki-duotone.ki-sign-in:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-sign-in:after {
+  .ki-duotone.ki-sign-in:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-sign-out:before {
+  .ki-duotone.ki-sign-out:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-sign-out:after {
+  .ki-duotone.ki-sign-out:after {
     content: "";
     margin-left: -1em;
   }
-  .ki-tablet:before {
+  .ki-duotone.ki-tablet:before {
     content: "";
   }
-  .ki-tablet:after {
+  .ki-duotone.ki-tablet:after {
     content: "";
     margin-left: -1em;
     opacity: 0.5;
   }
-  .ki-upload:before {
+  .ki-duotone.ki-upload:before {
     content: "";
     opacity: 0.5;
   }
-  .ki-upload:after {
+  .ki-duotone.ki-upload:after {
     content: "";
     margin-left: -1em;
   }

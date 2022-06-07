@@ -27,7 +27,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ki-angle-bottom {
+.#{$icomoon-font-family}.ki-angle-bottom {
   &:before {
     content: $ki-angle-bottom-path1;  
     opacity: 0.5;
@@ -37,7 +37,7 @@
     margin-left: -1em;  
   }
 }
-.ki-angle-left {
+.#{$icomoon-font-family}.ki-angle-left {
   &:before {
     content: $ki-angle-left-path1;  
     opacity: 0.5;
@@ -47,7 +47,7 @@
     margin-left: -1em;  
   }
 }
-.ki-angle-right {
+.#{$icomoon-font-family}.ki-angle-right {
   &:before {
     content: $ki-angle-right-path1;  
     opacity: 0.5;
@@ -57,7 +57,7 @@
     margin-left: -1em;  
   }
 }
-.ki-angle-top {
+.#{$icomoon-font-family}.ki-angle-top {
   &:before {
     content: $ki-angle-top-path1;  
     opacity: 0.5;
@@ -67,7 +67,7 @@
     margin-left: -1em;  
   }
 }
-.ki-desktop {
+.#{$icomoon-font-family}.ki-desktop {
   &:before {
     content: $ki-desktop-path1;  
   }
@@ -77,7 +77,7 @@
     opacity: 0.5;
   }
 }
-.ki-download {
+.#{$icomoon-font-family}.ki-download {
   &:before {
     content: $ki-download-path1;  
     opacity: 0.5;
@@ -87,7 +87,7 @@
     margin-left: -1em;  
   }
 }
-.ki-eye {
+.#{$icomoon-font-family}.ki-eye {
   &:before {
     content: $ki-eye-path1;  
     opacity: 0.5;
@@ -97,7 +97,7 @@
     margin-left: -1em;  
   }
 }
-.ki-list-tree {
+.#{$icomoon-font-family}.ki-list-tree {
   &:before {
     content: $ki-list-tree-path1;  
     opacity: 0.5;
@@ -107,7 +107,7 @@
     margin-left: -1em;  
   }
 }
-.ki-maximize-wide {
+.#{$icomoon-font-family}.ki-maximize-wide {
   &:before {
     content: $ki-maximize-wide-path1;  
     opacity: 0.5;
@@ -117,7 +117,7 @@
     margin-left: -1em;  
   }
 }
-.ki-maximize {
+.#{$icomoon-font-family}.ki-maximize {
   &:before {
     content: $ki-maximize-path1;  
     opacity: 0.5;
@@ -127,7 +127,7 @@
     margin-left: -1em;  
   }
 }
-.ki-menu-bottom {
+.#{$icomoon-font-family}.ki-menu-bottom {
   &:before {
     content: $ki-menu-bottom-path1;  
   }
@@ -137,7 +137,7 @@
     opacity: 0.5;
   }
 }
-.ki-menu-left {
+.#{$icomoon-font-family}.ki-menu-left {
   &:before {
     content: $ki-menu-left-path1;  
   }
@@ -147,7 +147,7 @@
     opacity: 0.5;
   }
 }
-.ki-menu-right {
+.#{$icomoon-font-family}.ki-menu-right {
   &:before {
     content: $ki-menu-right-path1;  
   }
@@ -157,7 +157,7 @@
     opacity: 0.5;
   }
 }
-.ki-menu-top {
+.#{$icomoon-font-family}.ki-menu-top {
   &:before {
     content: $ki-menu-top-path1;  
   }
@@ -167,7 +167,7 @@
     opacity: 0.5;
   }
 }
-.ki-minimize-wide {
+.#{$icomoon-font-family}.ki-minimize-wide {
   &:before {
     content: $ki-minimize-wide-path1;  
     opacity: 0.5;
@@ -177,7 +177,7 @@
     margin-left: -1em;  
   }
 }
-.ki-minimize {
+.#{$icomoon-font-family}.ki-minimize {
   &:before {
     content: $ki-minimize-path1;  
     opacity: 0.5;
@@ -187,7 +187,7 @@
     margin-left: -1em;  
   }
 }
-.ki-mobile {
+.#{$icomoon-font-family}.ki-mobile {
   &:before {
     content: $ki-mobile-path1;  
   }
@@ -197,7 +197,7 @@
     opacity: 0.5;
   }
 }
-.ki-sign-in {
+.#{$icomoon-font-family}.ki-sign-in {
   &:before {
     content: $ki-sign-in-path1;  
     opacity: 0.5;
@@ -207,7 +207,7 @@
     margin-left: -1em;  
   }
 }
-.ki-sign-out {
+.#{$icomoon-font-family}.ki-sign-out {
   &:before {
     content: $ki-sign-out-path1;  
     opacity: 0.5;
@@ -217,7 +217,7 @@
     margin-left: -1em;  
   }
 }
-.ki-tablet {
+.#{$icomoon-font-family}.ki-tablet {
   &:before {
     content: $ki-tablet-path1;  
   }
@@ -227,7 +227,7 @@
     opacity: 0.5;
   }
 }
-.ki-upload {
+.#{$icomoon-font-family}.ki-upload {
   &:before {
     content: $ki-upload-path1;  
     opacity: 0.5;

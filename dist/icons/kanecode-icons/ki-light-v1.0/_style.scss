@@ -27,107 +27,107 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ki-angle-bottom {
+.#{$icomoon-font-family}.ki-angle-bottom {
   &:before {
     content: $ki-angle-bottom; 
   }
 }
-.ki-angle-left {
+.#{$icomoon-font-family}.ki-angle-left {
   &:before {
     content: $ki-angle-left; 
   }
 }
-.ki-angle-right {
+.#{$icomoon-font-family}.ki-angle-right {
   &:before {
     content: $ki-angle-right; 
   }
 }
-.ki-angle-top {
+.#{$icomoon-font-family}.ki-angle-top {
   &:before {
     content: $ki-angle-top; 
   }
 }
-.ki-desktop {
+.#{$icomoon-font-family}.ki-desktop {
   &:before {
     content: $ki-desktop; 
   }
 }
-.ki-download {
+.#{$icomoon-font-family}.ki-download {
   &:before {
     content: $ki-download; 
   }
 }
-.ki-eye {
+.#{$icomoon-font-family}.ki-eye {
   &:before {
     content: $ki-eye; 
   }
 }
-.ki-list-tree {
+.#{$icomoon-font-family}.ki-list-tree {
   &:before {
     content: $ki-list-tree; 
   }
 }
-.ki-maximize {
+.#{$icomoon-font-family}.ki-maximize {
   &:before {
     content: $ki-maximize; 
   }
 }
-.ki-maximize-wide {
+.#{$icomoon-font-family}.ki-maximize-wide {
   &:before {
     content: $ki-maximize-wide; 
   }
 }
-.ki-menu-bottom {
+.#{$icomoon-font-family}.ki-menu-bottom {
   &:before {
     content: $ki-menu-bottom; 
   }
 }
-.ki-menu-left {
+.#{$icomoon-font-family}.ki-menu-left {
   &:before {
     content: $ki-menu-left; 
   }
 }
-.ki-menu-right {
+.#{$icomoon-font-family}.ki-menu-right {
   &:before {
     content: $ki-menu-right; 
   }
 }
-.ki-menu-top {
+.#{$icomoon-font-family}.ki-menu-top {
   &:before {
     content: $ki-menu-top; 
   }
 }
-.ki-minimize {
+.#{$icomoon-font-family}.ki-minimize {
   &:before {
     content: $ki-minimize; 
   }
 }
-.ki-minimize-wide {
+.#{$icomoon-font-family}.ki-minimize-wide {
   &:before {
     content: $ki-minimize-wide; 
   }
 }
-.ki-mobile {
+.#{$icomoon-font-family}.ki-mobile {
   &:before {
     content: $ki-mobile; 
   }
 }
-.ki-sign-in {
+.#{$icomoon-font-family}.ki-sign-in {
   &:before {
     content: $ki-sign-in; 
   }
 }
-.ki-sign-out {
+.#{$icomoon-font-family}.ki-sign-out {
   &:before {
     content: $ki-sign-out; 
   }
 }
-.ki-tablet {
+.#{$icomoon-font-family}.ki-tablet {
   &:before {
     content: $ki-tablet; 
   }
 }
-.ki-upload {
+.#{$icomoon-font-family}.ki-upload {
   &:before {
     content: $ki-upload; 
   }
