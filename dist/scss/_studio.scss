@@ -67,14 +67,12 @@ $kanecode-studio-menu-max-height: 800px;
 				overflow-y: auto;
 				padding: $spacer;
 				.kanecode-studio-components-list-button {
-					@include dropdown-button;
-					margin-bottom: $spacer/2;
+					@include dropdown2;
 				}
 				.kanecode-studio-components-list-grid {
-					display: none;
+					display: grid;
 					grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 					grid-gap: $spacer/2;
-					margin-bottom: $spacer*2;
 					.kanecode-studio-component-card {
 						cursor: grab;
 						user-select: none;
@@ -119,9 +117,6 @@ $kanecode-studio-menu-max-height: 800px;
 							transform: scale(.95);
 						}
 					}
-				}
-				.kanecode-studio-components-list-button.active + .kanecode-studio-components-list-grid {
-					display: grid;
 				}
 			}
 		}
@@ -279,8 +274,13 @@ $kanecode-studio-menu-max-height: 800px;
 		height: 100%;
 		padding: 0 $spacer;
 		button {
-			@include button1;
-			margin: 0 $spacer / 6;
+			&:not(.transparent) {
+				@include button1;
+				margin: 0 $spacer / 6;
+			}
+			&.transparent {
+				@include button2;
+			}
 		}
 		.separator {
 			display: flex;
@@ -288,6 +288,61 @@ $kanecode-studio-menu-max-height: 800px;
 			height: 100%;
 			margin: 0 $spacer / 3 - $separator-width;
 			background-color: $separator-color;
+		}
+	}
+}
+
+/* Menu left */
+.kanecode-studio-menu-left {
+	display: none;
+	flex-direction: column;
+	flex: 1 0 0;
+	width: $kanecode-studio-menu-left-width;
+	min-width: $kanecode-studio-menu-min-width;
+	max-width: $kanecode-studio-menu-max-width;
+	background-color: $background2;
+	border-right: $border-width solid $border-color;
+}
+
+/* Menu right */
+.kanecode-studio-menu-right {
+	display: none;
+	flex-direction: column;
+	flex: 1 0 0;
+	width: $kanecode-studio-menu-right-width;
+	min-width: $kanecode-studio-menu-min-width;
+	max-width: $kanecode-studio-menu-max-width;
+	background-color: $background2;
+	border-left: $border-width solid $border-color;
+}
+
+/* Menu bottom */
+.kanecode-studio-menu-bottom {
+	display: none;
+	flex-direction: column;
+	flex: 1 0 0;
+	width: 100%;
+	height: $kanecode-studio-menu-bottom-height;
+	min-height: $kanecode-studio-menu-min-height;
+	max-height: $kanecode-studio-menu-max-height;
+	background-color: $background2;
+	border-top: $border-width solid $border-color;
+}
+
+/* Inspector */
+.kanecode-studio-inspector {
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 0;
+	padding: $spacer;
+	overflow-y: auto;
+	.kanecode-studio-inspector-message {
+		color: $gray;
+		font-size: 12px;
+		p {
+			margin: 0;
+			margin-bottom: $spacer / 2;
+			font-size: 12px;
 		}
 	}
 }
@@ -394,6 +449,14 @@ $kanecode-studio-menu-max-height: 800px;
 			display: flex;
 			opacity: 1;
 		}
+	}
+}
+.kanecode-studio.show-tree-panel {
+	.kanecode-studio-menu-right .kanecode-studio-tree-panel {
+		display: flex;
+	}
+	[data-kcs-action="tree"] {
+		color: $blue;
 	}
 }
 .kanecode-studio.grabbing {

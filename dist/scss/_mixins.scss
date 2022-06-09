@@ -13,7 +13,10 @@
 	border: $button1-border-width solid $button1-border-color;
 	background-color: $button1-background;
 	box-shadow: $button1-shadow;
-	font-size: 12px;
+	font-size: 13px;
+	.ki-solid, .ki-regular, .ki-light, .ki-duotone {
+		font-size: 15px;
+	}
 	&:hover,
 	&:focus {
 		background-color: $button1-background-hover;
@@ -34,57 +37,125 @@
 	}
 }
 
-@mixin dropdown-button {
+@mixin button2() {
 	user-select: none;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	gap: $spacer / 4;
-	padding: $spacer / 2 $spacer;
-	color: $dropdown-button-color;
-	border-radius: $dropdown-button-border-radius;
-	font-weight: normal;
+	justify-content: center;
+	gap: $spacer / 2;
+	padding: $spacer / 3 $spacer / 2;
+	color: $button2-color;
+	border-radius: $button2-border-radius;
+	font-weight: bold;
 	outline: none;
 	text-align: center;
-	border: $dropdown-button-border-width solid $dropdown-button-border-color;
-	background-color: $dropdown-button-background;
-	svg.kcs-icon {
-		display: flex;
-		width: 22px;
-		height: 22px;
+	border: $button2-border-width solid $button2-border-color;
+	background-color: $button2-background;
+	box-shadow: $button2-shadow;
+	font-size: 14px;
+	.ki-solid, .ki-regular, .ki-light, .ki-duotone {
+		font-size: 16px;
 	}
-
-	.kcs-dropdown-arrow {
-		display: flex;
-		flex: 0 0 0;
-		svg.kcs-icon {
-			width: 16px;
-			height: 16px;
-		}
-	}
-
-	&:hover {
-		background-color: $dropdown-button-background-hover;
+	&:hover,
+	&:focus {
+		background-color: $button2-background-hover;
+		border-color: $button2-border-color-hover;
+		box-shadow: $button2-shadow-hover;
 	}
 	&:active {
-		border-color: $dropdown-button-background-active;
+		background-color: $button2-background-active;
+		border-color: $button2-border-color-active;
+		box-shadow: $button2-shadow-active;
 	}
-
 	&.active {
-		color: $dropdown-button-color-active;
-		.kcs-dropdown-arrow {
-			svg.kcs-icon {
-				transform: rotate(180deg);
-			}
-		}
+		color: $button2-color-on;
 	}
-
-	&:focus {
-		border-color: $button1-border-color-hover;
-	}
-
 	&[disabled] {
 		pointer-events: none;
 		opacity: .5;
 	}
 }
+
+
+@mixin dropdown1() {
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: $spacer / 2;
+	padding: $spacer / 3 $spacer / 2;
+	color: $dropdown1-color;
+	border-radius: $dropdown1-border-radius;
+	font-weight: bold;
+	outline: none;
+	text-align: center;
+	border: $dropdown1-border-width solid $dropdown1-border-color;
+	background-color: $dropdown1-background;
+	box-shadow: $dropdown1-shadow;
+	font-size: 13px;
+	.ki-solid, .ki-regular, .ki-light, .ki-duotone {
+		font-size: 15px;
+	}
+	&:hover,
+	&:focus {
+		background-color: $dropdown1-background-hover;
+		border-color: $dropdown1-border-color-hover;
+		box-shadow: $dropdown1-shadow-hover;
+	}
+	&:active {
+		background-color: $dropdown1-background-active;
+		border-color: $dropdown1-border-color-active;
+		box-shadow: $dropdown1-shadow-active;
+	}
+	&.active {
+		color: $dropdown1-color-on;
+	}
+	&[disabled] {
+		pointer-events: none;
+		opacity: .5;
+	}
+}
+
+@mixin dropdown2() {
+	cursor: pointer;
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: $spacer / 2;
+	padding: 0 $spacer / 4 $spacer;
+	margin: 0;
+	margin-bottom: $spacer;
+	color: $dropdown2-color;
+	outline: none;
+	text-align: center;
+	border: none;
+	border-bottom: $dropdown2-border-width solid $border-color;
+	background-color: $dropdown2-background;
+	box-shadow: $dropdown2-shadow;
+	font-size: 13px;
+	.kcs-dropdown-arrow {
+		display: flex;
+	}
+	&.active {
+		color: $dropdown2-color-on;
+		border-bottom-color: transparent;
+		margin-bottom: 0;
+		.kcs-dropdown-arrow {
+			transform: scaleY(-1);
+		}
+		+ .kcs-dropdown-menu {
+			display: flex;
+			border-bottom-color: $border-color;
+		}
+	}
+	&:first-child {
+		margin-top: $spacer / 2;
+	}
+	&[disabled] {
+		pointer-events: none;
+		opacity: .5;
+	}
+}
+
+

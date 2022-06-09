@@ -18,8 +18,8 @@ $background2: $white !default;
 
 
 /* Border */
-$border-width: 1px;
-$border-color: #eee;
+$border-width: 1px !default;
+$border-color: #f0f0f0 !default;
 
 $border-radius: 6px;
 $border-radius-sm: 3px;
@@ -47,29 +47,76 @@ $button1-color: #777 !default;
 $button1-color-on: $primary !default;
 $button1-color-hover: $button1-color !default;
 $button1-color-active: $button1-color !default;
-
 $button1-shadow: none;
 $button1-shadow-on: none;
 $button1-shadow-hover: none;
 $button1-shadow-active: none;
-
 $button1-border-color: $border-color !default;
 $button1-border-color-on: $button1-border-color !default;
 $button1-border-color-hover: #d5d5d5 !default;
-$button1-border-color-active: #d5d5d5 !default;
-
-
+$button1-border-color-active: $button1-border-color-hover !default;
 $button1-background: #f6f6f6 !default;
 $button1-background-on: $button1-background !default;
 $button1-background-hover: $button1-background !default;
 $button1-background-active: $button1-border-color !default;
-
 $button1-border-radius: $border-radius !default;
 $button1-border-radius-sm: $border-radius-sm !default;
 $button1-border-radius-lg: $border-radius-lg !default;
-
 $button1-border-width: 1px;
-$button1-transition: .2s;
+
+$button2-color: #777 !default;
+$button2-color-on: $primary !default;
+$button2-color-hover: $button2-color !default;
+$button2-color-active: $button2-color !default;
+$button2-shadow: none;
+$button2-shadow-on: none;
+$button2-shadow-hover: none;
+$button2-shadow-active: none;
+$button2-border-color: transparent !default;
+$button2-border-color-on: transparent !default;
+$button2-border-color-hover: $border-color !default;
+$button2-border-color-active: $border-color !default;
+$button2-background: transparent !default;
+$button2-background-on: $button2-background !default;
+$button2-background-hover: $button2-background !default;
+$button2-background-active: $button2-border-color !default;
+$button2-border-radius: $border-radius !default;
+$button2-border-radius-sm: $border-radius-sm !default;
+$button2-border-radius-lg: $border-radius-lg !default;
+$button2-border-width: 1px;
+
+
+/* Dropdowns */
+$dropdown1-color: #777 !default;
+$dropdown1-color-on: $primary !default;
+$dropdown1-color-hover: $dropdown1-color !default;
+$dropdown1-color-active: $dropdown1-color !default;
+$dropdown1-shadow: none;
+$dropdown1-shadow-on: none;
+$dropdown1-shadow-hover: none;
+$dropdown1-shadow-active: none;
+$dropdown1-border-color: $border-color !default;
+$dropdown1-border-color-on: $dropdown1-border-color !default;
+$dropdown1-border-color-hover: #d5d5d5 !default;
+$dropdown1-border-color-active: #d5d5d5 !default;
+$dropdown1-background: #f6f6f6 !default;
+$dropdown1-background-on: $dropdown1-background !default;
+$dropdown1-background-hover: $dropdown1-background !default;
+$dropdown1-background-active: $dropdown1-border-color !default;
+$dropdown1-border-radius: $border-radius !default;
+$dropdown1-border-radius-sm: $border-radius-sm !default;
+$dropdown1-border-radius-lg: $border-radius-lg !default;
+$dropdown1-border-width: 1px;
+
+$dropdown2-color: #ccc !default;
+$dropdown2-color-on: #888 !default;
+$dropdown2-shadow: none;
+$dropdown2-shadow-on: none;
+$dropdown2-border-color: #ddd !default;
+$dropdown2-border-color-on: #999 !default;
+$dropdown2-background: transparent !default;
+$dropdown2-background-on: transparent !default;
+$dropdown2-border-width: 1px;
 
 
 /* Separator */

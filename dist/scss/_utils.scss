@@ -16,3 +16,11 @@
 	}
 }
 
+.kcs-dropdown-menu {
+	display: none;
+	flex-direction: column;
+	border: none;
+	border-bottom: $dropdown2-border-width solid transparent;
+	padding-bottom: $spacer * 3 / 2;
+	margin-bottom: $spacer;
+}

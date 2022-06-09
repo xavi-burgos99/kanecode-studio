@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* Color */
 /* Buttons */
+/* Border */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 @font-face {
   font-family: "ki-solid";
@@ -562,6 +563,7 @@
 /* Shadows */
 /* Breakpoints */
 /* Buttons */
+/* Dropdowns */
 /* Separator */
 /* Dropdown */
 /* Spinner */
@@ -569,7 +571,7 @@
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  border: 2px solid #eee;
+  border: 2px solid #303030;
   border-right-color: #22b8ff;
   -webkit-animation: kcs-spin 1s linear infinite;
           animation: kcs-spin 1s linear infinite;
@@ -597,11 +599,23 @@
   }
 }
 
+.kcs-dropdown-menu {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 18px;
+  margin-bottom: 12px;
+}
+
 .ki-solid,
 .ki-regular,
 .ki-light,
 .ki-duotone {
-  font-size: 1.25em;
+  font-size: 1.1em;
 }
 
 .kanecode-studio {
@@ -617,7 +631,7 @@
   height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: #212328;
+  background-color: #2c2c2c;
   font-family: 'Lato', sans-serif;
   outline: none;
   color: #ccc;
@@ -668,6 +682,7 @@
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button {
+  cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -681,59 +696,47 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  gap: 3px;
-  padding: 6px 12px;
-  color: #666;
-  border-radius: 6px;
-  font-weight: normal;
+  gap: 6px;
+  padding: 0 3px 12px;
+  margin: 0;
+  margin-bottom: 12px;
+  color: #ccc;
   outline: none;
   text-align: center;
-  border: 1px solid #eee;
-  background-color: #212328;
-  margin-bottom: 6px;
-}
-
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button svg.kcs-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 22px;
-  height: 22px;
+  border: none;
+  border-bottom: 1px solid #303030;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 13px;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button .kcs-dropdown-arrow {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 0px;
-          flex: 0 0 0;
-}
-
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button .kcs-dropdown-arrow svg.kcs-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:hover {
-  background-color: #f8f8f8;
-}
-
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:active {
-  border-color: #f0f0f0;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active {
-  color: #666;
+  color: #888;
+  border-bottom-color: transparent;
+  margin-bottom: 0;
 }
 
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active .kcs-dropdown-arrow svg.kcs-icon {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active .kcs-dropdown-arrow {
+  -webkit-transform: scaleY(-1);
+          transform: scaleY(-1);
 }
 
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:focus {
-  border-color: #d5d5d5;
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active + .kcs-dropdown-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom-color: #303030;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:first-child {
+  margin-top: 6px;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button[disabled] {
@@ -742,11 +745,11 @@
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid {
-  display: none;
+  display: -ms-grid;
+  display: grid;
   -ms-grid-columns: (minmax(70px, 1fr))[auto-fill];
       grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   grid-gap: 6px;
-  margin-bottom: 24px;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card {
@@ -770,7 +773,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 12px;
-  border: 1px solid #eee;
+  border: 1px solid #303030;
   border-radius: 6px;
   overflow: hidden;
   aspect-ratio: 1;
@@ -829,11 +832,6 @@
           transform: scale(0.95);
 }
 
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active + .kanecode-studio-components-list-grid {
-  display: -ms-grid;
-  display: grid;
-}
-
 .kanecode-studio .kanecode-studio-body .kanecode-studio-center {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -878,7 +876,7 @@
           flex-direction: column;
   width: 100%;
   height: 100%;
-  border: 1px solid #eee;
+  border: 1px solid #303030;
   border-radius: 6px;
   overflow: hidden;
 }
@@ -1030,8 +1028,8 @@
   gap: 12px;
   padding: 12px 24px;
   border-radius: 6px;
-  border: 1px solid #eee;
-  background-color: #212328;
+  border: 1px solid #303030;
+  background-color: #2c2c2c;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
@@ -1069,8 +1067,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
+  background-color: #202020;
+  border-bottom: 1px solid #303030;
 }
 
 .kanecode-studio-header nav {
@@ -1084,7 +1082,7 @@
   padding: 0 12px;
 }
 
-.kanecode-studio-header nav button {
+.kanecode-studio-header nav button:not(.transparent) {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -1100,38 +1098,97 @@
           justify-content: center;
   gap: 6px;
   padding: 4px 6px;
-  color: #777;
+  color: #aaa;
   border-radius: 6px;
   font-weight: bold;
   outline: none;
   text-align: center;
-  border: 1px solid #eee;
-  background-color: #f6f6f6;
+  border: 1px solid #303030;
+  background-color: #2a2a2a;
   -webkit-box-shadow: none;
           box-shadow: none;
-  font-size: 12px;
+  font-size: 13px;
   margin: 0 2px;
 }
 
-.kanecode-studio-header nav button:hover, .kanecode-studio-header nav button:focus {
-  background-color: #f6f6f6;
-  border-color: #d5d5d5;
+.kanecode-studio-header nav button:not(.transparent) .ki-solid, .kanecode-studio-header nav button:not(.transparent) .ki-regular, .kanecode-studio-header nav button:not(.transparent) .ki-light, .kanecode-studio-header nav button:not(.transparent) .ki-duotone {
+  font-size: 15px;
+}
+
+.kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
+  background-color: #2a2a2a;
+  border-color: #4b4b4b;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.kanecode-studio-header nav button:active {
-  background-color: #eee;
-  border-color: #d5d5d5;
+.kanecode-studio-header nav button:not(.transparent):active {
+  background-color: #303030;
+  border-color: #4b4b4b;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.kanecode-studio-header nav button.active {
+.kanecode-studio-header nav button:not(.transparent).active {
   color: #22b8ff;
 }
 
-.kanecode-studio-header nav button[disabled] {
+.kanecode-studio-header nav button:not(.transparent)[disabled] {
+  pointer-events: none;
+  opacity: .5;
+}
+
+.kanecode-studio-header nav button.transparent {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 6px;
+  padding: 4px 6px;
+  color: #aaa;
+  border-radius: 6px;
+  font-weight: bold;
+  outline: none;
+  text-align: center;
+  border: 1px solid transparent;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 14px;
+}
+
+.kanecode-studio-header nav button.transparent .ki-solid, .kanecode-studio-header nav button.transparent .ki-regular, .kanecode-studio-header nav button.transparent .ki-light, .kanecode-studio-header nav button.transparent .ki-duotone {
+  font-size: 16px;
+}
+
+.kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
+  background-color: transparent;
+  border-color: #303030;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.kanecode-studio-header nav button.transparent:active {
+  background-color: transparent;
+  border-color: #303030;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.kanecode-studio-header nav button.transparent.active {
+  color: #22b8ff;
+}
+
+.kanecode-studio-header nav button.transparent[disabled] {
   pointer-events: none;
   opacity: .5;
 }
@@ -1144,6 +1201,85 @@
   height: 100%;
   margin: 0 4px;
   background-color: transparent;
+}
+
+/* Menu left */
+.kanecode-studio-menu-left {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+  width: 25%;
+  min-width: 250px;
+  max-width: 350px;
+  background-color: #202020;
+  border-right: 1px solid #303030;
+}
+
+/* Menu right */
+.kanecode-studio-menu-right {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+  width: 25%;
+  min-width: 250px;
+  max-width: 350px;
+  background-color: #202020;
+  border-left: 1px solid #303030;
+}
+
+/* Menu bottom */
+.kanecode-studio-menu-bottom {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+  width: 100%;
+  height: 35%;
+  min-height: 250px;
+  max-height: 800px;
+  background-color: #202020;
+  border-top: 1px solid #303030;
+}
+
+/* Inspector */
+.kanecode-studio-inspector {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.kanecode-studio-inspector .kanecode-studio-inspector-message {
+  color: #888;
+  font-size: 12px;
+}
+
+.kanecode-studio-inspector .kanecode-studio-inspector-message p {
+  margin: 0;
+  margin-bottom: 6px;
+  font-size: 12px;
 }
 
 .kanecode-studio-component-helper {
@@ -1162,9 +1298,9 @@
   width: 36px;
   height: 36px;
   padding: 3px;
-  border: 1px solid #eee;
+  border: 1px solid #303030;
   border-radius: 6px;
-  background-color: #212328;
+  background-color: #2c2c2c;
   -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
   -webkit-transform: translate(-50%, -50%);
@@ -1191,7 +1327,7 @@
 }
 
 .kanecode-studio.show-border {
-  border: 1px solid #eee;
+  border: 1px solid #303030;
 }
 
 .kanecode-studio.fullscreen {
@@ -1266,6 +1402,16 @@
   display: -ms-flexbox;
   display: flex;
   opacity: 1;
+}
+
+.kanecode-studio.show-tree-panel .kanecode-studio-menu-right .kanecode-studio-tree-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.kanecode-studio.show-tree-panel [data-kcs-action="tree"] {
+  color: #22b8ff;
 }
 
 .kanecode-studio.grabbing {

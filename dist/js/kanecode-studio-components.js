@@ -9,7 +9,6 @@ KCStudioComponents['basics'] = {
 };
 
 
-
 KCStudioComponents['basics'].components['body'] = {
 	title: {
 		"en-US": "Body",

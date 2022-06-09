@@ -61,6 +61,8 @@ class KCStudio {
 								<span data-kcs-value="maximize">${this.icon('ki-solid ki-maximize-wide')}</span>
 								<span data-kcs-value="minimize">${this.icon('ki-solid ki-minimize-wide')}</span>
 							</button>
+							<div class="separator"></div>
+							<button data-kcs-action="tree" disabled>${this.icon('ki-duotone ki-list-tree')}</button>
 							<button data-kcs-action="menu-bottom">${this.icon('ki-duotone ki-menu-bottom')}</button>
 							<button data-kcs-action="menu-right">${this.icon('ki-duotone ki-menu-right')}</button>
 						</nav>
@@ -85,7 +87,10 @@ class KCStudio {
 							</div>
 							<div class="kanecode-studio-menu-bottom"></div>
 						</div>
-						<div class="kanecode-studio-menu-right"></div>
+						<div class="kanecode-studio-menu-right">
+							<div class="kanecode-studio-inspector"></div>
+							<div class="kanecode-studio-tree-view"></div>
+						</div>
 						<div class="kanecode-studio-process">
 						<div class="kanecode-studio-process-message"></div>
 						</div>
@@ -108,6 +113,7 @@ class KCStudio {
 					resize: [...base.querySelectorAll('[data-kcs-action="resize"]')],
 					save: [...base.querySelectorAll('[data-kcs-action="save"]')],
 					undo: [...base.querySelectorAll('[data-kcs-action="undo"]')],
+					tree: [...base.querySelectorAll('[data-kcs-action="tree"]')],
 					//CODE
 				},
 				menus: {
@@ -115,7 +121,12 @@ class KCStudio {
 					left: base.querySelector('.kanecode-studio-menu-left'),
 					right: base.querySelector('.kanecode-studio-menu-right'),
 				},
+				panels: {
+					inspector: base.querySelector('.kanecode-studio-inspector'),
+					tree: base.querySelector('.kanecode-studio-tree-view'),
+				}
 			};
+			this.#inspector = new KCStudioInspector(this, this.#elements.panels.inspector);
 			this.#iframe = document.createElement('iframe');
 			this.#iframe.setAttribute('src', 'about:blank');
 			
@@ -156,6 +167,9 @@ class KCStudio {
 				button.setAttribute('disabled', '');
 				button.addEventListener('click', () => { this.save() });
 			});
+			this.#elements.buttons.tree.forEach(button => {
+				button.addEventListener('click', () => { this.treePanel() });
+			});
 			this.#elements.buttons.undo.forEach(button => {
 				button.setAttribute('disabled', '');
 				button.addEventListener('click', () => { this.undo() });
@@ -169,6 +183,7 @@ class KCStudio {
 			this.#process('Loading initial canvas', { spinner: true, disable: false });
 			this.open('');
 			this.#process(null);
+			this.loadInspector();
 
 		} else {
 			this.#error('The "element" parameter in constructor is not an element.');
@@ -346,6 +361,11 @@ class KCStudio {
 			if (['bottom', 'left', 'right'].includes(menu)) {
 				this.#element.classList.remove(`show-menu-${menu}`);
 				this.refresh();
+				if (menu === 'right') {
+					this.#elements.buttons.tree.forEach(button => {
+						button.setAttribute('disabled', '');
+					});
+				}
 			}
 		}
 	}
@@ -586,6 +606,27 @@ class KCStudio {
 		}
 	}
 
+	loadInspector() {
+		if (this.#error || !this.#enabled) {
+			this.#errorLog('Cannot load inspector because the editor is not enabled or there is an error. Please try again later.');
+			return false;
+		}
+		if (this.#selected === null) {
+			this.#inspector.message = this.loc('<p>There is no component selected.</p><p>To select a component, click on any element in the editor canvas.</p>');
+			return true;
+		}
+		if (!this.#document?.contains(this.#selected)) {
+			this.#errorLog('Cannot load inspector because the selected element is not a valid element.');
+			return false;
+		}
+		if (this.#getComponentType(this.#selected) === null) {
+			this.#inspector.message = this.loc('<p>The selected element is not a valid component.</p><p>Maybe the component selected is outdated and not compatible with the current version of the editor. Try to update it manually.</p>');
+			return false;
+		}
+		this.#inspector.clear();
+		return true;
+	}
+
 	remove(element) {
 		if (this.#error || !this.#enabled) {
 			this.#errorLog('Cannot remove the element because the editor is not enabled or there is an error. Please try again later.');
@@ -713,6 +754,11 @@ class KCStudio {
 			if (['bottom', 'left', 'right'].includes(menu)) {
 				this.#element.classList.add(`show-menu-${menu}`);
 				this.refresh();
+				if (menu === 'right') {
+					this.#elements.buttons.tree.forEach(button => {
+						button.removeAttribute('disabled');
+					});
+				}
 			}
 		}
 	}
@@ -724,10 +770,21 @@ class KCStudio {
 	toggleMenu(menu) {
 		if (!this.#error && this.#enabled) {
 			if (['bottom', 'left', 'right'].includes(menu)) {
-				this.#element.classList.toggle(`show-menu-${menu}`);
-				this.refresh();
+				if (this.#element.classList.contains(`show-menu-${menu}`))
+					this.hideMenu(menu);
+				else
+					this.showMenu(menu);
 			}
 		}
+	}
+
+	treePanel() {
+		if (this.#error || !this.#enabled) {
+			this.#errorLog('Cannot show the tree view panel because the editor is not enabled or there is an error. Please try again later.');
+			return false;
+		}
+		this.#element.classList.toggle(`show-tree-panel`);
+		return true;
 	}
 
 	undo() {
@@ -787,6 +844,7 @@ class KCStudio {
 			} else
 				this.#selected = null;
 			this.refresh();
+			this.loadInspector();
 		}
 	}
 
@@ -1315,19 +1373,22 @@ class KCStudio {
 						const list = this.#element.querySelector('.kanecode-studio-components-list');
 						let grid = this.#elements.menus.left.querySelector(`.kanecode-studio-components-list-grid[data-kcs-group="${component.group}"]`);
 						if (!grid) {
-							const button = document.createElement('button');
-							button.className = 'kanecode-studio-components-list-button';
-							button.innerHTML= `<div class="kcs-dropdown-title">${this.#componentGroups[component.group].title}</div><div class="kcs-dropdown-arrow">${this.icon('angle-down')}</div>`;
+							const dropdown = document.createElement('div');
+							dropdown.className = 'kanecode-studio-components-list-button';
+							dropdown.innerHTML= `<div class="kcs-dropdown-title">${this.#componentGroups[component.group].title}</div><div class="kcs-dropdown-arrow">${this.icon('ki-solid ki-angle-bottom')}</div>`;
+							const menu = document.createElement('div');
+							menu.className = 'kcs-dropdown-menu';
 							grid = document.createElement('div');
 							grid.className = 'kanecode-studio-components-list-grid';
 							grid.setAttribute('data-kcs-group', component.group);
-							list.append(button);
-							list.append(grid);
-							button.addEventListener('click', () => {
-								button.classList.toggle('active');
+							menu.append(grid);
+							list.append(dropdown);
+							list.append(menu);
+							dropdown.addEventListener('click', () => {
+								dropdown.classList.toggle('active');
 							});
-							if (list.children[0] == button)
-								button.classList.add('active');
+							if (list.children[0] == dropdown)
+								dropdown.classList.add('active');
 						}
 						let icon = this.icon(component.icon);
 						if (component?.icon?.light && component?.icon?.dark) {
@@ -1408,6 +1469,7 @@ class KCStudio {
 		"undo": `<path d="M25,47.5h45c2.76,0,5,2.24,5,5v15"/><polyline points="40 62.5 25 47.5 40 32.5"/>`,
 	};
 	#iframe = null;
+	#inspector = null;
 	#isUndoRedo = false;
 	#language = 'es-ES';
 	#languages = {
@@ -1421,9 +1483,12 @@ class KCStudio {
 			"Saving": "Guardando",
 			"Undo": "Deshacer",
 			"An error has occured.": "Ha habido un error.",
+			"Cannot load inspector because the editor is not enabled or there is an error. Please try again later.": "No se puede cargar el inspector porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
+			"Cannot load inspector because the selected element is not a valid element.": "No se puede cargar el inspector porque el elemento seleccionado no es un elemento válido.",
 			"Cannot remove the element because the editor is not enabled or there is an error. Please try again later.": "No se puede eliminar el elemento porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
 			"Cannot remove the element because it is not a valid element.": "No se puede eliminar el elemento porque no es un elemento válido.",
 			"Cannot remove the element because it is not inside the document.": "No se puede eliminar el elemento porque no está dentro del documento.",
+			"Cannot show the tree view panel because the editor is not enabled or there is an error. Please try again later.": "No se puede mostrar el panel de vista de árbol porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
 			"Creating KaneCode Studio structure": "Creando la estructura de KaneCode Studio",
 			"Loading initial canvas": "Cargando lienzo inicial",
 			"The \"element\" parameter in constructor is not an element.": "El parámetro \"element\" en el constructor no es un elemento.",
@@ -1433,6 +1498,8 @@ class KCStudio {
 			"There was an error saving.": "Ha habido un error al guardar.",
 			"There was an error loading the page.": "Ha habido un error al cargar la página.",
 			"This element is not removable.": "Este elemento no se puede eliminar.",
+			"<p>The selected element is not a valid component.</p><p>Maybe the component selected is outdated and not compatible with the current version of the editor. Try to update it manually.</p>": "<p>El elemento seleccionado no es un componente válido.</p><p>Tal vez el componente seleccionado está obsoleto y no es compatible con la versión actual del editor. Intente actualizarlo manualmente.</p>",
+			"<p>There is no component selected.</p><p>To select a component, click on any element in the editor canvas.</p>": "<p>No hay ningún componente seleccionado.</p><p>Para seleccionar un componente, haga clic en cualquier elemento en el lienzo del editor.</p>",
 		}
 	};
 	#menus = {};
@@ -1520,4 +1587,30 @@ class KCStudio {
 	#utils = {
 		uuid: (t=8) => crypto.getRandomValues(new Uint8Array(t)).reduce(((t,e)=>t+=(e&=63)<36?e.toString(36):e<62?(e-26).toString(36).toUpperCase():e<63?'_':'-'),''),
 	}
+}
+
+class KCStudioInspector {
+	constructor(studio, element) {
+		this.#studio = studio;
+		this.#element = element;
+	}
+	clear() {
+		this.#element.innerHTML = '';
+		this.#inputs = {};
+	}
+	set message(message) {
+		this.clear();
+		this.#element.innerHTML = `<div class="kanecode-studio-inspector-message">${message}</div>`;
+	}
+	get message() {
+		const message = this.#element.querySelector('.kanecode-studio-inspector-message');
+		if (message) {
+			return message.textContent;
+		}
+		return undefined;
+	}
+
+	#element = null;
+	#inputs = {};
+	#studio = null;
 }

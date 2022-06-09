@@ -1,13 +1,17 @@
 /* Color */
 $blue: #22b8ff !default;
 $body: #ccc !default;
-$background: #212328 !default;
-
-$neumorphism-dark: #111318 !default;
-$neumorphism-light: #282c32 !default;
+$background: #2c2c2c !default;
+$background2: #202020 !default;
 
 /* Buttons */
-$button-color: #888;
+$button1-color: #aaa;
+$button1-border-color-hover: #4b4b4b;
+$button1-background: #2a2a2a;
+$button2-color: #aaa;
+
+/* Border */
+$border-color: #303030;
 
 
 @import 'studio';
