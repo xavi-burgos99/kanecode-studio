@@ -145,15 +145,51 @@ KCStudioComponents['basics'].components['text'] = {
 		light: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/paragraph_light.svg">',
 		dark: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/paragraph_dark.svg">',
 	},
+	inspector: {
+		"content": {
+			sections: {
+				"general": {
+					label: {
+						"en-US": "General",
+						"es-ES": "General",
+					},
+					order: 0,
+					open: true,
+					inputs: {
+						"text": {
+							label: {
+								"en-US": "Text",
+								"es-ES": "Texto",
+							},
+							type: "textarea",
+							value: (studio) => studio.selected.children[0].innerHTML,
+							onChange: (studio, value) => {
+								studio.selected.children[0].innerHTML = value;
+							},
+							options: {
+								rows: 10,
+							},
+						}
+					}
+				},
+				"transformation": {
+					label: {
+						"en-US": "Transformation",
+						"es-ES": "Transformación",
+					},
+					order: 1,
+					open: true,
+				},
+			},
+		},
+	},
 	html: (studio) => {
 		const element = document.createElement('div');
-		element.innerHTML = `<div>
-			<p>${studio.loc({
+		element.innerHTML = `<p>${studio.loc({
 				"en-US": "Insert your text here",
 				"es-ES": "Inserta tu texto aquí",
-			})}</p>
-		</div>`;
-		return element.children[0];
+			})}</p>`;
+		return element;
 	},
 };
 

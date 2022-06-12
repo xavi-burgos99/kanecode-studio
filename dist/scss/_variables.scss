@@ -74,16 +74,16 @@ $button2-shadow-hover: none;
 $button2-shadow-active: none;
 $button2-border-color: transparent !default;
 $button2-border-color-on: transparent !default;
-$button2-border-color-hover: $border-color !default;
-$button2-border-color-active: $border-color !default;
+$button2-border-color-hover: transparent !default;
+$button2-border-color-active: transparent !default;
 $button2-background: transparent !default;
 $button2-background-on: $button2-background !default;
-$button2-background-hover: $button2-background !default;
-$button2-background-active: $button2-border-color !default;
+$button2-background-hover: rgba($body, .05) !default;
+$button2-background-active: rgba($body, .1) !default;
 $button2-border-radius: $border-radius !default;
 $button2-border-radius-sm: $border-radius-sm !default;
 $button2-border-radius-lg: $border-radius-lg !default;
-$button2-border-width: 1px;
+$button2-border-width: 0;
 
 
 /* Dropdowns */

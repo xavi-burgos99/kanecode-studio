@@ -45,7 +45,7 @@ class KCStudio {
 						<nav>
 							<button data-kcs-action="menu-left">${this.icon('ki-duotone ki-menu-left')}</button>
 							<div class="separator"></div>
-							<button data-kcs-action="save">${this.icon('ki-duotone ki-download')}${this.loc('Save')}</button>
+							<button data-kcs-action="save">${this.icon('ki-duotone ki-download')}</button>
 							<div class="separator"></div>
 							<button data-kcs-action="undo">${this.icon('ki-solid ki-angle-left')}</button>
 							<button data-kcs-action="redo">${this.icon('ki-solid ki-angle-right')}</button>
@@ -226,6 +226,7 @@ class KCStudio {
 						description: (typeof this.loc(component.description) === 'string') ? this.loc(component.description) : null,
 						html: null,
 						icon: (typeof component.icon === 'string') ? component.icon : (typeof component.icon === 'object') ? component.icon : '?',
+						inspector: {},
 						group: group,
 						options: {
 							hidden: false,
@@ -246,6 +247,16 @@ class KCStudio {
 						try { component.html = component.html(this) } catch {}
 					if (typeof component.html === 'string' || component.html instanceof Element)
 						this.#components[id].html = component.html;
+					if (typeof component.inspector === 'object') {
+						if (typeof component.inspector.sections === 'object') {
+							for (let k in component.inspector.sections) {
+								const section = component.inspector.sections[k];
+								if (typeof this.loc(section?.label) === 'string' && ['content', 'style', 'advanced'].includes(section?.menu) && (typeof section?.order === 'number' || typeof section?.order === 'undefined')) {
+									this.#components[id].inspector.sections = this.#components[id].inspector.sections;
+								}
+							}
+						}
+					}
 					if (typeof component.options === 'object') {
 						if (typeof component.options.hidden === 'boolean')
 							this.#components[id].options.hidden = component.options.hidden;
@@ -282,6 +293,8 @@ class KCStudio {
 							if (typeof component.options.inside.horizontal === 'boolean')
 								this.#components[id].options.inside.horizontal = component.options.inside.horizontal;
 						}
+						if (typeof component.options.removable === 'boolean')
+							this.#components[id].options.removable = component.options.removable;
 					}
 					this.#renderComponent(id);
 				}
@@ -623,7 +636,22 @@ class KCStudio {
 			this.#inspector.message = this.loc('<p>The selected element is not a valid component.</p><p>Maybe the component selected is outdated and not compatible with the current version of the editor. Try to update it manually.</p>');
 			return false;
 		}
+
+		const componentType = this.#getComponentType(this.#selected);
+		const component = this.#components[componentType];
+
+		const sections = component.inspector.sections;
+		const inputs = component.inspector.inputs;
+		
 		this.#inspector.clear();
+		for (let k in sections) {
+			const section = sections[k];
+			this.#inspector.addSection(k, section.label, section.menu);
+		}
+		for (let k in inputs) {
+			const input = inputs[k];
+			this.#inspector.addInput(k, input.label, input.type, input.value, input.menu);
+		}
 		return true;
 	}
 
@@ -638,6 +666,14 @@ class KCStudio {
 		}
 		if (!this.#document.documentElement.contains(element)) {
 			this.#errorLog('Cannot remove the element because it is not inside the document.');
+			return false;
+		}
+		if (!this.#getComponentType(element)) {
+			this.#errorLog('Cannot remove the element because it is not a valid component.');
+			return false;
+		}
+		if (this.#components[this.#getComponentType(element)].options.removable === false) {
+			this.#warnLog('Cannot remove the element because this component does not allow it.');
 			return false;
 		}
 		const parent = element.parentNode;
@@ -1425,12 +1461,14 @@ class KCStudio {
 		this.#error = true;
 		console.error(`KaneCode Studio -> ${this.loc(message)}`);
 	}
+	errorLog(message) {
+		this.#errorLog(message);
+	}
 	
 	#warnLog(message) {
 		if (typeof message !== 'string' && message === '') {
 			message = this.loc('An error has occured.');
 		}
-		this.#error = true;
 		console.warn(`KaneCode Studio -> ${this.loc(message)}`);
 	}
 
@@ -1485,9 +1523,11 @@ class KCStudio {
 			"An error has occured.": "Ha habido un error.",
 			"Cannot load inspector because the editor is not enabled or there is an error. Please try again later.": "No se puede cargar el inspector porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
 			"Cannot load inspector because the selected element is not a valid element.": "No se puede cargar el inspector porque el elemento seleccionado no es un elemento válido.",
-			"Cannot remove the element because the editor is not enabled or there is an error. Please try again later.": "No se puede eliminar el elemento porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
+			"Cannot remove the element because it is not a valid component.": "No se puede eliminar el elemento porque no es un componente válido.",
 			"Cannot remove the element because it is not a valid element.": "No se puede eliminar el elemento porque no es un elemento válido.",
 			"Cannot remove the element because it is not inside the document.": "No se puede eliminar el elemento porque no está dentro del documento.",
+			"Cannot remove the element because the editor is not enabled or there is an error. Please try again later.": "No se puede eliminar el elemento porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
+			"Cannot remove the element because this component does not allow it.": "No se puede eliminar el elemento porque este componente no lo permite.",
 			"Cannot show the tree view panel because the editor is not enabled or there is an error. Please try again later.": "No se puede mostrar el panel de vista de árbol porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
 			"Creating KaneCode Studio structure": "Creando la estructura de KaneCode Studio",
 			"Loading initial canvas": "Cargando lienzo inicial",
@@ -1594,9 +1634,25 @@ class KCStudioInspector {
 		this.#studio = studio;
 		this.#element = element;
 	}
+	addSection(id, title, menu) {
+		if (typeof menu !== 'string' && typeof menu !== 'number') {
+			this.#studio.errorLog('The "menu" parameter in addSection is not of the expected type. ("string" or "number")');
+			return false;
+		}
+		if (typeof title !== 'string') {
+			this.#studio.errorLog('The "title" parameter in addSection is not of the expected type. ("string")');
+			return false;
+		}
+		if (typeof id !== 'string' && typeof id !== 'number') {
+			this.#studio.errorLog('The "id" parameter in addSection is not of the expected type. ("string" or "number")');
+			return false;
+		}
+		return false;
+	}
 	clear() {
 		this.#element.innerHTML = '';
 		this.#inputs = {};
+		this.#sections = {};
 	}
 	set message(message) {
 		this.clear();
@@ -1612,5 +1668,6 @@ class KCStudioInspector {
 
 	#element = null;
 	#inputs = {};
+	#sections = {};
 	#studio = null;
 }

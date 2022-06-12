@@ -275,7 +275,7 @@ $kanecode-studio-menu-max-height: 800px;
 		padding: 0 $spacer;
 		button {
 			&:not(.transparent) {
-				@include button1;
+				@include button2;
 				margin: 0 $spacer / 6;
 			}
 			&.transparent {

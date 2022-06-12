@@ -1100,28 +1100,28 @@
   font-weight: bold;
   outline: none;
   text-align: center;
-  border: 1px solid #f0f0f0;
-  background-color: #f6f6f6;
+  border: 0 solid transparent;
+  background-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
-  font-size: 13px;
+  font-size: 14px;
   margin: 0 2px;
 }
 
 .kanecode-studio-header nav button:not(.transparent) .ki-solid, .kanecode-studio-header nav button:not(.transparent) .ki-regular, .kanecode-studio-header nav button:not(.transparent) .ki-light, .kanecode-studio-header nav button:not(.transparent) .ki-duotone {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .kanecode-studio-header nav button:not(.transparent):hover, .kanecode-studio-header nav button:not(.transparent):focus {
-  background-color: #f6f6f6;
-  border-color: #d5d5d5;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
 .kanecode-studio-header nav button:not(.transparent):active {
-  background-color: #f0f0f0;
-  border-color: #d5d5d5;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -1156,7 +1156,7 @@
   font-weight: bold;
   outline: none;
   text-align: center;
-  border: 1px solid transparent;
+  border: 0 solid transparent;
   background-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -1168,15 +1168,15 @@
 }
 
 .kanecode-studio-header nav button.transparent:hover, .kanecode-studio-header nav button.transparent:focus {
-  background-color: transparent;
-  border-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
 .kanecode-studio-header nav button.transparent:active {
-  background-color: transparent;
-  border-color: #f0f0f0;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
