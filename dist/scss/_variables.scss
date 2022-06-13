@@ -19,7 +19,7 @@ $background2: $white !default;
 
 /* Border */
 $border-width: 1px !default;
-$border-color: #f0f0f0 !default;
+$border-color: #f4f4f4 !default;
 
 $border-radius: 6px;
 $border-radius-sm: 3px;
@@ -27,9 +27,9 @@ $border-radius-lg: 9px;
 
 
 /* Shadows */
-$box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
-$box-shadow-sm: 2px 2px 10px rgba(0, 0, 0, 0.2);
-$box-shadow-lg: 5px 5px 30px rgba(0, 0, 0, 0.2);
+$box-shadow: 0 2px 12px rgba($black, 0.18);
+$box-shadow-sm: 0 1px 6px rgba($black, 0.12);
+$box-shadow-lg: 0 3px 24px rgba($black, 0.24);
 
 
 /* Breakpoints */
@@ -116,7 +116,7 @@ $dropdown2-border-color: #ddd !default;
 $dropdown2-border-color-on: #999 !default;
 $dropdown2-background: transparent !default;
 $dropdown2-background-on: transparent !default;
-$dropdown2-border-width: 1px;
+$dropdown2-border-width: 0;
 
 
 /* Separator */

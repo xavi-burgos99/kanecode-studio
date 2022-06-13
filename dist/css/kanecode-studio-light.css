@@ -568,7 +568,7 @@
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  border: 2px solid #f0f0f0;
+  border: 2px solid #f4f4f4;
   border-right-color: #0bf;
   -webkit-animation: kcs-spin 1s linear infinite;
           animation: kcs-spin 1s linear infinite;
@@ -603,7 +603,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   border: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: 0 solid transparent;
   padding-bottom: 18px;
   margin-bottom: 12px;
 }
@@ -701,7 +701,7 @@
   outline: none;
   text-align: center;
   border: none;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 0 solid #f4f4f4;
   background-color: transparent;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -729,7 +729,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-bottom-color: #f0f0f0;
+  border-bottom-color: #f4f4f4;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:first-child {
@@ -750,8 +750,6 @@
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card {
-  cursor: -webkit-grab;
-  cursor: grab;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -762,18 +760,64 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 6px;
+  padding: 4px 6px;
+  color: #777;
+  border-radius: 6px;
+  font-weight: bold;
+  outline: none;
+  text-align: center;
+  border: 0 solid transparent;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-size: 14px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  user-select: none;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 12px;
-  border: 1px solid #f0f0f0;
-  border-radius: 6px;
+  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 0;
+  padding: 6px;
   overflow: hidden;
   aspect-ratio: 1;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .ki-solid, .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .ki-regular, .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .ki-light, .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .ki-duotone {
+  font-size: 16px;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card:hover, .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card.active {
+  color: #0bf;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card[disabled] {
+  pointer-events: none;
+  opacity: .5;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-grid .kanecode-studio-component-card .kanecode-studio-component-card-icon {
@@ -827,6 +871,7 @@
   opacity: .5;
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
+  background: transparent;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-center {
@@ -873,7 +918,7 @@
           flex-direction: column;
   width: 100%;
   height: 100%;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #f4f4f4;
   border-radius: 6px;
   overflow: hidden;
 }
@@ -893,6 +938,7 @@
   width: 0;
   height: 0;
   border: 1px solid rgba(0, 187, 255, 0.25);
+  border-radius: 3px;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-center .kanecode-studio-canvas .kanecode-studio-canvas-area .kanecode-studio-frame-target[disabled],
@@ -1025,8 +1071,11 @@
   gap: 12px;
   padding: 12px 24px;
   border-radius: 6px;
-  border: 1px solid #f0f0f0;
-  background-color: #f4f4f4;
+  background-color: rgba(244, 244, 244, 0.7);
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
@@ -1065,7 +1114,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   background-color: #fff;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f4f4f4;
 }
 
 .kanecode-studio-header nav {
@@ -1214,7 +1263,7 @@
   min-width: 250px;
   max-width: 350px;
   background-color: #fff;
-  border-right: 1px solid #f0f0f0;
+  border-right: 1px solid #f4f4f4;
 }
 
 /* Menu right */
@@ -1231,7 +1280,7 @@
   min-width: 250px;
   max-width: 350px;
   background-color: #fff;
-  border-left: 1px solid #f0f0f0;
+  border-left: 1px solid #f4f4f4;
 }
 
 /* Menu bottom */
@@ -1249,7 +1298,7 @@
   min-height: 250px;
   max-height: 800px;
   background-color: #fff;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid #f4f4f4;
 }
 
 /* Inspector */
@@ -1279,6 +1328,7 @@
   font-size: 12px;
 }
 
+/* Component helper */
 .kanecode-studio-component-helper {
   pointer-events: none;
   position: fixed;
@@ -1292,14 +1342,16 @@
       -ms-flex-pack: center;
           justify-content: center;
   z-index: 1;
-  width: 36px;
-  height: 36px;
-  padding: 3px;
-  border: 1px solid #f0f0f0;
+  width: 32px;
+  height: 32px;
+  padding: 1.2px;
+  border: 1px solid #f4f4f4;
   border-radius: 6px;
-  background-color: #f4f4f4;
-  -webkit-box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
-          box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   overflow: hidden;
@@ -1324,7 +1376,7 @@
 }
 
 .kanecode-studio.show-border {
-  border: 1px solid #f0f0f0;
+  border: 1px solid #f4f4f4;
 }
 
 .kanecode-studio.fullscreen {

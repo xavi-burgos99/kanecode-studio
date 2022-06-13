@@ -74,15 +74,15 @@ $kanecode-studio-menu-max-height: 800px;
 					grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 					grid-gap: $spacer/2;
 					.kanecode-studio-component-card {
+						@include button2;
 						cursor: grab;
 						user-select: none;
 						display: flex;
+						flex-direction: column;
 						align-items: center;
 						justify-content: space-between;
-						flex-direction: column;
-						padding: $spacer;
-						border: $border-width solid $border-color;
-						border-radius: $border-radius;
+						gap: 0;
+						padding: $spacer / 2;
 						overflow: hidden;
 						aspect-ratio: 1;
 						.kanecode-studio-component-card-icon {
@@ -115,6 +115,7 @@ $kanecode-studio-menu-max-height: 800px;
 							cursor: grabbing;
 							opacity: .5;
 							transform: scale(.95);
+							background: $button2-background;
 						}
 					}
 				}
@@ -152,6 +153,7 @@ $kanecode-studio-menu-max-height: 800px;
 						width: 0;
 						height: 0;
 						border: $border-width solid rgba($primary, .25);
+						border-radius: $border-radius-sm;
 						&[disabled] {
 							display: none;
 						}
@@ -243,8 +245,9 @@ $kanecode-studio-menu-max-height: 800px;
 				gap: $spacer;
 				padding: $spacer $spacer * 2;
 				border-radius: $border-radius;
-				border: $border-width solid $border-color;
-				background-color: $background;
+				background-color: rgba($background, .7);
+				box-shadow: $box-shadow-sm;
+				backdrop-filter: blur(6px);
 				font-size: 1rem;
 				font-weight: bold;
 				text-align: center;
@@ -347,6 +350,7 @@ $kanecode-studio-menu-max-height: 800px;
 	}
 }
 
+/* Component helper */
 .kanecode-studio-component-helper {
 	pointer-events: none;
 	position: fixed;
@@ -354,13 +358,14 @@ $kanecode-studio-menu-max-height: 800px;
 	align-items: center;
 	justify-content: center;
 	z-index: 1;
-	width: 36px;
-	height: 36px;
-	padding: $spacer / 4;
+	width: 32px;
+	height: 32px;
+	padding: $spacer / 10;
 	border: $border-width solid $border-color;
 	border-radius: $border-radius;
-	background-color: $background;
-	box-shadow: $box-shadow;
+	background-color: rgba($background2, .7);
+	backdrop-filter: blur(6px);
+	box-shadow: $box-shadow-sm;
 	transform: translate(-50%, -50%);
 	overflow: hidden;
 	color: $gray;

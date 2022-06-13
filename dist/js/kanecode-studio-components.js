@@ -146,42 +146,8 @@ KCStudioComponents['basics'].components['text'] = {
 		dark: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/paragraph_dark.svg">',
 	},
 	inspector: {
-		"content": {
-			sections: {
-				"general": {
-					label: {
-						"en-US": "General",
-						"es-ES": "General",
-					},
-					order: 0,
-					open: true,
-					inputs: {
-						"text": {
-							label: {
-								"en-US": "Text",
-								"es-ES": "Texto",
-							},
-							type: "textarea",
-							value: (studio) => studio.selected.children[0].innerHTML,
-							onChange: (studio, value) => {
-								studio.selected.children[0].innerHTML = value;
-							},
-							options: {
-								rows: 10,
-							},
-						}
-					}
-				},
-				"transformation": {
-					label: {
-						"en-US": "Transformation",
-						"es-ES": "Transformación",
-					},
-					order: 1,
-					open: true,
-				},
-			},
-		},
+		
+		include: ['default'],
 	},
 	html: (studio) => {
 		const element = document.createElement('div');

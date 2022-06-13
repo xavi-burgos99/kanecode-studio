@@ -1670,4 +1670,46 @@ class KCStudioInspector {
 	#inputs = {};
 	#sections = {};
 	#studio = null;
+	#template = {
+		sections: {
+			"general": {
+				label: 'General',
+				order: 10,
+				open: true,
+				menu: "content",
+			},
+			"transformation": {
+				label: 'Transformation',
+				order: 20,
+				open: true,
+			},
+			"advanced": {
+				label: 'Advanced',
+				order: 1000,
+				open: false,
+			},
+			"plugins": {
+				label: 'Plugins',
+				order: 1010,
+				open: false,
+			},
+		}
+	}
+	#sectionsToLoad = {
+		"content": {
+			
+		},
+		"style": {
+			"general-css": {
+				label: 'General',
+				order: 10,
+				open: true,
+			},
+			"typography": {
+				label: 'Typography',
+				order: 20,
+				open: false,
+			},
+		},
+	};
 }
