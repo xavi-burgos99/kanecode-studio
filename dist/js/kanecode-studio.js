@@ -1670,7 +1670,47 @@ class KCStudioInspector {
 	#inputs = {};
 	#sections = {};
 	#studio = null;
-	#template = {
+	#includes = {
+		templates: {
+			"default": {
+				include: ["content", "style", "advanced"],
+			},
+			"content": {
+				menus: ["content"],
+				sections: ["general", "transformation"],
+				inputs: ["hide", "size", "margin", "padding"],
+			},
+			"style": {
+				menus: ["style"],
+				sections: ["color", "border", "shadow", "typography"],
+				inputs: ["color", "border-color", "border-width", "border-style", "border-radius", "box-shadow", "typography"],
+				include: ["background"],
+			},
+			"advanced": {
+				menus: ["advanced"],
+				sections: ["html-attributes", "plugins"],
+				inputs: ["id", "class", "data-attributes", "style"],
+			},
+			"background": {
+				menus: ["style"],
+				sections: ["background"],
+				inputs: ["background-type", "background-color", "background-image", "background-gradient"],
+			},
+		},
+		menus: {
+			"content": {
+				label: "Content",
+				order: 10,
+			},
+			"style": {
+				label: "Style",
+				order: 20,
+			},
+			"advanced": {
+				label: "Advanced",
+				order: 30,
+			},
+		},
 		sections: {
 			"general": {
 				label: 'General',
@@ -1682,34 +1722,243 @@ class KCStudioInspector {
 				label: 'Transformation',
 				order: 20,
 				open: true,
+				menu: "content",
 			},
-			"advanced": {
-				label: 'Advanced',
-				order: 1000,
-				open: false,
-			},
-			"plugins": {
-				label: 'Plugins',
-				order: 1010,
-				open: false,
-			},
-		}
-	}
-	#sectionsToLoad = {
-		"content": {
-			
-		},
-		"style": {
-			"general-css": {
-				label: 'General',
+			"color": {
+				label: 'Color',
 				order: 10,
 				open: true,
+				menu: "style",
+			},
+			"background": {
+				label: 'Background',
+				order: 20,
+				open: true,
+				menu: "style",
+			},
+			"border": {
+				label: 'Border',
+				order: 30,
+				open: false,
+				menu: "style",
+			},
+			"shadow": {
+				label: 'Shadow',
+				order: 40,
+				open: false,
+				menu: "style",
 			},
 			"typography": {
 				label: 'Typography',
+				order: 50,
+				open: false,
+				menu: "style",
+			},
+			"html-attributes": {
+				label: 'HTML Attributes',
+				order: 10,
+				open: true,
+				menu: "advanced",
+			},
+			"plugins": {
+				label: 'Plugins',
 				order: 20,
 				open: false,
+				menu: "advanced",
 			},
 		},
+		inputs: {
+			"hide": {
+				label: "Hide element",
+				type: "checkbox",
+				order: 10,
+				section: "general",
+				value: (studio) => {
+					if (studio.selected.hasAttribute('data-kcs-component-hide'))
+						if (studio.selected.getAttribute('data-kcs-component-hide') === 'true')
+							return true;
+					return false;
+				},
+				onChange: (studio, value) => {
+					if (value)
+						studio.selected.setAttribute('data-kcs-component-hide', 'true');
+					else
+						studio.selected.removeAttribute('data-kcs-component-hide');
+				},
+			},
+			"size": {
+				label: "Size",
+				type: "width-height",
+				order: 10,
+				section: "transformation",
+				value: (studio) => {
+					return {
+						width: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'width'),
+						height: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'height'),
+						minWidth: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-width'),
+						minHeight: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-height'),
+						maxWidth: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-width'),
+						maxHeight: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-height'),
+					};
+				},
+				onChange: (studio, value) => {
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'width', value.width);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'height', value.height);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-width', value.minWidth);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-height', value.minHeight);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-width', value.maxWidth);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-height', value.maxHeight);
+				},
+			},
+			"margin": {
+				label: "Margin",
+				type: "margin-padding",
+				order: 20,
+				section: "transformation",
+				value: (studio) => {
+					return {
+						top: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-top'),
+						right: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-right'),
+						bottom: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-bottom'),
+						left: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-left'),
+					};
+				},
+				onChange: (studio, value) => {
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-top', value.top);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-right', value.right);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-bottom', value.bottom);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-left', value.left);
+				},
+			},
+			"padding": {
+				label: "Padding",
+				type: "margin-padding",
+				order: 30,
+				section: "transformation",
+				value: (studio) => {
+					return {
+						top: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-top'),
+						right: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-right'),
+						bottom: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-bottom'),
+						left: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-left'),
+					};
+				},
+				onChange: (studio, value) => {
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-top', value.top);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-right', value.right);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-bottom', value.bottom);
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-left', value.left);
+				},
+			},
+			"color": {
+				type: "color",
+				order: 10,
+				section: "color",
+				value: (studio) => studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'color'),
+				onChange: (studio, value) => {
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'color', value);
+				},
+			},
+			"background-type": {
+				type: "segmented",
+				order: 20,
+				section: "background",
+				options: [{
+					label: "Color",
+					value: "color",
+				}, {
+					label: "Image",
+					value: "image",
+				}, {
+					label: "Gradient",
+					value: "gradient",
+				}],
+				value: (studio) => {
+					const value = studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'background');
+					if (value.startsWith('linear-gradient'))
+						return 'gradient';
+					if (value.startsWith('url'))
+						return 'image';
+					return 'color';
+				},
+				onChange: (studio, value) => {
+					switch (value) {
+						case 'color':
+							studio.inspector.inputs['background-color'].show();
+							studio.inspector.inputs['background-image'].hide();
+							studio.inspector.inputs['background-gradient'].hide();
+							break;
+						case 'image':
+							studio.inspector.inputs['background-color'].hide();
+							studio.inspector.inputs['background-image'].show();
+							studio.inspector.inputs['background-gradient'].hide();
+							break;
+						case 'gradient':
+							studio.inspector.inputs['background-color'].hide();
+							studio.inspector.inputs['background-image'].hide();
+							studio.inspector.inputs['background-gradient'].show();
+							break;
+					}
+				},
+			},
+			"background-color": {
+				type: "color",
+				order: 21,
+				section: "background",
+				value: (studio) => {
+					const value = studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'background');
+					if (value.startsWith('linear-gradient'))
+						return studio.inspector.inputs['background-gradient'].value.colors[0];
+					if (value.startsWith('url'))
+						return '#fff';
+					return value;
+				},
+				onChange: (studio, value) => {
+					studio.inspector.inputs['background-image'].value = '';
+					studio.inspector.inputs['background-gradient'].value = { deg: 0, colors: [value, value] };
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'background', value);
+				},
+				hide: (studio) => studio.inspector.inputs['background-type'].value !== 'color',
+			},
+			"background-image": {
+				type: "image",
+				order: 21,
+				section: "background",
+				value: (studio) => {
+					const value = studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'background');
+					if (value.startsWith('url'))
+						return value.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+					return '';
+				},
+				onChange: (studio, value) => {
+					studio.inspector.inputs['background-color'].value = '#fff';
+					studio.inspector.inputs['background-gradient'].value = { deg: 0, colors: ['#fff', '#eee'] };
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'background', `url(${value})`);
+				},
+				hide: (studio) => studio.inspector.inputs['background-type'].value !== 'image',
+			},
+			"background-gradient": {
+				type: "gradient",
+				order: 21,
+				section: "background",
+				value: (studio) => {
+					const value = studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'background');
+					if (value.startsWith('linear-gradient'))
+						return studio.utils.parseGradient(value);
+					if (value.startsWith('url') || value === null)
+						return { deg: 0, colors: ['#fff', '#eee'] };
+					return { deg: 0, colors: [value, value] };
+				},
+				onChange: (studio, value) => {
+					studio.inspector.inputs['background-color'].value = value.colors[0];
+					studio.inspector.inputs['background-image'].value = '';
+					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'background', studio.utils.stringifyGradient(value));
+				},
+				hide: (studio) => studio.inspector.inputs['background-type'].value !== 'gradient',
+			},
+			"border-type": {
+				type: "select",
+			},
+		}
 	};
 }
