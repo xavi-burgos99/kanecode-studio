@@ -640,18 +640,12 @@ class KCStudio {
 		const componentType = this.#getComponentType(this.#selected);
 		const component = this.#components[componentType];
 
+		const menus = component.inspector.menus;
 		const sections = component.inspector.sections;
 		const inputs = component.inspector.inputs;
 		
-		this.#inspector.clear();
-		for (let k in sections) {
-			const section = sections[k];
-			this.#inspector.addSection(k, section.label, section.menu);
-		}
-		for (let k in inputs) {
-			const input = inputs[k];
-			this.#inspector.addInput(k, input.label, input.type, input.value, input.menu);
-		}
+		this.#inspector.load(menus, sections, inputs);
+		
 		return true;
 	}
 
@@ -1653,6 +1647,95 @@ class KCStudioInspector {
 		this.#element.innerHTML = '';
 		this.#inputs = {};
 		this.#sections = {};
+	}
+	load(menus, sections, inputs, include = ['default'], exclude = []) {
+		const checkMenu = (_menu) => {
+			if (typeof _menu !== 'object')
+				return false;
+			if (typeof this.studio.loc(_menu.label) !== 'string')
+				return false;
+			const menu = {};
+			menu.label = this.studio.loc(_menu.label);
+			menu.options = {};
+			menu.options.order = (typeof menu.order === 'number') ? menu.order : 9999;
+			return menu;
+		};
+		const checkSection = (_section) => {
+			if (typeof _section !== 'object')
+				return false;
+			if (typeof this.studio.loc(_section.label) !== 'string')
+				return false;
+			if (typeof _section.menu !== 'string' && typeof _section.menu !== 'number')
+				return false;
+			const section = {};
+			section.label = this.studio.loc(_section.label);
+			section.menu = _section.menu;
+			section.options = {};
+			section.options.order = (typeof section.order === 'number') ? section.order : 9999;
+			section.options.open = (typeof section.open === 'boolean') ? section.open : false;
+			return section;
+		};
+		const checkInput = (_input) => {
+			if (typeof _input !== 'object')
+				return false;
+			if (typeof this.studio.loc(_input.label) !== 'string')
+				return false;
+			if (typeof _input.type !== 'string')
+				return false;
+			if (typeof _input.section !== 'string' && typeof _input.section !== 'number')
+				return false;
+			const input = {};
+			input.label = this.studio.loc(_input.label);
+			input.type = _input.type;
+			input.section = _input.section;
+			input.options = {};
+			input.options.order = (typeof _input.order === 'number') ? _input.order : 9999;
+			if (typeof _input.hide === 'boolean' || typeof _input.hide === 'function')
+				input.options.hide = _input.hide;
+			if (typeof input.onChange === 'function')
+				input.options.onChange = _input.onChange;
+			if (typeof input.value !== 'undefined')
+				input.options.value = _input.value;
+			return input;
+		};
+		if (!Array.isArray(include)) {
+			this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("array")');
+			return false;
+		}
+		if (!Array.isArray(exclude)) {
+			this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("array")');
+			return false;
+		}
+		this.clear();
+		include.forEach((incl) => {
+			if (typeof incl !== 'string') {
+				this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("string" array)');
+				return false;
+			}
+		});
+		exclude.forEach((excl) => {
+			if (typeof excl !== 'string') {
+				this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("string" array)');
+				return false;
+			}
+		});
+		// Check if includes exists in this.#template dictionary.
+		include.forEach((incl) => {
+			if (!this.#studio.template.hasOwnProperty(incl)) {
+				this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("string" array)');
+				return false;
+			}
+		});
+		// Check if excludes exists in this.#template dictionary.
+		exclude.forEach((excl) => {
+			if (!this.#studio.template.hasOwnProperty(excl)) {
+				this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("string" array)');
+				return false;
+			}
+		});
+		// If template have new includes and excludes, merge them.
+		ERRORRRRFRVFVS{}}}{}***O*EFWECFs
+
 	}
 	set message(message) {
 		this.clear();
