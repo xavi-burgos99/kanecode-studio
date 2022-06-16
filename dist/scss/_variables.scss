@@ -86,6 +86,29 @@ $button2-border-radius-lg: $border-radius-lg !default;
 $button2-border-width: 0;
 
 
+/* Segmented */
+$segmented2-color: #777 !default;
+$segmented2-color-on: $primary !default;
+$segmented2-color-hover: $segmented2-color !default;
+$segmented2-color-active: $segmented2-color !default;
+$segmented2-shadow: none;
+$segmented2-shadow-on: none;
+$segmented2-shadow-hover: none;
+$segmented2-shadow-active: none;
+$segmented2-border-color: transparent !default;
+$segmented2-border-color-on: transparent !default;
+$segmented2-border-color-hover: transparent !default;
+$segmented2-border-color-active: transparent !default;
+$segmented2-background: rgba($body, .05) !default;
+$segmented2-background-on: $segmented2-background !default;
+$segmented2-background-hover: rgba($body, .05) !default;
+$segmented2-background-active: rgba($body, .1) !default;
+$segmented2-border-radius: $border-radius !default;
+$segmented2-border-radius-sm: $border-radius-sm !default;
+$segmented2-border-radius-lg: $border-radius-lg !default;
+$segmented2-border-width: 0;
+
+
 /* Dropdowns */
 $dropdown1-color: #777 !default;
 $dropdown1-color-on: $primary !default;

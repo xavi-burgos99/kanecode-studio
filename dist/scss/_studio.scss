@@ -336,9 +336,42 @@ $kanecode-studio-menu-max-height: 800px;
 .kanecode-studio-inspector {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	flex: 1 0 0;
 	padding: $spacer;
 	overflow-y: auto;
+	.kanecode-studio-inspector-menu-selector {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: fit-content;
+		padding: $spacer / 4;
+		background: $segmented2-background;
+		border-radius: $segmented2-border-radius;
+		margin-bottom: $spacer;
+		.kanecode-studio-inspector-menu-button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: transparent;
+			border-radius: $segmented2-border-radius;
+			padding: $spacer / 4 $spacer / 2;
+			font-size: 12px;
+			&:hover {
+				background: $segmented2-background-hover;
+				color: $segmented2-color-hover;
+				box-shadow: $segmented2-shadow-hover;
+			}
+		}
+	}
+	.kanecode-studio-inspector-menus {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		flex: 1 0 auto;
+		overflow-y: auto;
+	}
 	.kanecode-studio-inspector-message {
 		color: $gray;
 		font-size: 12px;

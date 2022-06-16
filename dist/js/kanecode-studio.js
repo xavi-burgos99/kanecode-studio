@@ -1489,6 +1489,9 @@ class KCStudio {
 		}
 		console.warn(`KaneCode Studio -> ${this.loc(message)}`);
 	}
+	warnLog(message) {
+		this.#warnLog(message);
+	}
 
 	#componentGroups = {};
 	#components = {};
@@ -1807,8 +1810,189 @@ class KCStudioInspector {
 				}
 			}
 		});
-		console.log(this.#menus, this.#sections, this.#inputs);
+		
+		const completeMenu = (_menu, id) => {
+			if (typeof _menu !== 'object')
+				return false;
+			if (typeof this.studio.loc(_menu.label) !== 'string')
+				this.#menus[id].label = _menu.label;
+			if (typeof _menu.order === 'number')
+				this.#menus[id].options.order = _menu.order;
+			if (typeof _menu.open === 'boolean')
+				this.#menus[id].options.open = _menu.open;
+			return true;
+		}
+		const completeSection = (_section, id) => {
+			if (typeof _section !== 'object')
+				return false;
+			if (typeof this.studio.loc(_section.label) !== 'string')
+				this.#sections[id].label = _section.label;
+			if (typeof _section.menu === 'string' || typeof _section.menu === 'number')
+				this.#sections[id].menu = _section.menu;
+			if (typeof _section.order === 'number')
+				this.#sections[id].options.order = _section.order;
+			if (typeof _section.open === 'boolean')
+				this.#sections[id].options.open = _section.open;
+			return true;
+		}
+		const completeInput = (_input, id) => {
+			if (typeof _input !== 'object')
+				return false;
+			if (typeof this.studio.loc(_input.label) !== 'string' && typeof _input.label !== 'undefined')
+				this.#inputs[id].label = _input.label;
+			if (typeof _input.type !== 'string')
+				this.#inputs[id].type = _input.type;
+			if (typeof _input.section === 'string' || typeof _input.section === 'number')
+				this.#inputs[id].section = _input.section;
+			if (typeof _input.order === 'number')
+				this.#inputs[id].options.order = _input.order;
+			if (typeof _input.hide === 'boolean' || typeof _input.hide === 'function')
+				this.#inputs[id].options.hide = _input.hide;
+			if (typeof _input.onChange === 'function')
+				this.#inputs[id].options.onChange = _input.onChange;
+			if (typeof _input.value !== 'undefined')
+				this.#inputs[id].options.value = _input.value;
+			return true;
+		}
+
+		if (typeof menus === 'object') {
+			for (let k in menus) {
+				if (k in this.#menus) {
+					completeMenu(menus[k], k);
+				} else {
+					const menu = checkMenu(menus[k]);
+					if (menu) this.#menus[k] = menu;
+					else console.error(`${k} menu is invalid`);
+				}
+			}
+		}
+		if (typeof sections === 'object') {
+			for (let k in sections) {
+				if (k in this.#sections) {
+					completeSection(sections[k], k);
+				} else {
+					const section = checkSection(sections[k]);
+					if (section) this.#sections[k] = section;
+					else console.error(`${k} section is invalid`);
+				}
+			}
+		}
+		if (typeof inputs === 'object') {
+			for (let k in inputs) {
+				if (k in this.#inputs) {
+					completeInput(inputs[k], k);
+				} else {
+					const input = checkInput(inputs[k]);
+					if (input) this.#inputs[k] = input;
+					else console.error(`${k} input is invalid`);
+				}
+			}
+		}
+
+		this.render();
 	}
+
+	render() {
+		this.#element.innerHTML = `
+			<div class="kanecode-studio-inspector-menu-selector"></div>
+			<div class="kanecode-studio-inspector-menus"></div>`;
+
+		const menus = Object.keys(this.#menus).map((k) => {
+			const menu = this.#menus[k];
+			menu.id = k;
+			return menu;
+		}).sort((a, b) => a.order - b.order );
+
+		menus.forEach((menu) => {
+			const menuButton = document.createElement('div');
+			menuButton.classList.add('kanecode-studio-inspector-menu-button');
+			menuButton.setAttribute('data-kcs-inspector-menu', menu.id);
+			menuButton.innerHTML = `<span>${menu.label}</span>`;
+			this.#element.children[0].append(menuButton);
+
+			const menuSection = document.createElement('section');
+			menuSection.classList.add('kanecode-studio-inspector-menu-section');
+			menuSection.setAttribute('data-kcs-inspector-menu', menu.id);
+			this.#element.children[1].append(menuSection);
+
+			menuButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				[...this.#element.children[0].children].forEach(e => e.classList.remove('active'));
+				menuButton.classList.add('active');
+				[...this.#element.children[0].children].forEach(e => e.classList.remove('active'));
+				menuSection.classList.add('active');
+			});
+		});
+
+		const sections = Object.keys(this.#sections).map((k) => {
+			const section = this.#sections[k];
+			section.id = k;
+			return section;
+		}).sort((a, b) => {
+			if (a.menu === b.menu) return a.order - b.order;
+			return a.menu - b.menu;
+		});
+
+		sections.forEach((section) => {
+			const sectionButton = document.createElement('div');
+			sectionButton.classList.add('kanecode-studio-inspector-section-button');
+			sectionButton.setAttribute('data-kcs-inspector-section', section.id);
+			sectionButton.innerHTML = `
+				<div class="kcs-dropdown-title">${section.label}</div>
+				<div class="kcs-dropdown-arrow"><i class="ki-solid ki-angle-bottom"></i></div>`;
+			const menuIndex = [...this.#element.children[1].children].findIndex(menu => menu.getAttribute('data-kcs-inspector-menu') === section.menu);
+			this.#element.children[1].children[menuIndex].append(sectionButton);
+
+			const sectionContent = document.createElement('div');
+			sectionContent.classList.add('kcs-dropdown-menu');
+			sectionContent.setAttribute('data-kcs-inspector-section', section.id);
+			this.#element.children[1].children[menuIndex].append(sectionContent);
+
+			sectionButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				[...this.#element.children[1].children].forEach(e => e.classList.remove('active'));
+				sectionButton.classList.add('active');
+			});
+		});
+
+		const inputs = Object.keys(this.#inputs).map((k) => {
+			const input = this.#inputs[k];
+			input.id = k;
+			return input;
+		}).sort((a, b) => {
+			if (a.section === b.section) return a.order - b.order;
+			return a.section - b.section;
+		});
+
+		const inputsArray = [];
+		let inputsFailed = 0;
+		inputs.forEach((input) => {
+			if (input.type in KCSStudioInputTypes) {
+				input = new KCSStudioInputTypes[input.type](this.#studio, input.id, input.label, input.type, input.section, input.options);
+				inputsArray.push(input);
+				try {
+				} catch {
+					inputsFailed++;
+				}
+			} else {
+				inputsFailed++;
+			}
+		});
+		if (inputsFailed == 1)
+			this.studio.warnLog('An input cannot be created because an error occurred.');		//TRANSLATE
+		else if (inputsFailed > 1)
+			this.studio.warnLog(`Multiple inputs cannot be created because an error occurred.`);		//TRANSLATE
+
+		inputsArray.forEach((input) => {
+			if (input.section in this.#sections) {
+				const section = this.element.children[1].querySelector(`.kcs-dropdown-menu[data-kcs-inspector-section="${input.section}"]`);
+				section.append(input.element);
+				console.log(input.element);
+			}
+		});
+	}
+
+
 	get loc() {
 		return this.studio.loc;
 	}
@@ -1826,6 +2010,7 @@ class KCStudioInspector {
 	get studio() {
 		return this.#studio;
 	}
+	get element() { return this.#element; }
 
 	#element = null;
 	#inputs = {};
@@ -2126,32 +2311,82 @@ class KCStudioInspector {
 }
 
 class KCSStudioInput {
-	constructor(studio, label, type, section, options = {}) {
+	constructor(studio, id, label, type, section, options = {}) {
 		this.#studio = studio;
+		this.#id = id;
 		this.#label = label;
 		this.#type = type;
 		this.#section = section;
 		this.#options = options;
+		this.options.order = this.options.order || 9999;
 
 		this.#element = document.createElement('div');
-		this.#element.classList.add('kcs-studio-inspector-input');
-		if (typeof this.#options.label === 'string') {
-			labelElement = document.createElement('div');
-			labelElement.classList.add('kcs-studio-inspector-input-label');
-			labelElement.innerText = this.#options.label;
-			this.#element.append(labelElement);
-		}
-		dfsyh nrteyrthfghfd34267yuurt`+uççe`ryt45ç
+		this.element.classList.add('kcs-studio-inspector-input');
+		this.element.setAttribute('data-kcs-input-id', id);
+		this.element.setAttribute('data-kcs-input-type', type);
+
+		this.#body = document.createElement('div');
+		this.body.classList.add('kcs-studio-inspector-input-body');
+		this.element.append(this.body);
+
+		this.generator();
 	}
 
-	refresh() {
-		let value = this.#options.value;
-		if (typeof this.#options.value === 'function') {
-			try { value = this.#options.value(this.#studio) } catch {}
+	generator( options = { label: true }) {
+		if (typeof this.options.label === 'string' && options?.label === true) {
+			const labelElement = document.createElement('div');
+			labelElement.classList.add('kcs-studio-inspector-input-label');
+			labelElement.innerText = this.options.label;
+			this.element.prepend(labelElement);
 		}
+		return true;
+
+		// Use this structure:
+		super.generator();
+		this.body.innerHTML = '<input type="text" />';
+		this.addTrigger(this.body.children[0], 'input');
+	}
+
+	inputToValue() {
+		this.studio.warnLog(`${this.label} inputToValue is not implemented`);
+		return false;
+
+		// Use this structure:
+		this.value = this.body.children[0].value;
+		return true;
+	}
+
+	elementToValue() {
+		let value = undefined;
+		if (typeof this.#options.value === 'function')
+			try { value = this.#options.value(this.studio) } catch { }
+		if (typeof this.#options.value !== 'undefined')
+			value = this.#options.value;
 		if (this.checkValueFormat(value)) {
-			this.#value = value;
+			this.value = value;
+			return true;
 		}
+		return false;
+	}
+
+	valueToInput() {
+		this.studio.warnLog(`${this.label} valueToInput is not implemented`);
+		return false;
+
+		// Use this structure:
+		this.body.children[0].value = this.value;
+		return true;
+	}
+
+	addTrigger(element, eventType) {
+		const event = element.addEventListener(eventType, (e) => {
+			this.inputToValue();
+			if (typeof this.#options.onChange === 'function') {
+				try { this.#options.onChange(this.studio, this.value) } catch { }
+				this.#options.onChange(this.#studio, e.target.value);
+			}
+		});
+		this.triggers.push([element, event]);
 	}
 
 	checkValueFormat(value) {
@@ -2160,45 +2395,77 @@ class KCSStudioInput {
 		return true;
 	}
 	
-	get label() {
-		return this.#label;
-	}
-	get options() {
-		return this.#options;
-	}
-	get section() {
-		return this.#section;
-	}
-	get studio() {
-		return this.#studio;
-	}
-	get type() {
-		return this.#type;
-	}
-	set value(value) {
-		this.#value = value;
-	}
-	get value() {
-		return this.#value;
+	refresh(value) {
+		if (checkValueFormat(value)) {
+			this.value = value;
+			this.valueToInput();
+			return true;
+		}
+		if (this.elementToValue()) {
+			this.valueToInput();
+			return true;
+		}
+		return false;
 	}
 
+	set value(value) {
+		this.#value = value;
+		this.valueToInput();
+	}
+
+	get body() { return this.#body; }
+	get container() { return this.#container;}
+	get element() { return this.#element; }
+	get id() { return this.#id; }
+	get input() { return this.#input; }
+	get label() { return this.#label; }
+	get options() { return this.#options; }
+	get section() { return this.#section; }
+	get studio() { return this.#studio; }
+	get triggers() { return this.#triggers; }
+	get type() { return this.#type; }
+	get value() { return this.#value; }
+
+	#body = null;
+	#container = null;
+	#element = null;
+	#id = null;
+	#input = null;
 	#label = null;
 	#options = {};
 	#section = null;
 	#studio = null;
+	#triggers = [];
 	#type = null;
 	#value = null;
 }
 
 const KCSStudioInputTypes = {};
-KCSStudioInputTypes.color = class extends KCSStudioInput {
-	constructor(studio, label, section, options = {}) {
-		super(studio, label, 'color', section, options);
-	}
 
+KCSStudioInputTypes['checkbox'] = class extends KCSStudioInput {
+	generator() {
+		super.generator({ label: false });
+		this.body.innerHTML = '<input type="checkbox" />';
+		this.body.children[0].id = `kcs-input-${this.id}`;
+		if (typeof this.label === 'string') {
+			const labelElement = document.createElement('label');
+			labelElement.innerText = this.label;
+			labelElement.setAttribute('for', `kcs-input-${this.id}`);
+		}
+		this.addTrigger(this.body.children[0], 'change');
+		return true;
+	}
+	inputToValue() {
+		this.value = this.body.children[0].checked;
+		return true;
+	}
+	valueToInput() {
+		this.body.children[0].checked = this.value;
+		return true;
+	}
 	checkValueFormat(value) {
-		if (typeof value === 'string')
-			return value.startsWith('#') || value.startsWith('rgb') || value.startsWith('rgba');
+		if (typeof value === 'boolean')
+			return true;
 		return false;
 	}
 }
