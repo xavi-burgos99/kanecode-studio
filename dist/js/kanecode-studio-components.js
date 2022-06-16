@@ -146,8 +146,7 @@ KCStudioComponents['basics'].components['text'] = {
 		dark: '<img src="https://cdn.jsdelivr.net/gh/xavi-burgos99/kanecode-studio/assets/img/components/paragraph_dark.svg">',
 	},
 	inspector: {
-		
-		include: ['default'],
+		exclude: ['background'],
 	},
 	html: (studio) => {
 		const element = document.createElement('div');

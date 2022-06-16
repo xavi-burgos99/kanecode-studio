@@ -248,13 +248,35 @@ class KCStudio {
 					if (typeof component.html === 'string' || component.html instanceof Element)
 						this.#components[id].html = component.html;
 					if (typeof component.inspector === 'object') {
+						if (typeof component.inspector.menu === 'object') {
+							for (let k in component.inspector.menu) {
+								const menu = component.inspector.menu[k];
+								if (typeof this.loc(menu?.label) === 'string' && (typeof menu.order === 'number' || typeof menu.order === 'undefined')) {
+									this.#components[id].inspector.menu = this.#components[id].inspector.menu;
+								}
+							}
+						}
 						if (typeof component.inspector.sections === 'object') {
 							for (let k in component.inspector.sections) {
 								const section = component.inspector.sections[k];
-								if (typeof this.loc(section?.label) === 'string' && ['content', 'style', 'advanced'].includes(section?.menu) && (typeof section?.order === 'number' || typeof section?.order === 'undefined')) {
+								if (typeof this.loc(section?.label) === 'string' && (typeof section.menu === 'string' || typeof section.menu === 'number') && (typeof section?.order === 'number' || typeof section?.order === 'undefined')) {
 									this.#components[id].inspector.sections = this.#components[id].inspector.sections;
 								}
 							}
+						}
+						if (typeof component.inspector.inputs === 'object') {
+							for (let k in component.inspector.inputs) {
+								const input = component.inspector.inputs[k];
+								if (typeof this.loc(input?.label) === 'string' && typeof input.type === 'string' && (typeof input.section === 'string' || typeof input.section === 'number') && (typeof input?.order === 'number' || typeof input?.order === 'undefined')) {
+									this.#components[id].inspector.inputs = this.#components[id].inspector.inputs;
+								}
+							}
+						}
+						if (Array.isArray(component.inspector.include)) {
+							this.#components[id].inspector.include = component.inspector.include.filter(v => typeof v === 'string');
+						}
+						if (Array.isArray(component.inspector.exclude)) {
+							this.#components[id].inspector.exclude = component.inspector.exclude.filter(v => typeof v === 'string');
 						}
 					}
 					if (typeof component.options === 'object') {
@@ -643,8 +665,10 @@ class KCStudio {
 		const menus = component.inspector.menus;
 		const sections = component.inspector.sections;
 		const inputs = component.inspector.inputs;
-		
-		this.#inspector.load(menus, sections, inputs);
+		const include = (Array.isArray(component.inspector.include)) ? component.inspector.include : ['default'];
+		const exclude = (Array.isArray(component.inspector.exclude)) ? component.inspector.exclude : [];
+				
+		this.#inspector.load(menus, sections, inputs, include, exclude);
 		
 		return true;
 	}
@@ -1536,7 +1560,6 @@ class KCStudio {
 			"<p>There is no component selected.</p><p>To select a component, click on any element in the editor canvas.</p>": "<p>No hay ningún componente seleccionado.</p><p>Para seleccionar un componente, haga clic en cualquier elemento en el lienzo del editor.</p>",
 		}
 	};
-	#menus = {};
 	#options = {
 		border: true,
 		expiration: 3000,
@@ -1645,10 +1668,66 @@ class KCStudioInspector {
 	}
 	clear() {
 		this.#element.innerHTML = '';
-		this.#inputs = {};
+		this.#menus = {};
 		this.#sections = {};
+		this.#inputs = {};
 	}
-	load(menus, sections, inputs, include = ['default'], exclude = []) {
+	load(menus = {}, sections = {}, inputs = {}, include = ['default'], exclude = []) {
+		if (!Array.isArray(include)) {
+			this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("array")');
+			return false;
+		}
+		if (!Array.isArray(exclude)) {
+			this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("array")');
+			return false;
+		}
+		include.forEach((incl) => {
+			if (typeof incl !== 'string') {
+				this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("string" array)');
+				return false;
+			}
+		});
+		exclude.forEach((excl) => {
+			if (typeof excl !== 'string') {
+				this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("string" array)');
+				return false;
+			}
+		});
+		const recursiveIncludeExclude = (include, exclude) => {
+			include.forEach((incl) => {
+				if (!(incl in this.#includes.templates) || incl in exclude)
+					include.splice(include.indexOf(incl), 1);
+				if (include.indexOf(incl) !== -1) {
+					let updates = false;
+					if (Array.isArray(this.#includes.templates[incl].include)) {
+						this.#includes.templates[incl].include.forEach((_incl) => {
+							if (!include.includes(_incl) && !exclude.includes(_incl)) {
+								include.push(_incl);
+								updates = true;
+							}
+						});
+					}
+					if (Array.isArray(this.#includes.templates[incl].exclude)) {
+						this.#includes.templates[incl].exclude.forEach((_excl) => {
+							if (!exclude.includes(_excl)) {
+								exclude.push(_excl);
+								updates = true;
+							}
+						});
+					}
+					if (updates) {
+						const recursive = recursiveIncludeExclude(include, exclude);
+						include = recursive.include;
+						exclude = recursive.exclude;
+					}
+				}
+			});
+			return { include, exclude };
+		}
+		const recursive = recursiveIncludeExclude(include, exclude);
+		include = recursive.include;
+		exclude = recursive.exclude;
+
 		const checkMenu = (_menu) => {
 			if (typeof _menu !== 'object')
 				return false;
@@ -1678,14 +1757,14 @@ class KCStudioInspector {
 		const checkInput = (_input) => {
 			if (typeof _input !== 'object')
 				return false;
-			if (typeof this.studio.loc(_input.label) !== 'string')
+			if (typeof this.studio.loc(_input.label) !== 'string' && typeof _input.label !== 'undefined')
 				return false;
 			if (typeof _input.type !== 'string')
 				return false;
 			if (typeof _input.section !== 'string' && typeof _input.section !== 'number')
 				return false;
 			const input = {};
-			input.label = this.studio.loc(_input.label);
+			input.label = (typeof _input.label === 'undefined') ? null : this.studio.loc(_input.label);
 			input.type = _input.type;
 			input.section = _input.section;
 			input.options = {};
@@ -1698,44 +1777,40 @@ class KCStudioInspector {
 				input.options.value = _input.value;
 			return input;
 		};
-		if (!Array.isArray(include)) {
-			this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("array")');
-			return false;
-		}
-		if (!Array.isArray(exclude)) {
-			this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("array")');
-			return false;
-		}
+
 		this.clear();
 		include.forEach((incl) => {
-			if (typeof incl !== 'string') {
-				this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("string" array)');
-				return false;
+			if (incl in this.#includes.templates) {
+				if (Array.isArray(this.#includes.templates[incl].menus)) {
+					this.#includes.templates[incl].menus.forEach((k) => {
+						if (k in this.#includes.menus && !(k in this.#menus)) {
+							const menu = checkMenu(this.#includes.menus[k]);
+							if (menu) this.#menus[k] = menu; else console.error(`${k} menu is invalid`);
+						}
+					});
+				}
+				if (Array.isArray(this.#includes.templates[incl].sections)) {
+					this.#includes.templates[incl].sections.forEach((k) => {
+						if (k in this.#includes.sections && !(k in this.#sections)) {
+							const section = checkSection(this.#includes.sections[k]);
+							if (section) this.#sections[k] = section; else console.error(`${k} section is invalid`);
+						}
+					});
+				}
+				if (Array.isArray(this.#includes.templates[incl].inputs)) {
+					this.#includes.templates[incl].inputs.forEach((k) => {
+						if (k in this.#includes.inputs && !(k in this.#inputs)) {
+							const input = checkInput(this.#includes.inputs[k]);
+							if (input) this.#inputs[k] = input; else console.error(`${k} input is invalid`);
+						}
+					});
+				}
 			}
 		});
-		exclude.forEach((excl) => {
-			if (typeof excl !== 'string') {
-				this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("string" array)');
-				return false;
-			}
-		});
-		// Check if includes exists in this.#template dictionary.
-		include.forEach((incl) => {
-			if (!this.#studio.template.hasOwnProperty(incl)) {
-				this.#studio.errorLog('The "include" parameter in load is not of the expected type. ("string" array)');
-				return false;
-			}
-		});
-		// Check if excludes exists in this.#template dictionary.
-		exclude.forEach((excl) => {
-			if (!this.#studio.template.hasOwnProperty(excl)) {
-				this.#studio.errorLog('The "exclude" parameter in load is not of the expected type. ("string" array)');
-				return false;
-			}
-		});
-		// If template have new includes and excludes, merge them.
-		ERRORRRRFRVFVS{}}}{}***O*EFWECFs
-
+		console.log(this.#menus, this.#sections, this.#inputs);
+	}
+	get loc() {
+		return this.studio.loc;
 	}
 	set message(message) {
 		this.clear();
@@ -1748,10 +1823,14 @@ class KCStudioInspector {
 		}
 		return undefined;
 	}
+	get studio() {
+		return this.#studio;
+	}
 
 	#element = null;
 	#inputs = {};
 	#sections = {};
+	#menus = {};
 	#studio = null;
 	#includes = {
 		templates: {
@@ -2044,4 +2123,82 @@ class KCStudioInspector {
 			},
 		}
 	};
+}
+
+class KCSStudioInput {
+	constructor(studio, label, type, section, options = {}) {
+		this.#studio = studio;
+		this.#label = label;
+		this.#type = type;
+		this.#section = section;
+		this.#options = options;
+
+		this.#element = document.createElement('div');
+		this.#element.classList.add('kcs-studio-inspector-input');
+		if (typeof this.#options.label === 'string') {
+			labelElement = document.createElement('div');
+			labelElement.classList.add('kcs-studio-inspector-input-label');
+			labelElement.innerText = this.#options.label;
+			this.#element.append(labelElement);
+		}
+		dfsyh nrteyrthfghfd34267yuurt`+uççe`ryt45ç
+	}
+
+	refresh() {
+		let value = this.#options.value;
+		if (typeof this.#options.value === 'function') {
+			try { value = this.#options.value(this.#studio) } catch {}
+		}
+		if (this.checkValueFormat(value)) {
+			this.#value = value;
+		}
+	}
+
+	checkValueFormat(value) {
+		if (typeof value === 'function' || typeof value === 'undefined')
+			return false;
+		return true;
+	}
+	
+	get label() {
+		return this.#label;
+	}
+	get options() {
+		return this.#options;
+	}
+	get section() {
+		return this.#section;
+	}
+	get studio() {
+		return this.#studio;
+	}
+	get type() {
+		return this.#type;
+	}
+	set value(value) {
+		this.#value = value;
+	}
+	get value() {
+		return this.#value;
+	}
+
+	#label = null;
+	#options = {};
+	#section = null;
+	#studio = null;
+	#type = null;
+	#value = null;
+}
+
+const KCSStudioInputTypes = {};
+KCSStudioInputTypes.color = class extends KCSStudioInput {
+	constructor(studio, label, section, options = {}) {
+		super(studio, label, 'color', section, options);
+	}
+
+	checkValueFormat(value) {
+		if (typeof value === 'string')
+			return value.startsWith('#') || value.startsWith('rgb') || value.startsWith('rgba');
+		return false;
+	}
 }
