@@ -1,20 +1,22 @@
-$icomoon-font-version: "1.0";
-
+$icomoon-font-version: "1.1";
 $icomoon-font-family: "ki-solid";
 $icomoon-font-path: "../icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
-@import "../icons/kanecode-icons/ki-solid-v1.0/style";
+@import "../icons/kanecode-icons/ki-solid-v1.1/style";
 
+$icomoon-font-version: "1.0";
 $icomoon-font-family: "ki-regular";
 $icomoon-font-path: "../icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
 @import "../icons/kanecode-icons/ki-regular-v1.0/style";
 
+$icomoon-font-version: "1.0";
 $icomoon-font-family: "ki-light";
 $icomoon-font-path: "../icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
 @import "../icons/kanecode-icons/ki-light-v1.0/style";
 
+$icomoon-font-version: "1.1";
 $icomoon-font-family: "ki-duotone";
 $icomoon-font-path: "../icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon-font-version}/fonts";
-@import "../icons/kanecode-icons/ki-duotone-v1.0/style";
+@import "../icons/kanecode-icons/ki-duotone-v1.1/style";
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
@@ -22,12 +24,13 @@ $icomoon-font-path: "../icons/kanecode-icons/#{$icomoon-font-family}-v#{$icomoon
 @import "mixins";
 @import "utils";
 @import "icons";
+@import "inputs";
 
 $kanecode-studio-header-height: 40px;
-$kanecode-studio-menu-left-width: 25%;
-$kanecode-studio-menu-right-width: 25%;
-$kanecode-studio-menu-min-width: 250px;
-$kanecode-studio-menu-max-width: 350px;
+$kanecode-studio-menu-left-width: 30%;
+$kanecode-studio-menu-right-width: 30%;
+$kanecode-studio-menu-min-width: 300px;
+$kanecode-studio-menu-max-width: 400px;
 $kanecode-studio-menu-bottom-height: 35%;
 $kanecode-studio-menu-min-height: 250px;
 $kanecode-studio-menu-max-height: 800px;
@@ -351,6 +354,8 @@ $kanecode-studio-menu-max-height: 800px;
 		border-radius: $segmented2-border-radius;
 		margin-bottom: $spacer;
 		.kanecode-studio-inspector-menu-button {
+			cursor: pointer;
+			user-select: none;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -358,10 +363,22 @@ $kanecode-studio-menu-max-height: 800px;
 			border-radius: $segmented2-border-radius;
 			padding: $spacer / 4 $spacer / 2;
 			font-size: 12px;
+			font-weight: bold;
+			color: $segmented2-color;
 			&:hover {
 				background: $segmented2-background-hover;
 				color: $segmented2-color-hover;
 				box-shadow: $segmented2-shadow-hover;
+			}
+			&:active {
+				background: $segmented2-background-active;
+				color: $segmented2-color-active;
+				box-shadow: $segmented2-shadow-active;
+			}
+			&.active {
+				background: $segmented2-background-on;
+				color: $segmented2-color-on;
+				box-shadow: $segmented2-shadow-on;
 			}
 		}
 	}
@@ -369,8 +386,28 @@ $kanecode-studio-menu-max-height: 800px;
 		display: flex;
 		flex-direction: column;
 		width: 100%;
+		max-width: 100%;
 		flex: 1 0 auto;
 		overflow-y: auto;
+
+		.kanecode-studio-inspector-menu-section {
+			display: none;
+			flex-direction: column;
+			flex: 1 0 auto;
+			width: 100%;
+			&.active {
+				display: flex;
+			}
+		}
+	}
+	.kanecode-studio-inspector-section-button {
+		@include dropdown2;
+		&[hidden] {
+			display: none;
+			+ .kcs-dropdown-menu {
+				display: none;
+			}
+		}
 	}
 	.kanecode-studio-inspector-message {
 		color: $gray;
@@ -420,6 +457,12 @@ $kanecode-studio-menu-max-height: 800px;
 		[data-kcs-value="minimize"] {
 			display: none;
 		}
+	}
+	[data-kcs-action="fix-errors"] {
+		color: $red !important;
+	}
+	[data-kcs-action="fix-warnings"] {
+		color: $yellow !important;
 	}
 }
 .kanecode-studio.show-border {

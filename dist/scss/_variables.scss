@@ -100,7 +100,7 @@ $segmented2-border-color-on: transparent !default;
 $segmented2-border-color-hover: transparent !default;
 $segmented2-border-color-active: transparent !default;
 $segmented2-background: rgba($body, .05) !default;
-$segmented2-background-on: $segmented2-background !default;
+$segmented2-background-on: rgba($primary, .15) !default;
 $segmented2-background-hover: rgba($body, .05) !default;
 $segmented2-background-active: rgba($body, .1) !default;
 $segmented2-border-radius: $border-radius !default;
@@ -131,8 +131,8 @@ $dropdown1-border-radius-sm: $border-radius-sm !default;
 $dropdown1-border-radius-lg: $border-radius-lg !default;
 $dropdown1-border-width: 1px;
 
-$dropdown2-color: #ccc !default;
-$dropdown2-color-on: #888 !default;
+$dropdown2-color: #bbb !default;
+$dropdown2-color-on: #aaa !default;
 $dropdown2-shadow: none;
 $dropdown2-shadow-on: none;
 $dropdown2-border-color: #ddd !default;
@@ -147,16 +147,51 @@ $separator-color: transparent !default;
 $separator-width: 0 !default;
 
 
-/* Dropdown */
-$dropdown-button-background: $background !default;
-$dropdown-button-background-hover: #f8f8f8 !default;
-$dropdown-button-background-active: #f0f0f0 !default;
-$dropdown-button-color: #666 !default;
-$dropdown-button-color-active: $dropdown-button-color !default;
+/* Checkbox input */
+$checkbox-box-background: rgba($body, .05) !default;
+$checkbox-box-background-hover: rgba($body, .1) !default;
+$checkbox-box-background-checked: rgba($primary, .15) !default;
+$checkbox-box-background-checked-hover: rgba($primary, .25) !default;
+$checkbox-box-color: #888 !default;
+$checkbox-box-color-checked: $primary !default;
+$checkbox-label-color: #444 !default;
+$checkbox-label-color-checked: #444 !default;
 
-$dropdown-button-border-width: $border-width;
-$dropdown-button-border-color: $border-color;
-$dropdown-button-border-color-focus: #aaa !default;
-$dropdown-button-border-radius: $border-radius;
-$dropdown-button-border-radius-sm: $border-radius-sm;
-$dropdown-button-border-radius-lg: $border-radius-lg;
+
+/* Checkbox input */
+$switch-background: rgba($body, .05) !default;
+$switch-background-hover: rgba($body, .1) !default;
+$switch-background-checked: rgba($primary, .15) !default;
+$switch-background-checked-hover: rgba($primary, .25) !default;
+$switch-color: #888 !default;
+$switch-color-checked: $primary !default;
+$switch-label-color: #444 !default;
+$switch-label-color-checked: #444 !default;
+
+
+/* Input input */
+$input-background: rgba($body, .04) !default;
+$input-background-hover: rgba($body, .08) !default;
+$input-background-active: $input-background-hover !default;
+$input-color: $body !default;
+$input-color-active: $input-color !default;
+$input-shadow: none;
+$input-shadow-hover: none;
+$input-shadow-active: none;
+$input-height: 30px !default;
+$input-padding-x: $spacer / 2 !default;
+$input-padding-y: 0 !default;
+
+
+/* Select input */
+$select-background: $input-background !default;
+$select-background-hover: $input-background-hover !default;
+$select-background-active: $select-background-hover !default;
+$select-color: $body !default;
+$select-color-active: $select-color !default;
+$select-shadow: none;
+$select-shadow-hover: none;
+$select-shadow-active: none;
+$select-height: $input-height !default;
+$select-padding-x: $input-padding-x !default;
+$select-padding-y: $input-padding-y !default;

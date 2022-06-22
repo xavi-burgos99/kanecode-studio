@@ -1,0 +1,190 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?ndwjqv');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?ndwjqv#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?ndwjqv') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?ndwjqv') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?ndwjqv##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="#{$icomoon-font-family}"], [class*=" #{$icomoon-font-family}"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.#{$icomoon-font-family}.ki-alert {
+  &:before {
+    content: $ki-alert; 
+  }
+}
+.#{$icomoon-font-family}.ki-angle-down {
+  &:before {
+    content: $ki-angle-down; 
+  }
+}
+.#{$icomoon-font-family}.ki-angle-left {
+  &:before {
+    content: $ki-angle-left; 
+  }
+}
+.#{$icomoon-font-family}.ki-angle-right {
+  &:before {
+    content: $ki-angle-right; 
+  }
+}
+.#{$icomoon-font-family}.ki-angle-up {
+  &:before {
+    content: $ki-angle-up; 
+  }
+}
+.#{$icomoon-font-family}.ki-check {
+  &:before {
+    content: $ki-check; 
+  }
+}
+.#{$icomoon-font-family}.ki-chevron-down {
+  &:before {
+    content: $ki-chevron-down; 
+  }
+}
+.#{$icomoon-font-family}.ki-chevron-left {
+  &:before {
+    content: $ki-chevron-left; 
+  }
+}
+.#{$icomoon-font-family}.ki-chevron-right {
+  &:before {
+    content: $ki-chevron-right; 
+  }
+}
+.#{$icomoon-font-family}.ki-chevron-up {
+  &:before {
+    content: $ki-chevron-up; 
+  }
+}
+.#{$icomoon-font-family}.ki-desktop {
+  &:before {
+    content: $ki-desktop; 
+  }
+}
+.#{$icomoon-font-family}.ki-download {
+  &:before {
+    content: $ki-download; 
+  }
+}
+.#{$icomoon-font-family}.ki-eye {
+  &:before {
+    content: $ki-eye; 
+  }
+}
+.#{$icomoon-font-family}.ki-info {
+  &:before {
+    content: $ki-info; 
+  }
+}
+.#{$icomoon-font-family}.ki-list-tree {
+  &:before {
+    content: $ki-list-tree; 
+  }
+}
+.#{$icomoon-font-family}.ki-lock {
+  &:before {
+    content: $ki-lock; 
+  }
+}
+.#{$icomoon-font-family}.ki-lock-open {
+  &:before {
+    content: $ki-lock-open; 
+  }
+}
+.#{$icomoon-font-family}.ki-maximize {
+  &:before {
+    content: $ki-maximize; 
+  }
+}
+.#{$icomoon-font-family}.ki-maximize-wide {
+  &:before {
+    content: $ki-maximize-wide; 
+  }
+}
+.#{$icomoon-font-family}.ki-menu-bottom {
+  &:before {
+    content: $ki-menu-bottom; 
+  }
+}
+.#{$icomoon-font-family}.ki-menu-left {
+  &:before {
+    content: $ki-menu-left; 
+  }
+}
+.#{$icomoon-font-family}.ki-menu-right {
+  &:before {
+    content: $ki-menu-right; 
+  }
+}
+.#{$icomoon-font-family}.ki-menu-top {
+  &:before {
+    content: $ki-menu-top; 
+  }
+}
+.#{$icomoon-font-family}.ki-minimize {
+  &:before {
+    content: $ki-minimize; 
+  }
+}
+.#{$icomoon-font-family}.ki-minimize-wide {
+  &:before {
+    content: $ki-minimize-wide; 
+  }
+}
+.#{$icomoon-font-family}.ki-mobile {
+  &:before {
+    content: $ki-mobile; 
+  }
+}
+.#{$icomoon-font-family}.ki-sign-in {
+  &:before {
+    content: $ki-sign-in; 
+  }
+}
+.#{$icomoon-font-family}.ki-sign-out {
+  &:before {
+    content: $ki-sign-out; 
+  }
+}
+.#{$icomoon-font-family}.ki-tablet {
+  &:before {
+    content: $ki-tablet; 
+  }
+}
+.#{$icomoon-font-family}.ki-times {
+  &:before {
+    content: $ki-times; 
+  }
+}
+.#{$icomoon-font-family}.ki-trash {
+  &:before {
+    content: $ki-trash; 
+  }
+}
+.#{$icomoon-font-family}.ki-upload {
+  &:before {
+    content: $ki-upload; 
+  }
+}
+

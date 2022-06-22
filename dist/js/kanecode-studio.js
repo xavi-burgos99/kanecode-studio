@@ -49,6 +49,9 @@ class KCStudio {
 							<div class="separator"></div>
 							<button data-kcs-action="undo">${this.icon('ki-solid ki-angle-left')}</button>
 							<button data-kcs-action="redo">${this.icon('ki-solid ki-angle-right')}</button>
+							<div class="separator"></div>
+							<button data-kcs-action="fix-errors">${this.icon('ki-duotone ki-alert')}</button>
+							<button data-kcs-action="fix-warnings">${this.icon('ki-duotone ki-alert')}</button>
 						</nav>
 						<nav>
 							<button class="transparent" data-kcs-action="resize" data-kcs-value="desktop">${this.icon('ki-duotone ki-desktop')}</button>
@@ -105,6 +108,8 @@ class KCStudio {
 
 			this.#elements = {
 				buttons: {
+					fixErrors: [...base.querySelectorAll('[data-kcs-action="fix-errors"]')],
+					fixWarnings: [...base.querySelectorAll('[data-kcs-action="fix-warnings"]')],
 					fullscreen: [...base.querySelectorAll('[data-kcs-action="fullscreen"]')],
 					menuBottom: [...base.querySelectorAll('[data-kcs-action="menu-bottom"]')],
 					menuLeft: [...base.querySelectorAll('[data-kcs-action="menu-left"]')],
@@ -144,6 +149,32 @@ class KCStudio {
 				this.showMenu('right');
 
 			// Buttons click functions
+			this.#elements.buttons.fixErrors.forEach(button => {
+				button.hidden = true;
+				button.addEventListener('click', () => {
+					this.#process('Fixing errors', { spinner: true, disable: true });
+					setTimeout(() => {
+						this.#error = false;
+						this.#elements.buttons.fixErrors.forEach(button => {
+							button.hidden = true;
+						});
+						this.warnLog('The errors have been fixed, but it is possible that the functionality is not working properly.');
+						this.#process(null);
+					}, 500);
+				});
+			});
+			this.#elements.buttons.fixWarnings.forEach(button => {
+				button.hidden = true;
+				button.addEventListener('click', () => {
+					this.#process('Hiding warnings', { spinner: true, disable: true });
+					setTimeout(() => {
+						this.#elements.buttons.fixWarnings.forEach(button => {
+							button.hidden = true;
+						});
+						this.#process('The warnings have been hidden', { spinner: false, disable: false, time: 2000 });
+					}, 500);
+				});
+			});
 			this.#elements.buttons.fullscreen.forEach(button => {
 				button.addEventListener('click', () => { this.fullscreen() });
 			});
@@ -491,10 +522,35 @@ class KCStudio {
 							this.#config.edges.increment.y = (increment.y == 0) ? null : increment.y;
 						}
 					});
+
+					let sheetElement = this.document.body.querySelector('[data-kcs-styles]');
+					if (sheetElement === null || sheetElement?.tagName !== 'STYLE') {
+						if (typeof sheetElement.remove === 'function')
+							sheetElement.remove();
+						sheetElement = this.document.createElement('style');
+						sheetElement.setAttribute('data-kcs-styles', '');
+						this.document.body.prepend(sheetElement);
+					}
+					this.#styles.element = sheetElement;
+					this.#styles.sheet = sheetElement.sheet;
+					this.#css.update = () => { this.#styles.element.innerHTML = this.utils.sheetToString(this.#styles.sheet); };
+					this.#css.get = (selector, attribute) => this.utils.getStyle(this.#styles.sheet, selector, attribute);
+					this.#css.remove = (selector, attribute) => {
+						const res = this.utils.removeStyle(this.#styles.sheet, selector, attribute);
+						if (res) this.#css.update();
+						return res;
+					};
+					this.#css.set = (selector, attribute, value, priority) => {
+						if (value === null)
+							return this.css.remove(selector, attribute);
+						const res = this.utils.addStyle(this.#styles.sheet, this.#styles.element, selector, attribute, value, priority);
+						if (res) this.css.update();
+						return res;
+					};
+
 					this.enable();
 					
 					this.loadComponents(KCStudioComponents);
-					//console.log(this.utils.uuid());
 				};
 				this.#iframe.srcdoc = this.#options.zone.start + content + this.#options.zone.end;
 			} else if (typeof content === 'function') {
@@ -502,13 +558,10 @@ class KCStudio {
 				const opened = (content) => {
 					this.enable();
 					this.open(content);
-					this.#process('The page has been loaded!', { disable: false });
-					setTimeout(() => {
-						this.#elements.buttons.save.forEach(button => {
-							button.setAttribute('disabled', '');
-						});
-						this.#process(null);
-					}, 1000);
+					this.#elements.buttons.save.forEach(button => {
+						button.setAttribute('disabled', '');
+					});
+					this.#process('The page has been loaded!', { disable: false, time: 1000 });
 				};
 				const error = () => { 
 					this.#process('There was an error loading the page.', { disable: false });
@@ -889,23 +942,27 @@ class KCStudio {
 		return res;
 	}
 
+	get css() { return this.#css }
+	get element() { return this.#element; }
 	set selected(element) {
 		if (!this.#error && this.#enabled) {
 			if (this.#document.body.contains(element) || this.#document.body == element) {
 				this.#selected = this.#getStudioElement(element);
 				const label = document.querySelector('.kanecode-studio-frame-selected-tools').children[0];
 				label.innerText = this.#components[this.#getComponentType(this.#selected)].title;
+				let uid = this.utils.uuid();
+				if (this.#selected.hasAttribute('data-kcs-id'))
+					uid = this.#selected.getAttribute('data-kcs-id');
+				this.selected.uid = uid;
 			} else
 				this.#selected = null;
 			this.refresh();
 			this.loadInspector();
 		}
 	}
-
 	get selected() {
 		return this.#selected;
 	}
-
 	set target(element) {
 		if (!this.#error && this.#enabled) {
 			if (this.#document.body.contains(element) || this.#document.body == element) {
@@ -917,13 +974,17 @@ class KCStudio {
 			this.refresh();
 		}
 	}
-
 	get target() {
 		return this.#target;
 	}
-
 	get utils() {
 		return this.#utils;
+	}
+	get document() {
+		return this.#document;
+	}
+	get iframe() {
+		return this.#iframe;
 	}
 
 	#action(action, opposite, description) {
@@ -1409,12 +1470,13 @@ class KCStudio {
 			if (typeof message !== 'string')
 				message = 'Loading';
 			process.innerHTML += this.loc(message);
-			if (_options.time)
+			if (_options.time) {
+				if (this.#processTimeout)
+					clearTimeout(this.#processTimeout);
 				this.#processTimeout = setTimeout(() => {
 					this.#process(null);
 				}, _options.time);
-			if (this.#processTimeout)
-				clearTimeout(this.#processTimeout);
+			}
 		}
 	}
 
@@ -1429,7 +1491,7 @@ class KCStudio {
 						if (!grid) {
 							const dropdown = document.createElement('div');
 							dropdown.className = 'kanecode-studio-components-list-button';
-							dropdown.innerHTML= `<div class="kcs-dropdown-title">${this.#componentGroups[component.group].title}</div><div class="kcs-dropdown-arrow">${this.icon('ki-solid ki-angle-bottom')}</div>`;
+							dropdown.innerHTML= `<div class="kcs-dropdown-title">${this.#componentGroups[component.group].title}</div><div class="kcs-dropdown-arrow">${this.icon('ki-solid ki-angle-down')}</div>`;
 							const menu = document.createElement('div');
 							menu.className = 'kcs-dropdown-menu';
 							grid = document.createElement('div');
@@ -1478,6 +1540,13 @@ class KCStudio {
 		}
 		this.#error = true;
 		console.error(`KaneCode Studio -> ${this.loc(message)}`);
+		if (typeof this.#elements?.buttons === 'object') {
+			if (Array.isArray(this.#elements.buttons.fixErrors)) {
+				this.#elements.buttons.fixErrors.forEach((element) => {
+					element.removeAttribute('hidden');
+				});
+			}
+		}
 	}
 	errorLog(message) {
 		this.#errorLog(message);
@@ -1488,6 +1557,13 @@ class KCStudio {
 			message = this.loc('An error has occured.');
 		}
 		console.warn(`KaneCode Studio -> ${this.loc(message)}`);
+		if (typeof this.#elements?.buttons === 'object') {
+			if (Array.isArray(this.#elements.buttons.fixWarnings)) {
+				this.#elements.buttons.fixWarnings.forEach((element) => {
+					element.removeAttribute('hidden');
+				});
+			}
+		}
 	}
 	warnLog(message) {
 		this.#warnLog(message);
@@ -1502,6 +1578,7 @@ class KCStudio {
 			increment: { x: null, y: null },
 		},
 	};
+	#css = {};
 	#document = null;
 	#element = null;
 	#elements = {};
@@ -1534,13 +1611,28 @@ class KCStudio {
 	#languages = {
 		"es-ES": {
 			"Add component": "Añadir componente",
+			"Advanced": "Avanzado",
+			"Content": "Contenido",
+			"Hide element": "Ocultar elemento",
+			"General": "General",
+			"Height": "Alto",
+			"Margin": "Margen",
+			"Maximum height": "Altura máxima",
+			"Maximum width": "Anchura máxima",
+			"Minimum height": "Altura mínima",
+			"Minimum width": "Anchura mínima",
 			"Opening": "Abriendo",
+			"Padding": "Relleno",
 			"Preview": "Vista previa",
 			"Redo": "Rehacer",
 			"Remove component": "Eliminar componente",
 			"Save": "Guardar",
 			"Saving": "Guardando",
+			"Size": "Tamaño",
+			"Style": "Estilo",
+			"Transformation": "Transformación",
 			"Undo": "Deshacer",
+			"Width": "Ancho",
 			"An error has occured.": "Ha habido un error.",
 			"Cannot load inspector because the editor is not enabled or there is an error. Please try again later.": "No se puede cargar el inspector porque el editor no está habilitado o hay un error. Por favor, inténtelo de nuevo más tarde.",
 			"Cannot load inspector because the selected element is not a valid element.": "No se puede cargar el inspector porque el elemento seleccionado no es un elemento válido.",
@@ -1642,10 +1734,54 @@ class KCStudio {
 		input: false,
 		fn: (e) => { this.selected = null },
 	}];
+	#styles = {};
 	#target = null;
 	#undoList = [];
 	#utils = {
 		uuid: (t=8) => crypto.getRandomValues(new Uint8Array(t)).reduce(((t,e)=>t+=(e&=63)<36?e.toString(36):e<62?(e-26).toString(36).toUpperCase():e<63?'_':'-'),''),
+		sheetToString: (sheet) => sheet.cssRules ? Array.from(sheet.cssRules).map(rule => (rule.cssText || '')).join('\n') : '',
+		addStyle: (sheet, sheetElement, selector, attribute, value, priority) => {
+			let response = false;
+			[].some.call(sheet.rules, (rule) => {
+				if (selector === rule.selectorText) {
+					response = true;
+					return true;
+				}
+			});
+			if (!response) { try { sheet.addRule(selector) } catch {} }
+			response = false;
+			[].some.call(sheet.rules, (rule) => {
+				if (selector === rule.selectorText) {
+					rule.style.setProperty(attribute, value, priority);
+					response = true;
+					return true;
+				}
+			});
+			return response;
+		},
+		getStyle: (sheet, selector, attribute) => {
+			let value = null;
+			[].some.call(sheet.rules, (rule) => {
+				if (selector === rule.selectorText)
+					return [].some.call(rule.style, (style) => {
+						if (attribute === style)
+							value = rule.style.getPropertyValue(attribute);
+					});
+			});
+			return value;
+		},
+		removeStyle: (sheet, selector, attribute) => {
+			let value = false;
+			[].some.call(sheet.rules, (rule) => {
+				if (selector === rule.selectorText)
+					return [].some.call(rule.style, (style) => {
+						if (attribute === style)
+							if (rule.style.removeProperty(attribute) !== undefined)
+								value = true;
+					});
+			});
+			return value;
+		},
 	}
 }
 
@@ -1739,7 +1875,7 @@ class KCStudioInspector {
 			const menu = {};
 			menu.label = this.studio.loc(_menu.label);
 			menu.options = {};
-			menu.options.order = (typeof menu.order === 'number') ? menu.order : 9999;
+			menu.options.order = (typeof _menu.order === 'number') ? _menu.order : 9999;
 			return menu;
 		};
 		const checkSection = (_section) => {
@@ -1753,8 +1889,8 @@ class KCStudioInspector {
 			section.label = this.studio.loc(_section.label);
 			section.menu = _section.menu;
 			section.options = {};
-			section.options.order = (typeof section.order === 'number') ? section.order : 9999;
-			section.options.open = (typeof section.open === 'boolean') ? section.open : false;
+			section.options.order = (typeof _section.order === 'number') ? _section.order : 9999;
+			section.options.open = (typeof _section.open === 'boolean') ? _section.open : false;
 			return section;
 		};
 		const checkInput = (_input) => {
@@ -1774,9 +1910,9 @@ class KCStudioInspector {
 			input.options.order = (typeof _input.order === 'number') ? _input.order : 9999;
 			if (typeof _input.hide === 'boolean' || typeof _input.hide === 'function')
 				input.options.hide = _input.hide;
-			if (typeof input.onChange === 'function')
+			if (typeof _input.onChange === 'function')
 				input.options.onChange = _input.onChange;
-			if (typeof input.value !== 'undefined')
+			if (typeof _input.value !== 'undefined')
 				input.options.value = _input.value;
 			return input;
 		};
@@ -1919,10 +2055,11 @@ class KCStudioInspector {
 				e.preventDefault();
 				[...this.#element.children[0].children].forEach(e => e.classList.remove('active'));
 				menuButton.classList.add('active');
-				[...this.#element.children[0].children].forEach(e => e.classList.remove('active'));
+				[...this.#element.children[1].children].forEach(e => e.classList.remove('active'));
 				menuSection.classList.add('active');
 			});
 		});
+		if (menus.length > 0) this.#element.children[0].children[0].click();
 
 		const sections = Object.keys(this.#sections).map((k) => {
 			const section = this.#sections[k];
@@ -1937,9 +2074,10 @@ class KCStudioInspector {
 			const sectionButton = document.createElement('div');
 			sectionButton.classList.add('kanecode-studio-inspector-section-button');
 			sectionButton.setAttribute('data-kcs-inspector-section', section.id);
+			sectionButton.hidden = true;
 			sectionButton.innerHTML = `
 				<div class="kcs-dropdown-title">${section.label}</div>
-				<div class="kcs-dropdown-arrow"><i class="ki-solid ki-angle-bottom"></i></div>`;
+				<div class="kcs-dropdown-arrow"><i class="ki-solid ki-angle-down"></i></div>`;
 			const menuIndex = [...this.#element.children[1].children].findIndex(menu => menu.getAttribute('data-kcs-inspector-menu') === section.menu);
 			this.#element.children[1].children[menuIndex].append(sectionButton);
 
@@ -1950,9 +2088,10 @@ class KCStudioInspector {
 
 			sectionButton.addEventListener('click', (e) => {
 				e.preventDefault();
-				[...this.#element.children[1].children].forEach(e => e.classList.remove('active'));
-				sectionButton.classList.add('active');
+				sectionButton.classList.toggle('active');
 			});
+
+			if (section.options.open) sectionButton.click();
 		});
 
 		const inputs = Object.keys(this.#inputs).map((k) => {
@@ -1985,13 +2124,14 @@ class KCStudioInspector {
 
 		inputsArray.forEach((input) => {
 			if (input.section in this.#sections) {
-				const section = this.element.children[1].querySelector(`.kcs-dropdown-menu[data-kcs-inspector-section="${input.section}"]`);
+				const sectionButton = this.element.children[1].querySelector(`.kanecode-studio-inspector-section-button[data-kcs-inspector-section="${input.section}"]`);
+				const section = sectionButton.nextElementSibling;
+				sectionButton.hidden = false;
 				section.append(input.element);
-				console.log(input.element);
 			}
+			input.refresh();
 		});
 	}
-
 
 	get loc() {
 		return this.studio.loc;
@@ -2007,9 +2147,7 @@ class KCStudioInspector {
 		}
 		return undefined;
 	}
-	get studio() {
-		return this.#studio;
-	}
+	get studio() { return this.#studio; }
 	get element() { return this.#element; }
 
 	#element = null;
@@ -2117,7 +2255,7 @@ class KCStudioInspector {
 		inputs: {
 			"hide": {
 				label: "Hide element",
-				type: "checkbox",
+				type: "switch",
 				order: 10,
 				section: "general",
 				value: (studio) => {
@@ -2140,21 +2278,21 @@ class KCStudioInspector {
 				section: "transformation",
 				value: (studio) => {
 					return {
-						width: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'width'),
-						height: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'height'),
-						minWidth: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-width'),
-						minHeight: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-height'),
-						maxWidth: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-width'),
-						maxHeight: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-height'),
+						width: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'width'),
+						height: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'height'),
+						minWidth: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'min-width'),
+						minHeight: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'min-height'),
+						maxWidth: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'max-width'),
+						maxHeight: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'max-height'),
 					};
 				},
 				onChange: (studio, value) => {
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'width', value.width);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'height', value.height);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-width', value.minWidth);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'min-height', value.minHeight);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-width', value.maxWidth);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'max-height', value.maxHeight);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'width', value.width);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'height', value.height);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'min-width', value.minWidth);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'min-height', value.minHeight);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'max-width', value.maxWidth);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'max-height', value.maxHeight);
 				},
 			},
 			"margin": {
@@ -2164,17 +2302,17 @@ class KCStudioInspector {
 				section: "transformation",
 				value: (studio) => {
 					return {
-						top: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-top'),
-						right: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-right'),
-						bottom: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-bottom'),
-						left: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-left'),
+						top: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-top'),
+						right: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-right'),
+						bottom: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-bottom'),
+						left: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-left'),
 					};
 				},
 				onChange: (studio, value) => {
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-top', value.top);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-right', value.right);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-bottom', value.bottom);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-left', value.left);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-top', value.top);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-right', value.right);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-bottom', value.bottom);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'margin-left', value.left);
 				},
 			},
 			"padding": {
@@ -2184,17 +2322,17 @@ class KCStudioInspector {
 				section: "transformation",
 				value: (studio) => {
 					return {
-						top: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-top'),
-						right: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-right'),
-						bottom: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-bottom'),
-						left: studio.utils.getCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-left'),
+						top: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-top'),
+						right: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-right'),
+						bottom: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-bottom'),
+						left: studio.css.get(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-left'),
 					};
 				},
 				onChange: (studio, value) => {
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-top', value.top);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-right', value.right);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-bottom', value.bottom);
-					studio.utils.setCSS(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-left', value.left);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-top', value.top);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-right', value.right);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-bottom', value.bottom);
+					studio.css.set(`[data-kcs-id="${studio.selected.uid}"]`, 'padding-left', value.left);
 				},
 			},
 			"color": {
@@ -2321,22 +2459,22 @@ class KCSStudioInput {
 		this.options.order = this.options.order || 9999;
 
 		this.#element = document.createElement('div');
-		this.element.classList.add('kcs-studio-inspector-input');
+		this.element.classList.add('kanecode-studio-inspector-input');
 		this.element.setAttribute('data-kcs-input-id', id);
 		this.element.setAttribute('data-kcs-input-type', type);
 
 		this.#body = document.createElement('div');
-		this.body.classList.add('kcs-studio-inspector-input-body');
+		this.body.classList.add('kanecode-studio-inspector-input-body');
 		this.element.append(this.body);
 
 		this.generator();
 	}
 
 	generator( options = { label: true }) {
-		if (typeof this.options.label === 'string' && options?.label === true) {
+		if (typeof this.label === 'string' && options?.label === true) {
 			const labelElement = document.createElement('div');
-			labelElement.classList.add('kcs-studio-inspector-input-label');
-			labelElement.innerText = this.options.label;
+			labelElement.classList.add('kanecode-studio-inspector-input-label');
+			labelElement.innerText = this.label;
 			this.element.prepend(labelElement);
 		}
 		return true;
@@ -2360,7 +2498,7 @@ class KCSStudioInput {
 		let value = undefined;
 		if (typeof this.#options.value === 'function')
 			try { value = this.#options.value(this.studio) } catch { }
-		if (typeof this.#options.value !== 'undefined')
+		else if (typeof this.#options.value !== 'undefined')
 			value = this.#options.value;
 		if (this.checkValueFormat(value)) {
 			this.value = value;
@@ -2379,14 +2517,9 @@ class KCSStudioInput {
 	}
 
 	addTrigger(element, eventType) {
-		const event = element.addEventListener(eventType, (e) => {
-			this.inputToValue();
-			if (typeof this.#options.onChange === 'function') {
-				try { this.#options.onChange(this.studio, this.value) } catch { }
-				this.#options.onChange(this.#studio, e.target.value);
-			}
-		});
-		this.triggers.push([element, event]);
+		const fn = (e) => { this.trigger() };
+		const event = element.addEventListener(eventType, fn);
+		this.triggers.push([element, event, fn]);
 	}
 
 	checkValueFormat(value) {
@@ -2396,7 +2529,7 @@ class KCSStudioInput {
 	}
 	
 	refresh(value) {
-		if (checkValueFormat(value)) {
+		if (this.checkValueFormat(value)) {
 			this.value = value;
 			this.valueToInput();
 			return true;
@@ -2408,13 +2541,22 @@ class KCSStudioInput {
 		return false;
 	}
 
-	set value(value) {
-		this.#value = value;
-		this.valueToInput();
+	trigger() {
+		this.inputToValue();
+		if (typeof this.options.onChange === 'function') {
+			try {
+				this.options.onChange(this.studio, this.value);
+			} catch {
+				this.studio.warnLog(`The input have not produced any change`);
+			}
+			this.studio.refresh();
+		}
 	}
 
+	set value(value) { this.#value = value; }
+
 	get body() { return this.#body; }
-	get container() { return this.#container;}
+	get container() { return this.#container; }
 	get element() { return this.#element; }
 	get id() { return this.#id; }
 	get input() { return this.#input; }
@@ -2442,16 +2584,17 @@ class KCSStudioInput {
 
 const KCSStudioInputTypes = {};
 
-KCSStudioInputTypes['checkbox'] = class extends KCSStudioInput {
+KCSStudioInputTypes['switch'] = class extends KCSStudioInput {
 	generator() {
 		super.generator({ label: false });
-		this.body.innerHTML = '<input type="checkbox" />';
-		this.body.children[0].id = `kcs-input-${this.id}`;
-		if (typeof this.label === 'string') {
-			const labelElement = document.createElement('label');
-			labelElement.innerText = this.label;
-			labelElement.setAttribute('for', `kcs-input-${this.id}`);
-		}
+		this.body.innerHTML = `
+			<input type="checkbox" hidden />
+			<label><div class="label"><span></span></div><div class="switch"></div></label>`;
+		if (typeof this.label === 'string')
+			this.body.children[1].children[0].children[0].innerText = this.label;
+		this.body.children[1].addEventListener('click', (e) => {
+			this.body.children[0].click();
+		});
 		this.addTrigger(this.body.children[0], 'change');
 		return true;
 	}
@@ -2467,5 +2610,539 @@ KCSStudioInputTypes['checkbox'] = class extends KCSStudioInput {
 		if (typeof value === 'boolean')
 			return true;
 		return false;
+	}
+}
+
+KCSStudioInputTypes['checkbox'] = class extends KCSStudioInput {
+	generator() {
+		super.generator({ label: false });
+		this.body.innerHTML = `
+			<input type="checkbox" hidden />
+			<label><div class="box">${this.studio.icon('ki-solid ki-check')}</div><div class="label"><span></span></div></label>`;
+		this.body.children[0].id = `kcs-input-${this.id}`;
+		if (typeof this.label === 'string')
+			this.body.children[1].children[1].children[0].innerText = this.label;
+		this.body.children[1].addEventListener('click', (e) => {
+			this.body.children[0].click();
+		});
+		this.addTrigger(this.body.children[0], 'change');
+		return true;
+	}
+	inputToValue() {
+		this.value = this.body.children[0].checked;
+		return true;
+	}
+	valueToInput() {
+		this.body.children[0].checked = this.value;
+		return true;
+	}
+	checkValueFormat(value) {
+		if (typeof value === 'boolean')
+			return true;
+		return false;
+	}
+}
+
+KCSStudioInputTypes['width-height'] = class extends KCSStudioInput {
+	generator() {
+		super.generator();
+		this.body.innerHTML = `
+			<div class="kcs-input-row">
+				<div class="kcs-input-col">
+					<label>${this.studio.loc('Width')}</label>
+					<div class="kcs-input-row">
+						<input type="number" />
+						<select>
+							<option value="px">px</option>
+							<option value="%">%</option>
+							<option value="vw">vw</option>
+							<option value="vh">vh</option>
+						</select>
+						<div class="expand">${this.studio.icon('ki-solid ki-chevron-down')}</div>
+					</div>
+				</div>
+				<div class="kcs-input-col">
+					<label>${this.studio.loc('Height')}</label>
+					<div class="kcs-input-row">
+						<input type="number" />
+						<select>
+							<option value="px">px</option>
+							<option value="%">%</option>
+							<option value="vw">vw</option>
+							<option value="vh">vh</option>
+						</select>
+						<div class="expand">${this.studio.icon('ki-solid ki-chevron-down')}</div>
+					</div>
+				</div>
+			</div>
+			<div class="kcs-input-row alt">
+				<div class="kcs-input-col">
+					<label>${this.studio.loc('Minimum width')}</label>
+					<div class="kcs-input-row">
+						<input type="number" />
+						<select>
+							<option value="px">px</option>
+							<option value="%">%</option>
+							<option value="vw">vw</option>
+							<option value="vh">vh</option>
+						</select>
+					</div>
+				</div>
+				<div class="kcs-input-col">
+					<label>${this.studio.loc('Minimum height')}</label>
+					<div class="kcs-input-row">
+						<input type="number" />
+						<select>
+							<option value="px">px</option>
+							<option value="%">%</option>
+							<option value="vw">vw</option>
+							<option value="vh">vh</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="kcs-input-row alt">
+				<div class="kcs-input-col">
+					<label>${this.studio.loc('Maximum width')}</label>
+					<div class="kcs-input-row">
+						<input type="number" />
+						<select>
+							<option value="px">px</option>
+							<option value="%">%</option>
+							<option value="vw">vw</option>
+							<option value="vh">vh</option>
+						</select>
+					</div>
+				</div>
+				<div class="kcs-input-col">
+					<label>${this.studio.loc('Maximum height')}</label>
+					<div class="kcs-input-row">
+						<input type="number" />
+						<select>
+							<option value="px">px</option>
+							<option value="%">%</option>
+							<option value="vw">vw</option>
+							<option value="vh">vh</option>
+						</select>
+					</div>
+				</div>
+			</div>`;
+		this.body.children[0].children[0].children[0].addEventListener('click', (e) => {
+			this.body.children[0].children[0].children[1].children[0].focus();
+		});
+		this.body.children[0].children[1].children[0].addEventListener('click', (e) => {
+			this.body.children[0].children[1].children[1].children[0].focus();
+		});
+		this.body.children[1].children[0].children[0].addEventListener('click', (e) => {
+			this.body.children[1].children[0].children[1].children[0].focus();
+		});
+		this.body.children[1].children[1].children[0].addEventListener('click', (e) => {
+			this.body.children[1].children[1].children[1].children[0].focus();
+		});
+		this.body.children[2].children[0].children[0].addEventListener('click', (e) => {
+			this.body.children[2].children[0].children[1].children[0].focus();
+		});
+		this.body.children[2].children[1].children[0].addEventListener('click', (e) => {
+			this.body.children[2].children[1].children[1].children[0].focus();
+		});
+
+		this.body.children[0].children[0].children[1].children[2].addEventListener('click', (e) => {
+			this.element.classList.toggle('expanded');
+		});
+		this.body.children[0].children[1].children[1].children[2].addEventListener('click', (e) => {
+			this.element.classList.toggle('expanded');
+		});
+
+		this.body.children[0].children[0].children[1].children[0].addEventListener('input', (e) => {
+			if (parseFloat(e.target.value) < 0) {
+				e.stopPropagation();
+				e.target.value = 0;
+			}
+		});
+		this.body.children[0].children[1].children[1].children[0].addEventListener('input', (e) => {
+			if (parseFloat(e.target.value) < 0) {
+				e.stopPropagation();
+				e.target.value = 0;
+			}
+		});
+		this.body.children[1].children[0].children[1].children[0].addEventListener('input', (e) => {
+			if (parseFloat(e.target.value) < 0) {
+				e.stopPropagation();
+				e.target.value = 0;
+			}
+		});
+		this.body.children[1].children[1].children[1].children[0].addEventListener('input', (e) => {
+			if (parseFloat(e.target.value) < 0) {
+				e.stopPropagation();
+				e.target.value = 0;
+			}
+		});
+		this.body.children[2].children[0].children[1].children[0].addEventListener('input', (e) => {
+			if (parseFloat(e.target.value) < 0) {
+				e.stopPropagation();
+				e.target.value = 0;
+			}
+		});
+		this.body.children[2].children[1].children[1].children[0].addEventListener('input', (e) => {
+			if (parseFloat(e.target.value) < 0) {
+				e.stopPropagation();
+				e.target.value = 0;
+			}
+		});
+
+		this.addTrigger(this.body.children[0].children[0].children[1].children[0], 'input');
+		this.addTrigger(this.body.children[0].children[0].children[1].children[1], 'input');
+		this.addTrigger(this.body.children[0].children[1].children[1].children[0], 'input');
+		this.addTrigger(this.body.children[0].children[1].children[1].children[1], 'input');
+		this.addTrigger(this.body.children[1].children[0].children[1].children[0], 'input');
+		this.addTrigger(this.body.children[1].children[0].children[1].children[1], 'input');
+		this.addTrigger(this.body.children[1].children[1].children[1].children[0], 'input');
+		this.addTrigger(this.body.children[1].children[1].children[1].children[1], 'input');
+		this.addTrigger(this.body.children[2].children[0].children[1].children[0], 'input');
+		this.addTrigger(this.body.children[2].children[0].children[1].children[1], 'input');
+		this.addTrigger(this.body.children[2].children[1].children[1].children[0], 'input');
+		this.addTrigger(this.body.children[2].children[1].children[1].children[1], 'input');
+	}
+
+	inputToValue() {
+		const values = {};
+		values.width = this.body.children[0].children[0].children[1].children[0].value;
+		values.height = this.body.children[0].children[1].children[1].children[0].value;
+		values.minWidth = this.body.children[1].children[0].children[1].children[0].value;
+		values.minHeight = this.body.children[1].children[1].children[1].children[0].value;
+		values.maxWidth = this.body.children[2].children[0].children[1].children[0].value;
+		values.maxHeight = this.body.children[2].children[1].children[1].children[0].value;
+		const units = {};
+		units.width = this.body.children[0].children[0].children[1].children[1].value;
+		units.height = this.body.children[0].children[1].children[1].children[1].value;
+		units.minWidth = this.body.children[1].children[0].children[1].children[1].value;
+		units.minHeight = this.body.children[1].children[1].children[1].children[1].value;
+		units.maxWidth = this.body.children[2].children[0].children[1].children[1].value;
+		units.maxHeight = this.body.children[2].children[1].children[1].children[1].value;
+
+		for (let k in values) {
+			if (values[k] === '' || values[k] === null)
+				continue;
+			if (values[k] < 0)
+				values[k] = 0;
+		}		
+		
+		const value = {
+			width: (values.width === null || values.width === '') ? null : `${values.width}${units.width}`,
+			height: (values.height === null || values.height === '') ? null : `${values.height}${units.height}`,
+			minWidth: (values.minWidth === null || values.minWidth === '') ? null : `${values.minWidth}${units.minWidth}`,
+			minHeight: (values.minHeight === null || values.minHeight === '') ? null : `${values.minHeight}${units.minHeight}`,
+			maxWidth: (values.maxWidth === null || values.maxWidth === '') ? null : `${values.maxWidth}${units.maxWidth}`,
+			maxHeight: (values.maxHeight === null || values.maxHeight === '') ? null : `${values.maxHeight}${units.maxHeight}`
+		};
+
+		if (this.checkValueFormat(value)) {
+			this.value = value;
+			return true;
+		}
+		return false;
+	}
+
+	valueToInput() {
+		if (this.value.width !== null) {
+			const width = parseFloat(this.value.width.replace(/[^0-9.]/g, ''));
+			let unit = this.value.width.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[0].children[1].children[0].value = width;
+			this.body.children[0].children[0].children[1].children[1].value = unit;
+		} else {
+			this.body.children[0].children[0].children[1].children[0].value = '';
+		}
+		if (this.value.height !== null) {
+			const height = parseFloat(this.value.height.replace(/[^0-9.]/g, ''));
+			let unit = this.value.height.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[1].children[1].children[0].value = height;
+			this.body.children[0].children[1].children[1].children[1].value = unit;
+		} else {
+			this.body.children[0].children[1].children[1].children[0].value = '';
+		}
+		if (this.value.minWidth !== null) {
+			const minWidth = parseFloat(this.value.minWidth.replace(/[^0-9.]/g, ''));
+			let unit = this.value.minWidth.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[1].children[0].children[1].children[0].value = minWidth;
+			this.body.children[1].children[0].children[1].children[1].value = unit;
+		} else {
+			this.body.children[1].children[0].children[1].children[0].value = '';
+		}
+		if (this.value.minHeight !== null) {
+			const minHeight = parseFloat(this.value.minHeight.replace(/[^0-9.]/g, ''));
+			let unit = this.value.minHeight.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[1].children[1].children[1].children[0].value = minHeight;
+			this.body.children[1].children[1].children[1].children[1].value = unit;
+		} else {
+			this.body.children[1].children[1].children[1].children[0].value = '';
+		}
+		if (this.value.maxWidth !== null) {
+			const maxWidth = parseFloat(this.value.maxWidth.replace(/[^0-9.]/g, ''));
+			let unit = this.value.maxWidth.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[2].children[0].children[1].children[0].value = maxWidth;
+			this.body.children[2].children[0].children[1].children[1].value = unit;
+		} else {
+			this.body.children[2].children[0].children[1].children[0].value = '';
+		}
+		if (this.value.maxHeight !== null) {
+			const maxHeight = parseFloat(this.value.maxHeight.replace(/[^0-9.]/g, ''));
+			let unit = this.value.maxHeight.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[2].children[1].children[1].children[0].value = maxHeight;
+			this.body.children[2].children[1].children[1].children[1].value = unit;
+		} else {
+			this.body.children[2].children[1].children[1].children[0].value = '';
+		}
+		return true;
+	}
+
+	checkValueFormat(value) {
+		if (typeof value !== 'object')
+			return false;
+		if (value.width !== null && typeof value.width !== 'string')
+			return false;
+		if (value.height !== null && typeof value.height !== 'string')
+			return false;
+		if (value.minWidth !== null && typeof value.minWidth !== 'string')
+			return false;
+		if (value.minHeight !== null && typeof value.minHeight !== 'string')
+			return false;
+		if (value.maxWidth !== null && typeof value.maxWidth !== 'string')
+			return false;
+		if (value.maxHeight !== null && typeof value.maxHeight !== 'string')
+			return false;
+		return true;
+	}
+}
+
+KCSStudioInputTypes['margin-padding'] = class extends KCSStudioInput {
+	generator() {
+		super.generator();
+		this.body.innerHTML = `
+			<div class="kcs-input-container">
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-up')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-right')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-down')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-left')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<button>${this.studio.icon('ki-duotone ki-lock')}</button>
+				</div>
+			</div>`;
+
+		const minMax = (e) => {
+			if (typeof this.options.min === 'number' && parseFloat(e.target.value) < this.options.min) {
+				e.stopPropagation();
+				e.target.value = this.options.min;
+			}
+			if (typeof this.options.max === 'number' && parseFloat(e.target.value) > this.options.max) {
+				e.stopPropagation();
+				e.target.value = this.options.max;
+			}
+		}
+		const checkValue = (e) => {
+			minMax(e);
+			const lock = this.body.children[0].children[4].children[0].classList.contains('active');
+			if (lock) {
+				const index = [...e.target.parentElement.parentElement.children].indexOf(e.target.parentElement);
+				const value = e.target.value;
+				const unit = e.target.nextElementSibling.value;
+				for (let i = 0; i < 4; i++) {
+					if (i !== index) {
+						this.body.children[0].children[i].children[0].value = value;
+						this.body.children[0].children[i].children[1].value = unit;
+					}
+				}
+			}
+			this.trigger();
+		}
+		this.body.children[0].children[0].children[0].addEventListener('input', checkValue);
+		this.body.children[0].children[1].children[0].addEventListener('input', checkValue);
+		this.body.children[0].children[2].children[0].addEventListener('input', checkValue);
+		this.body.children[0].children[3].children[0].addEventListener('input', checkValue);
+
+		const checkUnit = (e) => {
+			const lock = this.body.children[0].children[4].children[0].classList.contains('active');
+			if (lock) {
+				const index = [...e.target.parentElement.parentElement.children].indexOf(e.target.parentElement);
+				const value = e.target.previousElementSibling.value;
+				const unit = e.target.value;
+				for (let i = 0; i < 4; i++) {
+					if (i !== index) {
+						this.body.children[0].children[i].children[0].value = value;
+						this.body.children[0].children[i].children[1].value = unit;
+					}
+				}
+			}
+			this.trigger();
+		}
+		this.body.children[0].children[0].children[1].addEventListener('input', checkUnit);
+		this.body.children[0].children[1].children[1].addEventListener('input', checkUnit);
+		this.body.children[0].children[2].children[1].addEventListener('input', checkUnit);
+		this.body.children[0].children[3].children[1].addEventListener('input', checkUnit);
+
+		this.body.children[0].children[4].children[0].addEventListener('click', (e) => {
+			this.body.children[0].children[4].children[0].classList.toggle('active');
+			const checked = this.body.children[0].children[4].children[0].classList.contains('active');
+			if (checked) {
+				let index = 0;
+				for (let i = 0; i < 4; i++) {
+					if (this.body.children[0].children[i].children[0].value !== '') {
+						index = i;
+						break;
+					}
+				}
+				for (let i = 0; i < 4; i++) {
+					if (i !== index) {
+						this.body.children[0].children[i].children[0].value = this.body.children[0].children[index].children[0].value;
+						this.body.children[0].children[i].children[1].value = this.body.children[0].children[index].children[1].value;
+					}
+				}
+				this.trigger();
+			}
+		});
+	}
+
+	checkValueFormat(value) {
+		if (typeof value !== 'object')
+			return false;
+		if (value.top !== null && typeof value.top !== 'string')
+			return false;
+		if (value.right !== null && typeof value.right !== 'string')
+			return false;
+		if (value.bottom !== null && typeof value.bottom !== 'string')
+			return false;
+		if (value.left !== null && typeof value.left !== 'string')
+			return false;
+		return true;
+	}
+
+	inputToValue() {
+		const values = {};
+		values.top = this.body.children[0].children[0].children[0].value;
+		values.right = this.body.children[0].children[1].children[0].value;
+		values.bottom = this.body.children[0].children[2].children[0].value;
+		values.left = this.body.children[0].children[3].children[0].value;
+		const units = {};
+		units.top = this.body.children[0].children[0].children[1].value;
+		units.right = this.body.children[0].children[1].children[1].value;
+		units.bottom = this.body.children[0].children[2].children[1].value;
+		units.left = this.body.children[0].children[3].children[1].value;
+
+		for (let k in values) {
+			if (values[k] === '' || values[k] === null)
+				continue;
+			if (typeof this.options.min === 'number' && values[k] < this.options.min)
+				values[k] = this.options.min;
+			if (typeof this.options.max === 'number' && values[k] > this.options.max)
+				values[k] = this.options.max;
+		}		
+		
+		const value = {
+			top: (values.top === null || values.top === '') ? null : `${values.top}${units.top}`,
+			right: (values.right === null || values.right === '') ? null : `${values.right}${units.right}`,
+			bottom: (values.bottom === null || values.bottom === '') ? null : `${values.bottom}${units.bottom}`,
+			left: (values.left === null || values.left === '') ? null : `${values.left}${units.left}`
+		};
+
+		if (this.checkValueFormat(value)) {
+			this.value = value;
+			return true;
+		}
+		return false;
+	}
+
+	valueToInput() {
+		if (this.value.top !== null) {
+			const top = parseFloat(this.value.top.replace(/[^0-9.]/g, ''));
+			let unit = this.value.top.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[0].children[0].value = top;
+			this.body.children[0].children[0].children[1].value = unit;
+		} else {
+			this.body.children[0].children[0].children[0].value = '';
+		}
+		if (this.value.right !== null) {
+			const right = parseFloat(this.value.right.replace(/[^0-9.]/g, ''));
+			let unit = this.value.right.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[1].children[0].value = right;
+			this.body.children[0].children[1].children[1].value = unit;
+		} else {
+			this.body.children[0].children[1].children[0].value = '';
+		}
+		if (this.value.bottom !== null) {
+			const bottom = parseFloat(this.value.bottom.replace(/[^0-9.]/g, ''));
+			let unit = this.value.bottom.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[2].children[0].value = bottom;
+			this.body.children[0].children[2].children[1].value = unit;
+		} else {
+			this.body.children[0].children[2].children[0].value = '';
+		}
+		if (this.value.left !== null) {
+			const left = parseFloat(this.value.left.replace(/[^0-9.]/g, ''));
+			let unit = this.value.left.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[3].children[0].value = left;
+			this.body.children[0].children[3].children[1].value = unit;
+		} else {
+			this.body.children[0].children[3].children[0].value = '';
+		}
+		if (this.value.top !== null && this.value.top === this.value.right && this.value.right === this.value.bottom && this.value.bottom === this.value.left)
+			this.body.children[0].children[4].children[0].classList.add('active');
+		else
+			this.body.children[0].children[4].children[0].classList.remove('active');
+		return true;
 	}
 }

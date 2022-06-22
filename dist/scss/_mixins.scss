@@ -133,7 +133,7 @@
 	border-bottom: $dropdown2-border-width solid $border-color;
 	background-color: $dropdown2-background;
 	box-shadow: $dropdown2-shadow;
-	font-size: 13px;
+	font-size: 16px;
 	.kcs-dropdown-arrow {
 		display: flex;
 	}
@@ -159,3 +159,30 @@
 }
 
 
+@mixin input-number($arrows: true) {
+	height: $input-height;
+	padding: $input-padding-y $input-padding-x;
+	border: none;
+	border-radius: $border-radius;
+	font-size: 14px;
+	color: $input-color;
+	background: $input-background;
+	box-shadow: $input-shadow;
+	outline: none;
+	&:hover, &:focus {
+		background-color: $input-background-hover;
+		box-shadow: $input-shadow-hover;
+	}
+	&:active {
+		background-color: $input-background-active;
+		box-shadow: $input-shadow-active;
+	}
+	@if ($arrows == false) {
+		-moz-appearance: textfield;
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+}

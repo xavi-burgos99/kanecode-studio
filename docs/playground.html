@@ -196,12 +196,10 @@
 					stylesheet.href = '../dist/css/kanecode-studio-' + theme + '.css';
 			});
 			const studio = new KCStudio(document.querySelector('.studio'), {
-				border: false,
+				border: true,
 				fullscreen: true,
 				menus: {
-					left: {
-						//show: false,
-					}
+					left: { show: false }
 				},
 				onsave: (html) => {
 					return new Promise((resolve, reject) => {
@@ -224,6 +222,20 @@
 					}
 					[data-kcs-id="hdsdfGSd"] {
 						color: #808080;
+					}
+					@media (min-width: 768px) {
+						[data-kcs-id="fjwJAJBP"] {
+							color: #000000;
+						}
+						[data-kcs-id="hfdkDsdD"] {
+							color: #000000;
+						}
+						[data-kcs-id="geuRMAfk"] {
+							color: #80808080;
+						}
+						[data-kcs-id="hdsdfGSd"] {
+							color: #80808080;
+						}
 					}
 				</style>
 				<div class="container-fluid" data-kcs-component="section" data-kcs-id="hosIWerT">
@@ -248,6 +260,10 @@
 				</div>
 				`;
 			studio.open(html);
+			setTimeout(() => {
+				studio.selected = studio.document.querySelector('[data-kcs-component="text"]');
+				//studio.element.querySelector('[data-kcs-inspector-menu="style"]').click();
+			}, 50);
 		</script>
 
     <script src="libs/bootstrap.bundle.min.js"></script>

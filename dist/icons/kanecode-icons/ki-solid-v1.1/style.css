@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'ki-solid';
+  src:  url('fonts/ki-solid.eot?ndwjqv');
+  src:  url('fonts/ki-solid.eot?ndwjqv#iefix') format('embedded-opentype'),
+    url('fonts/ki-solid.ttf?ndwjqv') format('truetype'),
+    url('fonts/ki-solid.woff?ndwjqv') format('woff'),
+    url('fonts/ki-solid.svg?ndwjqv#ki-solid') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ki-"], [class*=" ki-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ki-solid' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ki-alert:before {
+  content: "\e900";
+}
+.ki-angle-down:before {
+  content: "\e901";
+}
+.ki-angle-left:before {
+  content: "\e902";
+}
+.ki-angle-right:before {
+  content: "\e903";
+}
+.ki-angle-up:before {
+  content: "\e904";
+}
+.ki-check:before {
+  content: "\e905";
+}
+.ki-chevron-down:before {
+  content: "\e906";
+}
+.ki-chevron-left:before {
+  content: "\e907";
+}
+.ki-chevron-right:before {
+  content: "\e908";
+}
+.ki-chevron-up:before {
+  content: "\e909";
+}
+.ki-desktop:before {
+  content: "\e90a";
+}
+.ki-download:before {
+  content: "\e90b";
+}
+.ki-eye:before {
+  content: "\e90c";
+}
+.ki-info:before {
+  content: "\e90d";
+}
+.ki-list-tree:before {
+  content: "\e90e";
+}
+.ki-lock:before {
+  content: "\e90f";
+}
+.ki-lock-open:before {
+  content: "\e910";
+}
+.ki-maximize:before {
+  content: "\e911";
+}
+.ki-maximize-wide:before {
+  content: "\e912";
+}
+.ki-menu-bottom:before {
+  content: "\e913";
+}
+.ki-menu-left:before {
+  content: "\e914";
+}
+.ki-menu-right:before {
+  content: "\e915";
+}
+.ki-menu-top:before {
+  content: "\e916";
+}
+.ki-minimize:before {
+  content: "\e917";
+}
+.ki-minimize-wide:before {
+  content: "\e918";
+}
+.ki-mobile:before {
+  content: "\e919";
+}
+.ki-sign-in:before {
+  content: "\e91a";
+}
+.ki-sign-out:before {
+  content: "\e91b";
+}
+.ki-tablet:before {
+  content: "\e91c";
+}
+.ki-times:before {
+  content: "\e91d";
+}
+.ki-trash:before {
+  content: "\e91e";
+}
+.ki-upload:before {
+  content: "\e91f";
+}

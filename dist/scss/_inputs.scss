@@ -1,0 +1,362 @@
+.kanecode-studio-inspector-input {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex: 1 0 auto;
+	padding: 0 $spacer / 4;
+	margin-bottom: $spacer;
+	line-height: 1;
+	.kanecode-studio-inspector-input-label {
+		margin-bottom: $spacer / 2;
+		color: $gray;
+		font-size: 14px;
+	}
+	.kanecode-studio-inspector-input-body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex: 1 0 0;
+		width: 100%;
+	}
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="switch"] {
+	.kanecode-studio-inspector-input-body {
+		flex-direction: row;
+	}
+	label {
+		user-select: none;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		flex: 1 0 0;
+		max-width: 100%;
+		border-radius: $border-radius;
+		.switch {
+			cursor: pointer;
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			flex: 0 0 36px;
+			width: 36px;
+			height: 18px;
+			border-radius: 50px;
+			background: $switch-background;
+			font-size: 14px;
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				width: 12px;
+				height: 12px;
+				margin: 3px;
+				border-radius: 50px;
+				background: $switch-color;
+				transition: left .1s ease-in-out;
+			}
+		}
+		.label {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+			flex: 0 0 calc(100% - (36px + $spacer));
+			overflow: hidden;
+			white-space: nowrap;
+			font-size: 14px;
+			color: $switch-label-color;
+			margin-right: $spacer;
+			span {
+				max-width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+		&:hover, &:focus {
+			.switch {
+				background: $switch-background-hover;
+			}
+		}
+	}
+	input[type="checkbox"]:checked + label {
+		.switch {
+			background: $switch-background-checked;
+			&:before {
+				left: calc(100% - 18px);
+				background: $switch-color-checked;
+			}
+		}
+		&:hover, &:focus {
+			.switch {
+				background: $switch-background-checked-hover;
+			}
+		}
+	}
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="checkbox"] {
+	.kanecode-studio-inspector-input-body {
+		flex-direction: row;
+	}
+	label {
+		user-select: none;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		flex: 1 0 0;
+		max-width: 100%;
+		border-radius: $border-radius;
+		.box {
+			cursor: pointer;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			flex: 0 0 18px;
+			width: 18px;
+			height: 18px;
+			padding: $spacer / 4;
+			border-radius: $border-radius;
+			background: $checkbox-box-background;
+			margin-right: $spacer / 2;
+			font-size: 14px;
+			i {
+				display: none;
+				font-size: 16px;
+				color: $checkbox-box-color;
+			}
+		}
+		.label {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+			flex: 1 0 0;
+			max-width: 100%;
+			overflow: hidden;
+			white-space: nowrap;
+			font-size: 14px;
+			color: $checkbox-label-color;
+			span {
+				max-width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+		&:hover, &:focus {
+			.box {
+				background: $checkbox-box-background-hover;
+			}
+		}
+	}
+	input[type="checkbox"]:checked + label {
+		.box {
+			background: $checkbox-box-background-checked;
+			i {
+				display: flex;
+				color: $checkbox-box-color-checked;
+			}
+		}
+		&:hover, &:focus {
+			.box {
+				background: $checkbox-box-background-checked-hover;
+			}
+		}
+	}
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="width-height"] {
+	.kcs-input-row {
+		display: flex;
+		flex-direction: row;
+		flex: 1 0 0;
+		gap: $spacer / 2;
+		&.alt {
+			display: none;
+		}
+	}
+	.kcs-input-col {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+		label {
+			font-size: 10px;
+			color: $gray;
+			margin-bottom: $spacer / 3;
+		}
+		.kcs-input-row {
+			gap: 1px;
+			margin-bottom: $spacer / 3 * 2;
+		}
+	}
+	input {
+		@include input-number(false);
+		width: 100%;
+		border-radius: $border-radius 0 0 $border-radius;
+	}
+	select {
+		height: $select-height;
+		padding: $select-padding-y $select-padding-x;
+		border-radius: 0 $border-radius $border-radius 0;
+		border: none;
+		font-size: 14px;
+		color: $select-color;
+		background: $select-background;
+		box-shadow: $select-shadow;
+		outline: none;
+		-webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+		&::-ms-expand {
+			display: none;
+		}
+		&:hover, &:focus {
+			background: $select-background-hover;
+			box-shadow: $select-shadow-hover;
+		}
+		&:active {
+			background: $select-background-active;
+			box-shadow: $select-shadow-active;
+		}
+	}
+	.expand {
+		cursor: pointer;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 14px;
+		border: none;
+		border-radius: 0 0 $border-radius $border-radius;
+		background: $input-background;
+		box-shadow: $input-shadow;
+		outline: none;
+		color: $gray;
+		font-size: 9px;
+		&:hover {
+			background: $input-background-hover;
+			box-shadow: $input-shadow-hover;
+		}
+		&:active {
+			background: $input-background-active;
+			box-shadow: $input-shadow-active;
+		}
+	}
+	.kcs-input-row:first-child {
+		.kcs-input-row {
+			position: relative;
+			padding-bottom: 15px;
+			input[type="number"] {
+				border-radius: $border-radius 0 0 0;
+			}
+			select {
+				border-radius: 0 $border-radius 0 0;
+			}
+			.expand {
+				display: flex;
+				&:hover {
+					background: $input-background-hover;
+					box-shadow: $input-shadow-hover;
+				}
+				&:active {
+					background: $input-background-active;
+					box-shadow: $input-shadow-active;
+				}
+			}
+		}
+	}
+	&.expanded {
+		.kcs-input-row.alt {
+			display: flex;
+		}
+		.kcs-input-row:first-child {
+			.kcs-input-row {
+				.expand {
+					i {
+						transform: rotate(180deg);
+					}
+				}
+			}
+		}
+	}
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="margin-padding"] {
+	.kcs-input-container {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		gap: $spacer / 2;
+	}
+	.kcs-input-group {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		flex: 1 0 0;
+		gap: 1px;
+		margin-bottom: 16px;
+		.kcs-input-icon {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			top: calc(100% + 2px);
+			left: 0;
+			width: 100%;
+			height: 14px;
+			font-size: 12px;
+			text-align: center;
+			color: rgba($gray, .5);
+		}
+		&:last-child {
+			flex: 0 0 auto;
+		}
+	}
+	input {
+		@include input-number(false);
+		width: 100%;
+		border-radius: $border-radius 0 0 $border-radius;
+	}
+	select {
+		height: 100%;
+		padding: 0 $spacer / 4;
+		border-radius: 0 $border-radius $border-radius 0;
+		border: none;
+		font-size: 14px;
+		color: $select-color;
+		background: $select-background;
+		box-shadow: $select-shadow;
+		outline: none;
+		-webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+		&::-ms-expand {
+			display: none;
+		}
+		&:hover, &:focus {
+			background: $select-background-hover;
+			box-shadow: $select-shadow-hover;
+		}
+		&:active {
+			background: $select-background-active;
+			box-shadow: $select-shadow-active;
+		}
+	}
+	button {
+		@include button2;
+		.ki-solid, .ki-regular, .ki-light, .ki-duotone {
+			font-size: 14px;
+		}
+	}
+}
