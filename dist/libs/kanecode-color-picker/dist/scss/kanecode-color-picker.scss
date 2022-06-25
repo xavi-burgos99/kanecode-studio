@@ -1,0 +1,178 @@
+@import "variables";
+
+.kc-color-picker {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #eee;
+	border-radius: $border-radius;
+	background: $background;
+	line-height: 1;
+}
+
+.kc-color-picker-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: $spacer;
+	gap: $spacer * 2;
+}
+
+.kc-color-picker-canvas-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex: 1 1 auto;
+	width: 100%;
+	gap: $spacer;
+
+	.kc-color-picker-canvas {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 auto;
+		height: 100%;
+		border-radius: $border-radius-sm;
+
+		.kc-color-picker-canvas-pointer {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			width: 16px;
+			height: 16px;
+			border-radius: 50px;
+			background: rgba($background, .5);
+			border: 2px solid rgba($background, .75);
+			box-shadow: $box-shadow-sm;
+			transform: translate(-50%, -50%);
+			backdrop-filter: blur(8px);
+		}
+	}
+
+	.kc-color-picker-hue {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		flex: 0 0 20px;
+		height: 100%;
+		border-radius: $border-radius-sm;
+		background: linear-gradient(top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+
+		.kc-color-picker-hue-pointer {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			left: 50%;
+			width: calc(100% + 8px);
+			height: 12px;
+			border-radius: 50px;
+			background: rgba($background, .5);
+			border: 2px solid rgba($background, .75);
+			box-shadow: $box-shadow-sm;
+			transform: translate(-50%, -50%);
+			backdrop-filter: blur(8px);
+		}
+	}
+	
+	.kc-color-picker-alpha {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		flex: 0 0 20px;
+		height: 100%;
+		border-radius: $border-radius-sm;
+		background: repeating-linear-gradient(#eee 0 5px, transparent 0 10px), repeating-linear-gradient(90deg, #eee 0 5px, transparent 0 10px);
+    background-blend-mode: screen;
+
+		span  {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			border-radius: $border-radius-sm;
+		}
+
+		.kc-color-picker-alpha-pointer {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			left: 50%;
+			width: calc(100% + 8px);
+			height: 12px;
+			border-radius: 50px;
+			background: rgba($background, .5);
+			border: 2px solid rgba($background, .75);
+			box-shadow: $box-shadow-sm;
+			transform: translate(-50%, -50%);
+			backdrop-filter: blur(8px);
+		}
+	}
+}
+
+.kc-color-picker-inputs-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: $spacer;
+
+	.kc-color-picker-input-row {
+		display: flex;
+		flex-direction: row;
+		flex: 1 0 auto;
+		margin: 0 $spacer / -4;
+
+		.kc-color-picker-input-col {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			padding: 0 $spacer / 4;
+
+			&.kc-color-picker-input-col-4 {
+				width: #{100% / 12 * 4};
+			}
+			
+			&.kc-color-picker-input-col-8 {
+				width: #{100% / 12 * 8};
+			}
+		}
+	}
+}
+
+.kc-color-picker-input {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex: 1 0 auto;
+	height: $input-height;
+	background: $input-background;
+	border-radius: $border-radius-sm;
+
+	input {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		border: none;
+		border-radius: $border-radius-sm;
+		background: transparent;
+		color: $body;
+		outline: none;
+		appearance: none;
+		padding: 0;
+		padding-left: 26px;
+		line-height: 1;
+		font-size: 14px;
+		height: $input-height;
+	}
+
+	span {
+		position: absolute;
+		margin-left: 10px;
+		font-size: 12px;
+		line-height: 1;
+		color: $gray;
+	}
+}

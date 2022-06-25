@@ -39,11 +39,9 @@
     <link href="assets/docs.css" rel="stylesheet">
 
 		<!-- KaneCode Studio files -->
-		<link id="kanecode-studio-stylesheet" rel="stylesheet" href="../dist/css/kanecode-studio.css">
+		<link id="kanecode-studio-stylesheet" rel="stylesheet" href="../dist/css/kanecode-color-picker.css">
 		<script src="../dist/js/kanecode-color-picker.js"></script>
 		
-
-		<script src="../dist/js/jss.js"></script>
   </head>
 
   <body>
@@ -96,7 +94,7 @@
 
 				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-full">
 					<div class="d-flex flex-column w-100">
-						<div class="color-picker" style="display: flex; width: 400px; flex: 1 0 0;"></div>
+						<div class="color-picker" style="display: flex; width: 400px; height: 400px;"></div>
 					</div>
 				</main>
 			</div>
@@ -105,7 +103,7 @@
 		<script>
 			var colorPicker = new KCColorPicker(document.querySelector('.color-picker'), {
 				color: '#ff0000',
-				onChange: function(color) {
+				onChange: (color) => {
 					console.log(color);
 				}
 			});

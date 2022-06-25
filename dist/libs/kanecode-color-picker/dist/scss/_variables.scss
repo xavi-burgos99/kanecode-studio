@@ -1,0 +1,55 @@
+/* Spacing */
+$spacer: 12px !default;
+
+
+/* Color */
+$blue: #0bf !default;
+$yellow: #fc0 !default;
+$white: #fff !default;
+$red: #f40 !default;
+$gray: #aaa !default;
+$black: #000 !default;
+
+$body: $black !default;
+$primary: $blue !default;
+$secondary: $blue !default;
+$background: $white !default;
+
+
+/* Border */
+$border-width: 1px !default;
+$border-color: #f4f4f4 !default;
+
+$border-radius: 6px;
+$border-radius-sm: 3px;
+$border-radius-lg: 9px;
+
+
+/* Shadows */
+$box-shadow: 0 2px 12px rgba($black, 0.30);
+$box-shadow-sm: 0 1px 6px rgba($black, 0.24);
+$box-shadow-lg: 0 3px 24px rgba($black, 0.36);
+
+
+/* Breakpoints */
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+/* Input input */
+$input-background: rgba($body, .04) !default;
+$input-background-hover: rgba($body, .08) !default;
+$input-background-active: $input-background-hover !default;
+$input-color: $body !default;
+$input-color-active: $input-color !default;
+$input-shadow: none;
+$input-shadow-hover: none;
+$input-shadow-active: none;
+$input-height: 30px !default;
+$input-padding-x: $spacer / 2 !default;
+$input-padding-y: 0 !default;
