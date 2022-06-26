@@ -45,6 +45,11 @@ class KCColorPicker {
 					</div>
 				</div>
 				<div class="kc-color-picker-inputs-wrapper">
+					<div class="kc-color-picker-label-row">
+						<div class="kc-color-picker-label-col">
+							<span>RGB</span>
+						</div>
+					</div>
 					<div class="kc-color-picker-input-row">
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
@@ -66,7 +71,32 @@ class KCColorPicker {
 						</div>
 					</div>
 					<div class="kc-color-picker-label-row">
-						<div class="kc-color-picker-label-col kc-color-picker-label-col-4">
+						<div class="kc-color-picker-label-col">
+							<span>HSL</span>
+						</div>
+					</div>
+					<div class="kc-color-picker-input-row">
+						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
+							<div class="kc-color-picker-input">
+								<input type="number" min="0" max="360" step="1" value="0" name="kc-cp-hue"/>
+								<span>H</span>
+							</div>
+						</div>
+						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
+							<div class="kc-color-picker-input">
+								<input type="number" min="0" max="100" step="1" value="100" name="kc-cp-saturation"/>
+								<span>S</span>
+							</div>
+						</div>
+						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
+							<div class="kc-color-picker-input">
+								<input type="number" min="0" max="100" step="1" value="50" name="kc-cp-lightness"/>
+								<span>L</span>
+							</div>
+						</div>
+					</div>
+					<div class="kc-color-picker-label-row">
+						<div class="kc-color-picker-label-col kc-color-picker-label-col-8">
 							<span>HEX</span>
 						</div>
 						<div class="kc-color-picker-label-col kc-color-picker-label-col-4">
@@ -124,6 +154,9 @@ class KCColorPicker {
 					default:
 						return false;
 				}
+				const canvasRect = canvas.getBoundingClientRect();
+				coords.x += canvasRect.left - canvas.offsetLeft;
+				coords.y += canvasRect.top - canvas.offsetTop;
 				return true;
 			}
 
@@ -212,6 +245,8 @@ class KCColorPicker {
 					default:
 						return false;
 				}
+				const hueBarRect = hueBar.getBoundingClientRect();
+				coords.y += hueBarRect.top - hueBar.offsetTop;
 				return true;
 			}
 
@@ -301,6 +336,8 @@ class KCColorPicker {
 					default:
 						return false;
 				}
+				const alphaBarRect = alphaBar.getBoundingClientRect();
+				coords.y += alphaBarRect.top - alphaBar.offsetTop;
 				return true;
 			}
 

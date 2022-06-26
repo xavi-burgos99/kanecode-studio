@@ -9,6 +9,10 @@
 	border-radius: $border-radius;
 	background: $background;
 	line-height: 1;
+
+	* {
+		//outline: 1px solid rgba(255,0,0,.2)
+	}
 }
 
 .kc-color-picker-wrapper {
@@ -17,7 +21,7 @@
 	width: 100%;
 	height: 100%;
 	padding: $spacer;
-	gap: $spacer * 2;
+	gap: $spacer / 2 * 3;
 }
 
 .kc-color-picker-canvas-wrapper {
@@ -57,7 +61,7 @@
 		flex: 0 0 20px;
 		height: 100%;
 		border-radius: $border-radius-sm;
-		background: linear-gradient(top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+		background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
 
 		.kc-color-picker-hue-pointer {
 			position: absolute;
@@ -83,7 +87,7 @@
 		height: 100%;
 		border-radius: $border-radius-sm;
 		background: repeating-linear-gradient(#eee 0 5px, transparent 0 10px), repeating-linear-gradient(90deg, #eee 0 5px, transparent 0 10px);
-    background-blend-mode: screen;
+		background-blend-mode: screen;
 
 		span  {
 			display: flex;
@@ -133,6 +137,36 @@
 			}
 			
 			&.kc-color-picker-input-col-8 {
+				width: #{100% / 12 * 8};
+			}
+		}
+	}
+
+	.kc-color-picker-label-row {
+		display: flex;
+		flex-direction: row;
+		flex: 1 0 auto;
+		margin: 0 $spacer / -4;
+		margin-top: $spacer / 4;
+		margin-bottom: -($spacer / 2);
+
+		.kc-color-picker-label-col {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			padding: 0 $spacer / 4;
+
+			span {
+				display: flex;
+				color: $gray;
+				font-size: 12px;
+			}
+
+			&.kc-color-picker-label-col-4 {
+				width: #{100% / 12 * 4};
+			}
+			
+			&.kc-color-picker-label-col-8 {
 				width: #{100% / 12 * 8};
 			}
 		}
