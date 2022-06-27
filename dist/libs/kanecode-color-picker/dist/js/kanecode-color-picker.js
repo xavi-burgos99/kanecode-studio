@@ -16,7 +16,7 @@ class KCColorPicker {
 		this.#hue = 0;
 		this.#saturation = 100;
 		this.#lightness = 50;
-		this.#alpha = 1;
+		this.#alpha = 100;
 
 		this.#hex = '#ffffff';
 		this.#rgb = 'rgb(255,255,255)';
@@ -53,19 +53,19 @@ class KCColorPicker {
 					<div class="kc-color-picker-input-row">
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="255" step="1" value="255" name="kc-cp-red"/>
+								<input type="number" min="0" max="255" step="5" value="255" name="kc-color-picker-red"/>
 								<span>R</span>
 							</div>
 						</div>
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="255" step="1" value="255" name="kc-cp-green"/>
+								<input type="number" min="0" max="255" step="5" value="255" name="kc-color-picker-green"/>
 								<span>G</span>
 							</div>
 						</div>
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="255" step="1" value="255" name="kc-cp-blue"/>
+								<input type="number" min="0" max="255" step="5" value="255" name="kc-color-picker-blue"/>
 								<span>B</span>
 							</div>
 						</div>
@@ -78,19 +78,19 @@ class KCColorPicker {
 					<div class="kc-color-picker-input-row">
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="360" step="1" value="0" name="kc-cp-hue"/>
+								<input type="number" min="0" max="360" step="5" value="0" name="kc-color-picker-hue"/>
 								<span>H</span>
 							</div>
 						</div>
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="100" step="1" value="100" name="kc-cp-saturation"/>
+								<input type="number" min="0" max="100" step="2" value="100" name="kc-color-picker-saturation"/>
 								<span>S</span>
 							</div>
 						</div>
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="100" step="1" value="50" name="kc-cp-lightness"/>
+								<input type="number" min="0" max="100" step="2" value="50" name="kc-color-picker-lightness"/>
 								<span>L</span>
 							</div>
 						</div>
@@ -106,13 +106,13 @@ class KCColorPicker {
 					<div class="kc-color-picker-input-row">
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-8">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="360" step="1" value="0" name="kc-cp-hex"/>
+								<input type="text" value="FFFFFF" name="kc-color-picker-hex"/>
 								<span>#</span>
 							</div>
 						</div>
 						<div class="kc-color-picker-input-col kc-color-picker-input-col-4">
 							<div class="kc-color-picker-input">
-								<input type="number" min="0" max="360" step="1" value="0" name="kc-cp-alpha"/>
+								<input type="number" min="0" max="100" step="2" value="100" name="kc-color-picker-alpha"/>
 								<span>A</span>
 							</div>
 						</div>
@@ -136,6 +136,7 @@ class KCColorPicker {
 		const initCanvasPointer = (e) => {
 			e.preventDefault();
 			e.stopPropagation();
+			document.body.classList.add('kc-color-picker-dragging');
 			const coords = { x: null, y: null };
 			const percentage = { x: null, y: null };
 
@@ -190,6 +191,7 @@ class KCColorPicker {
 				this.#lightness = Math.round(hsl[2] * 100);
 				this.#hslToRgb();
 				this.refreshValues();
+				this.refreshInputs();
 
 				alphaBar.children[0].style.background = `linear-gradient(0, transparent 0%, ${this.rgb} 100%)`;
 			}
@@ -208,6 +210,7 @@ class KCColorPicker {
 			const drop = (e) => {
 				e.preventDefault();
 				e.stopPropagation();
+				document.body.classList.remove('kc-color-picker-dragging');
 				
 				setColor();
 
@@ -229,6 +232,7 @@ class KCColorPicker {
 		const initHueBar = (e) => {
 			e.preventDefault();
 			e.stopPropagation();
+			document.body.classList.add('kc-color-picker-dragging');
 			const coords = { y: null };
 			const percentage = { y: null };
 
@@ -273,6 +277,8 @@ class KCColorPicker {
 				this.#hue = Math.round(percentage.y * 360);
 				this.#hslToRgb();
 				this.refreshValues();
+				this.refreshInputs();
+				
 				canvas.style.background = `linear-gradient(180deg, transparent 0%, black 100%),linear-gradient(-90deg, transparent 0%, white 100%), hsl(${this.hue}, 100%, 50%)`;
 				alphaBar.children[0].style.background = `linear-gradient(to bottom, hsl(${this.hue},${this.saturation}%,${this.lightness}%), transparent 100%)`;
 			}
@@ -291,7 +297,10 @@ class KCColorPicker {
 			const drop = (e) => {
 				e.preventDefault();
 				e.stopPropagation();
+				document.body.classList.remove('kc-color-picker-dragging');
+
 				setColor();
+
 				document.removeEventListener('mousemove', drag);
 				document.removeEventListener('touchmove', drag);
 				document.removeEventListener('mouseup', drop);
@@ -320,6 +329,7 @@ class KCColorPicker {
 		const initAlphaBar = (e) => {
 			e.preventDefault();
 			e.stopPropagation();
+			document.body.classList.add('kc-color-picker-dragging');
 			const coords = { y: null };
 			const percentage = { y: null };
 
@@ -361,8 +371,9 @@ class KCColorPicker {
 			setAlphaBarPointer();
 
 			const setColor = () => {
-				this.#alpha = Math.round(percentage.y * 100);
+				this.#alpha = Math.round((1 - percentage.y) * 100);
 				this.refreshValues();
+				this.refreshInputs();
 			}
 
 			const drag = (e) => {
@@ -378,6 +389,7 @@ class KCColorPicker {
 			const drop = (e) => {
 				e.preventDefault();
 				e.stopPropagation();
+				document.body.classList.remove('kc-color-picker-dragging');
 
 				setColor();
 
@@ -406,32 +418,206 @@ class KCColorPicker {
 		alphaBar.addEventListener('mousewheel', alphaBarWheel);
 		alphaBar.addEventListener('DOMMouseScroll', alphaBarWheel);
 
-		const redInput = this.element.querySelector('input[type="number"]');
-	}
+		const inputR = this.element.querySelector('input[name="kc-color-picker-red"]');
+		const inputG = this.element.querySelector('input[name="kc-color-picker-green"]');
+		const inputB = this.element.querySelector('input[name="kc-color-picker-blue"]');
+		const inputH = this.element.querySelector('input[name="kc-color-picker-hue"]');
+		const inputS = this.element.querySelector('input[name="kc-color-picker-saturation"]');
+		const inputL = this.element.querySelector('input[name="kc-color-picker-lightness"]');
+		const inputA = this.element.querySelector('input[name="kc-color-picker-alpha"]');
+		const inputHex = this.element.querySelector('input[name="kc-color-picker-hex"]');
 
-	rgbToHsl(red, green, blue) {
-		const max = Math.max(red, green, blue);
-		const min = Math.min(red, green, blue);
-		const lightness = (max + min) / 2;
-		let hue = 0;
-		let saturation = 0;
-		if (max !== min) {
-			const d = max - min;
-			saturation = (lightness > 0.5 ? d / (2 - max - min) : d / (max + min));
-			switch (max) {
-				case red:
-					hue = (green - blue) / d + (green < blue ? 6 : 0);
+		this.element.querySelectorAll('input').forEach((input) => {
+			const type = input.type;
+			input.addEventListener('focus', (e) => {
+				input.oldValue = input.value;
+			});
+			switch (type) {
+				case 'text':
+					switch (input.name) {
+						case 'kc-color-picker-hex':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								let value = input.value;
+								value = value.toUpperCase();
+								input.value = value;
+								if (value.length > 8 || (!value.match(/^[0-9A-F]{0,8}$/) && value !== '')) {
+									input.value = input.oldValue;
+									return;
+								}
+								input.oldValue = value;
+								if (this.#identifyColorType(`#${value}`) !== 'hex')
+									return;
+								
+								this.#hex = value;
+								switch (value.length) {
+									case 3:
+										this.#red = this.#hexToDec(value.substr(0, 1) + value.substr(0, 1));
+										this.#green = this.#hexToDec(value.substr(1, 1) + value.substr(1, 1));
+										this.#blue = this.#hexToDec(value.substr(2, 1) + value.substr(2, 1));
+										this.#alpha = 100;
+										break;
+									case 4:
+										this.#red = this.#hexToDec(value.substr(0, 1) + value.substr(0, 1));
+										this.#green = this.#hexToDec(value.substr(1, 1) + value.substr(1, 1));
+										this.#blue = this.#hexToDec(value.substr(2, 1) + value.substr(2, 1));
+										this.#alpha = parseInt(this.#hexToDec(value.substr(3, 1) + value.substr(3, 1)) / 2.55);
+										break;
+									case 6:
+										this.#red = this.#hexToDec(value.substr(0, 2));
+										this.#green = this.#hexToDec(value.substr(2, 2));
+										this.#blue = this.#hexToDec(value.substr(4, 2));
+										this.#alpha = 100;
+										break;
+									case 8:
+										this.#red = this.#hexToDec(value.substr(0, 2));
+										this.#green = this.#hexToDec(value.substr(2, 2));
+										this.#blue = this.#hexToDec(value.substr(4, 2));
+										this.#alpha = parseInt(this.#hexToDec(value.substr(6, 2)) / 2.55);
+										break;
+								}
+								this.#rgbToHsl();
+								this.refreshValues();
+								this.refreshCanvas();
+								inputR.value = this.red;
+								inputG.value = this.green;
+								inputB.value = this.blue;
+								inputH.value = this.hue;
+								inputS.value = this.saturation;
+								inputL.value = this.lightness;
+								inputA.value = this.alpha;
+							});
+							break;
+					}
 					break;
-				case green:
-					hue = (blue - red) / d + 2;
-					break;
-				case this.blue:
-					hue = (red - green) / d + 4;
+
+				case 'number':
+					const min = input.min || 0;
+					const max = input.max || 1;
+					input.addEventListener('input', (e) => {
+						let value = parseInt(input.value);
+						if (isNaN(value))
+							value = min;
+						if (value < min)
+							value = min;
+						if (value > max)
+							value = max;
+						if (input.value !== value.toString())
+							input.value = value;
+					});
+					switch (input.name) {
+						case 'kc-color-picker-red':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								this.#red = parseInt(input.value);;
+								this.#rgbToHsl();
+								this.refreshValues();
+								this.refreshCanvas();
+								inputH.value = this.hue;
+								inputS.value = this.saturation;
+								inputL.value = this.lightness;
+								inputA.value = this.alpha;
+								inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
+							});
+							break;
+						case 'kc-color-picker-green':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								this.#green = parseInt(input.value);;
+								this.#rgbToHsl();
+								this.refreshValues();
+								this.refreshCanvas();
+								inputH.value = this.hue;
+								inputS.value = this.saturation;
+								inputL.value = this.lightness;
+								inputA.value = this.alpha;
+								inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
+							});
+							break;
+						case 'kc-color-picker-blue':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								this.#blue = parseInt(input.value);;
+								this.#rgbToHsl();
+								this.refreshValues();
+								this.refreshCanvas();
+								inputH.value = this.hue;
+								inputS.value = this.saturation;
+								inputL.value = this.lightness;
+								inputA.value = this.alpha;
+								inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
+							});
+							break;
+						case 'kc-color-picker-hue':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								this.#hue = parseInt(input.value);;
+								this.#hslToRgb();
+								this.refreshValues();
+								this.refreshCanvas();
+								inputR.value = this.red;
+								inputG.value = this.green;
+								inputB.value = this.blue;
+								inputA.value = this.alpha;
+								inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
+							});
+							break;
+						case 'kc-color-picker-saturation':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								this.#saturation = parseInt(input.value);;
+								this.#hslToRgb();
+								this.refreshValues();
+								this.refreshCanvas();
+								inputR.value = this.red;
+								inputG.value = this.green;
+								inputB.value = this.blue;
+								inputH.value = this.hue;
+								inputA.value = this.alpha;
+								inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
+							});
+							break;
+						case 'kc-color-picker-lightness':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								this.#lightness = parseInt(input.value);
+								this.#hslToRgb();
+								this.refreshValues();
+								this.refreshCanvas();
+								inputR.value = this.red;
+								inputG.value = this.green;
+								inputB.value = this.blue;
+								inputH.value = this.hue;
+								inputS.value = this.saturation;
+								inputA.value = this.alpha;
+								inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
+							});
+							break;
+						case 'kc-color-picker-alpha':
+							input.addEventListener('input', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								this.#alpha = parseInt(input.value);
+								this.refreshValues();
+								this.refreshCanvas();
+								inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
+							});
+							break;
+					}			
 					break;
 			}
-			hue /= 6;
-		}
-		return [Math.round(hue * 360), saturation, lightness];
+
+			input.addEventListener('focus', (e) => {
+				input.select();
+			});
+		});
 	}
 
 	hsvToHsl(hue, saturation, value) {
@@ -486,6 +672,26 @@ class KCColorPicker {
 		return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 	}
 
+	rgbToHsl(r, g, b) {
+		r /= 255;
+		g /= 255;
+		b /= 255;
+		const l = Math.max(r, g, b);
+		const s = l - Math.min(r, g, b);
+		const h = s
+			? l === r
+				? (g - b) / s
+				: l === g
+				? 2 + (b - r) / s
+				: 4 + (r - g) / s
+			: 0;
+		return [
+			60 * h < 0 ? 60 * h + 360 : 60 * h,
+			100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+			(100 * (2 * l - s)) / 2,
+		];
+	};
+
 	#hslToRgb() {
 		const rgb = this.hslToRgb(this.hue / 360, this.saturation / 100, this.lightness / 100);
 		this.#red = rgb[0];
@@ -495,9 +701,9 @@ class KCColorPicker {
 
 	#rgbToHsl() {
 		const hsl = this.rgbToHsl(this.red, this.green, this.blue);
-		this.#hue = hsl[0];
-		this.#saturation = Math.round(hsl[1] * 100);
-		this.#lightness = Math.round(hsl[2] * 100);
+		this.#hue = Math.round(hsl[0]);
+		this.#saturation = Math.round(hsl[1]);
+		this.#lightness = Math.round(hsl[2]);
 	}
 
 	init() {
@@ -506,20 +712,52 @@ class KCColorPicker {
 	}
 
 	refresh() {
+		this.refreshCanvas();
+		this.refreshInputs();
+	}
+
+	refreshCanvas() {
 		const canvas = this.element.querySelector('.kc-color-picker-canvas');
 		const canvasPointer = this.element.querySelector('.kc-color-picker-canvas-pointer');
 		const hueBarPointer = this.element.querySelector('.kc-color-picker-hue-pointer');
 		const alphaBar = this.element.querySelector('.kc-color-picker-alpha');
 		const alphaBarPointer = this.element.querySelector('.kc-color-picker-alpha-pointer');
 
-		const hsv = this.rgbToHsv(this.red, this.green, this.blue);
 		canvas.style.background = `linear-gradient(180deg, transparent 0%, black 100%), linear-gradient(-90deg, transparent 0%, white 100%), hsl(${this.hue}, 100%, 50%)`;
+		
+		// Canvas is represented by a square using hsv color space
+		// We need to position the pointer on the canvas based on the current color values (hue, saturation, lightness)
+		// We have only the values of saturation and lightness, in percentage
+
+		// x = sa
+		
+		// Now, x is represented by cursor position left, y is represented by cursor position top, using the commented results before.
 		canvasPointer.style.left = `${this.saturation}%`;
-		// Get top percentage of the pointer from lightness and value
-		canvasPointer.style.top = `${this.lightness * (100 - this.value) / 100}%`;
+		
+
 		hueBarPointer.style.top = `${this.hue / 3.60}%`;
 		alphaBar.children[0].style.background = `linear-gradient(to bottom, hsl(${this.hue},${this.saturation}%,${this.lightness}%), transparent 100%)`;
-		alphaBarPointer.style.top = `${(1 - this.alpha) * 100}%`;
+		alphaBarPointer.style.top = `${(100 - this.alpha)}%`;
+	}
+
+	refreshInputs() {
+		const inputR = this.element.querySelector('[name="kc-color-picker-red"]');
+		const inputG = this.element.querySelector('[name="kc-color-picker-green"]');
+		const inputB = this.element.querySelector('[name="kc-color-picker-blue"]');
+		const inputH = this.element.querySelector('[name="kc-color-picker-hue"]');
+		const inputS = this.element.querySelector('[name="kc-color-picker-saturation"]');
+		const inputL = this.element.querySelector('[name="kc-color-picker-lightness"]');
+		const inputA = this.element.querySelector('[name="kc-color-picker-alpha"]');
+		const inputHex = this.element.querySelector('[name="kc-color-picker-hex"]');
+
+		inputR.value = this.red;
+		inputG.value = this.green;
+		inputB.value = this.blue;
+		inputH.value = this.hue;
+		inputS.value = this.saturation;
+		inputL.value = this.lightness;
+		inputA.value = this.alpha;
+		inputHex.value = `${this.#decToHex(this.red)}${this.#decToHex(this.green)}${this.#decToHex(this.blue)}`;
 	}
 
 	refreshValues() {
@@ -544,7 +782,7 @@ class KCColorPicker {
 			return '00';
 		if (dec > 255)
 			return 'ff';
-		return dec.toString(16).padStart(2, '0');
+		return dec.toString(16).padStart(2, '0').toUpperCase();
 	}
 
 	#hexToDec(hex) {
@@ -556,7 +794,7 @@ class KCColorPicker {
 			return false;
 		if (color.startsWith('#')) {
 			color = color.substring(1);
-			if ([3, 6, 8].includes(color.length) && color.match(/^[0-9a-f]+$/i))
+			if ([3, 4, 6, 8].includes(color.length) && color.match(/^[0-9a-fA-F]+$/i))
 				return 'hex';
 		}
 		if (color.startsWith('rgb(') && color.endsWith(')')) {
@@ -837,9 +1075,9 @@ class KCColorPicker {
 	#hue = 0;
 	#saturation = 100;
 	#lightness = 50;
-	#alpha = 1;
+	#alpha = 100;
 
-	#hex = '#ffffff';
+	#hex = '#FFFFFF';
 	#rgb = 'rgb(255,255,255)';
 	#hsl = 'hsl(0,100%,50%)';
 	#rgba = 'rgba(255,255,255,1)';

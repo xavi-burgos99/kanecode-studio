@@ -40,6 +40,7 @@
 		border-radius: $border-radius-sm;
 
 		.kc-color-picker-canvas-pointer {
+			cursor: grab;
 			position: absolute;
 			display: flex;
 			flex-direction: column;
@@ -64,6 +65,7 @@
 		background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
 
 		.kc-color-picker-hue-pointer {
+			cursor: grab;
 			position: absolute;
 			display: flex;
 			flex-direction: column;
@@ -98,6 +100,7 @@
 		}
 
 		.kc-color-picker-alpha-pointer {
+			cursor: grab;
 			position: absolute;
 			display: flex;
 			flex-direction: column;
@@ -197,9 +200,17 @@
 		appearance: none;
 		padding: 0;
 		padding-left: 26px;
+		padding-right: 6px;
 		line-height: 1;
 		font-size: 14px;
 		height: $input-height;
+		//-moz-appearance: textfield;
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			//margin: 0;
+			//-webkit-appearance: none;
+		}
 	}
 
 	span {
@@ -208,5 +219,13 @@
 		font-size: 12px;
 		line-height: 1;
 		color: $gray;
+	}
+}
+
+body.kc-color-picker-dragging {
+	cursor: grabbing !important;
+
+	* {
+		cursor: grabbing !important;
 	}
 }
