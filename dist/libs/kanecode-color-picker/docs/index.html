@@ -41,6 +41,7 @@
 		<!-- KaneCode Studio files -->
 		<link id="kanecode-studio-stylesheet" rel="stylesheet" href="../dist/css/kanecode-color-picker.css">
 		<script src="../dist/js/kanecode-color-picker.js"></script>
+		<script src="../dist/js/kanecode-color.js"></script>
 		
   </head>
 
@@ -107,6 +108,12 @@
 					console.log(color);
 				}
 			});
+
+			var color = new KCColor('#004400');
+			console.log(color.rgb);
+			console.log(color.hsl);
+			console.log(color.hsv);
+
 		</script>
 
     <script src="libs/bootstrap.bundle.min.js"></script>
