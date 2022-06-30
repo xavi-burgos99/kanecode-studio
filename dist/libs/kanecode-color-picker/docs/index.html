@@ -103,17 +103,14 @@
 
 		<script>
 			var colorPicker = new KCColorPicker(document.querySelector('.color-picker'), {
-				color: '#ff0000',
+				default: '#fc0',
 				onChange: (color) => {
 					console.log(color);
-				}
+				},
+				samples: {
+					colors: ['#0af', '#fc0', '#0f0', '#f00'],
+				},
 			});
-
-			var color = new KCColor('#004400');
-			console.log(color.rgb);
-			console.log(color.hsl);
-			console.log(color.hsv);
-
 		</script>
 
     <script src="libs/bootstrap.bundle.min.js"></script>

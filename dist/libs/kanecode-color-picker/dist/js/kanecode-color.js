@@ -45,7 +45,7 @@ class KCColor {
 	}
 
 	get hsva() {
-		return `hsva(${this.h}, ${this.s}, ${this.v}, ${this.a})`;
+		return `hsva(${this.h}, ${this.s}%, ${this.v}%, ${this.a})`;
 	}
 
 	set rgb(color) {
@@ -126,11 +126,10 @@ class KCColor {
 	}
 
 	get hex() {
-		return `#${this.r.toString(16).padStart(2, '0')}${this.g.toString(16).padStart(2, '0')}${this.b.toString(16).padStart(2, '0')}`;
+		return `#${parseInt(this.r).toString(16).padStart(2, '0')}${parseInt(this.g).toString(16).padStart(2, '0')}${parseInt(this.b).toString(16).padStart(2, '0')}`;
 	}
 
 	set color(color) {
-		console.log(color);
 		switch (this.getColorType(color)) {
 			case 'hex': this.hex = color; break;
 			case 'rgb': this.rgb = color; break;
@@ -164,7 +163,7 @@ class KCColor {
 	set red(value) {
 		if (typeof value !== 'number')
 			throw new Error('Invalid red value');
-		if (value < 0 || value > 255 || value % 1 !== 0)
+		if (value < 0 || value > 255)
 			throw new Error('Invalid red value');
 		this.#r = value;
 		this.#rgbToHsl();
@@ -177,7 +176,7 @@ class KCColor {
 	set green(value) {
 		if (typeof value !== 'number')
 			throw new Error('Invalid green value');
-		if (value < 0 || value > 255 || value % 1 !== 0)
+		if (value < 0 || value > 255)
 			throw new Error('Invalid green value');
 		this.#g = value;
 		this.#rgbToHsl();
@@ -190,7 +189,7 @@ class KCColor {
 	set blue(value) {
 		if (typeof value !== 'number')
 			throw new Error('Invalid blue value');
-		if (value < 0 || value > 255 || value % 1 !== 0)
+		if (value < 0 || value > 255)
 			throw new Error('Invalid blue value');
 		this.#b = value;
 		this.#rgbToHsl();
@@ -203,7 +202,7 @@ class KCColor {
 	set hue(value) {
 		if (typeof value !== 'number')
 			throw new Error('Invalid hue value');
-		if (value < 0 || value > 360 || value % 1 !== 0)
+		if (value < 0 || value > 360)
 			throw new Error('Invalid hue value');
 		this.#h = value;
 		this.#hsvToRgb();
@@ -215,7 +214,7 @@ class KCColor {
 	set saturation(value) {
 		if (typeof value !== 'number')
 			throw new Error('Invalid saturation value');
-		if (value < 0 || value > 100 || value % 1 !== 0)
+		if (value < 0 || value > 100)
 			throw new Error('Invalid saturation value');
 		this.#s = value;
 		this.#hsvToRgb();
@@ -228,11 +227,11 @@ class KCColor {
 	set value(value) {
 		if (typeof value !== 'number')
 			throw new Error('Invalid value value');
-		if (value < 0 || value > 100 || value % 1 !== 0)
+		if (value < 0 || value > 100)
 			throw new Error('Invalid value value');
 		this.#v = value;
 		this.#hsvToRgb();
-		this.#rgbToHsl();
+		this.#hsvToHsl();
 	}
 	get value() { return this.#v; }
 	set v(value) { this.value = value; }
@@ -241,11 +240,11 @@ class KCColor {
 	set lightness(value) {
 		if (typeof value !== 'number')
 			throw new Error('Invalid lightness value');
-		if (value < 0 || value > 100 || value % 1 !== 0)
+		if (value < 0 || value > 100)
 			throw new Error('Invalid lightness value');
 		this.#l = value;
 		this.#hslToRgb();
-		this.#rgbToHsv();
+		this.#hslToHsv();
 	}
 	get lightness() { return this.#l; }
 	set l(value) { this.lightness = value; }
@@ -270,7 +269,7 @@ class KCColor {
 		for (const key in rgb) {
 			if (typeof rgb[key] !== 'number')
 				throw new Error('Invalid RGB value');
-			if (rgb[key] < 0 || rgb[key] > 255 || rgb[key] % 1 !== 0)
+			if (rgb[key] < 0 || rgb[key] > 255)
 				throw new Error('Invalid RGB value');
 		}
 
@@ -280,15 +279,8 @@ class KCColor {
 		b /= 255;
 		const l = Math.max(r, g, b);
 		const s = l - Math.min(r, g, b);
-		const h = s
-			? l === r
-				? (g - b) / s
-				: l === g
-				? 2 + (b - r) / s
-				: 4 + (r - g) / s
-			: 0;
-		
-		hsl.h = parseInt(60 * h < 0 ? 60 * h + 360 : 60 * h);
+		const h = s ? l === r ? (g - b) / s : l === g ? 2 + (b - r) / s : 4 + (r - g) / s : 0;
+		hsl.h = 60 * h < 0 ? 60 * h + 360 : 60 * h;
 		hsl.s = 100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0);
 		hsl.l = (100 * (2 * l - s)) / 2;
 		return hsl;
@@ -309,9 +301,9 @@ class KCColor {
 		const rgb = { r: 0, g: 0, b: 0 };
 
 		// Catch invalid HSL values
-		if (typeof h !== 'number')
-				throw new Error('Invalid HSL value');
-		if (h < 0 || h > 360 || h % 1 !== 0)
+		if (typeof hsl.h !== 'number')
+			throw new Error('Invalid HSL value');
+		if (hsl.h < 0 || hsl.h > 360)
 			throw new Error('Invalid HSL value');
 		for (const key in hsl) {
 			if (key === 'h')
@@ -321,19 +313,18 @@ class KCColor {
 			if (hsl[key] < 0 || hsl[key] > 100)
 				throw new Error('Invalid HSL value');
 		}
-
+		
 		// Convert HSL to RGB
 		s /= 100;
 		l /= 100;
 		const k = n => (n + h / 30) % 12;
 		const a = s * Math.min(l, 1 - l);
 		const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-
-		rgb.r = Math.round(f(0) * 255);
-		rgb.g = Math.round(f(8) * 255);
-		rgb.b = Math.round(f(4) * 255);
+		rgb.r = 255 * f(0);
+		rgb.g = 255 * f(8);
+		rgb.b = 255 * f(4);
 		return rgb;
-	}
+	};
 
 	/**
 	 * Converts RGB (Red, Green, Blue) to HSV (Hue, Saturation, Value)
@@ -353,7 +344,7 @@ class KCColor {
 		for (const key in rgb) {
 			if (typeof rgb[key] !== 'number')
 				throw new Error('Invalid RGB value');
-			if (rgb[key] < 0 || rgb[key] > 255 || rgb[key] % 1 !== 0)
+			if (rgb[key] < 0 || rgb[key] > 255)
 				throw new Error('Invalid RGB value');
 		}
 
@@ -361,13 +352,12 @@ class KCColor {
 		r /= 255;
 		g /= 255;
 		b /= 255;
-		const v = Math.max(r, g, b),
-    n = v - Math.min(r, g, b);
+		const v = Math.max(r, g, b);
+		const n = v - Math.min(r, g, b);
 		const h = n === 0 ? 0 : n && v === r ? (g - b) / n : v === g ? 2 + (b - r) / n : 4 + (r - g) / n;
-
-		hsv.h = Math.round(60 * (h < 0 ? h + 6 : h));
-		hsv.s = Math.round(v && (n / v) * 100);
-		hsv.v = Math.round(v * 100);
+		hsv.h = 60 * (h < 0 ? h + 6 : h);
+		hsv.s = v && (n / v) * 100;
+		hsv.v = v * 100;
 		return hsv;
 	}
 
@@ -386,9 +376,9 @@ class KCColor {
 		const rgb = { r: 0, g: 0, b: 0 };
 
 		// Catch invalid HSV values
-		if (typeof h !== 'number')
-				throw new Error('Invalid HSV value');
-		if (h < 0 || h > 360 || h % 1 !== 0)
+		if (typeof hsv.h !== 'number')
+			throw new Error('Invalid HSV value');
+		if (hsv.h < 0 || hsv.h > 360)
 			throw new Error('Invalid HSV value');
 		for (const key in hsv) {
 			if (key === 'h')
@@ -398,16 +388,15 @@ class KCColor {
 			if (hsv[key] < 0 || hsv[key] > 100)
 				throw new Error('Invalid HSV value');
 		}
-
+		
 		// Convert HSV to RGB
 		s /= 100;
 		v /= 100;
 		const k = (n) => (n + h / 60) % 6;
 		const f = (n) => v * (1 - s * Math.max(0, Math.min(k(n), 4 - k(n), 1)));
-
-		rgb.r = Math.round(f(5) * 255);
-		rgb.g = Math.round(f(3) * 255);
-		rgb.b = Math.round(f(1) * 255);
+		rgb.r = 255 * f(5);
+		rgb.g = 255 * f(3);
+		rgb.b = 255 * f(1);
 		return rgb;
 	}
 
@@ -422,25 +411,9 @@ class KCColor {
 	 * console.log(hsv); // { h: 0, s: 100, v: 50 }
 	 */
 	hslToHsv(h, s, l) {
-		const hsl = { h: h, s: s, l: l };
-
-		// Catch invalid HSL values
-		if (typeof h !== 'number')
-				throw new Error('Invalid HSL value');
-		if (h < 0 || h > 360 || h % 1 !== 0)
-			throw new Error('Invalid HSL value');
-		for (const key in hsl) {
-			if (key === 'h')
-				continue;
-			if (typeof hsl[key] !== 'number')
-				throw new Error('Invalid HSL value');
-			if (hsl[key] < 0 || hsl[key] > 100)
-				throw new Error('Invalid HSL value');
-		}
-
-		// Convert HSL to HSV
 		const rgb = this.hslToRgb(h, s, l);
-		return this.rgbToHsv(rgb.r, rgb.g, rgb.b);
+		const hsv = this.rgbToHsv(rgb.r, rgb.g, rgb.b);
+		return { h: h, s: hsv.s, v: hsv.v };
 	}
 
 	/**
@@ -454,25 +427,9 @@ class KCColor {
 	 * console.log(hsl); // { h: 0, s: 100, l: 50 }
 	 */
 	hsvToHsl(h, s, v) {
-		const hsv = { h: h, s: s, v: v };
-
-		// Catch invalid HSV values
-		if (typeof h !== 'number')
-				throw new Error('Invalid HSV value');
-		if (h < 0 || h > 360 || h % 1 !== 0)
-			throw new Error('Invalid HSV value');
-		for (const key in hsv) {
-			if (key === 'h')
-				continue;
-			if (typeof hsv[key] !== 'number')
-				throw new Error('Invalid HSV value');
-			if (hsv[key] < 0 || hsv[key] > 100)
-				throw new Error('Invalid HSV value');
-		}
-
-		// Convert HSV to HSL
 		const rgb = this.hsvToRgb(h, s, v);
-		return this.rgbToHsl(rgb.r, rgb.g, rgb.b);
+		const hsl = this.rgbToHsl(rgb.r, rgb.g, rgb.b);
+		return { h: h, s: s, l: hsl.l };
 	}
 
 	getColorType(color) {
@@ -521,9 +478,9 @@ class KCColor {
 		if (parts.length !== 3)
 			return false;
 		for (let i = 0; i < parts.length; i++) {
-			if (!parts[i].match(/^\d+$/))
+			if (!parts[i].trim().match(/^[0-9.]+$/))
 				return false;
-			if (parseInt(parts[i]) < 0 || parseInt(parts[i]) > 255)
+			if (isNaN(parts[i]) || parseFloat(parts[i]) < 0 || parseFloat(parts[i]) > 255)
 				return false;
 		}
 		return true;
@@ -542,12 +499,12 @@ class KCColor {
 		const parts = color.split(',');
 		if (parts.length !== 4)
 			return false;
-		for (let i = 0; i < parts.length - 1; i++) {
-			if (!parts[i].match(/^\d+$/))
-				return false;
-			if (parseInt(parts[i]) < 0 || parseInt(parts[i]) > 255)
-				return false;
-		}
+			for (let i = 0; i < parts.length - 1; i++) {
+				if (!parts[i].trim().match(/^[0-9.]+$/))
+					return false;
+				if (isNaN(parts[i]) || parseFloat(parts[i]) < 0 || parseFloat(parts[i]) > 255)
+					return false;
+			}
 		if (isNaN(parseFloat(parts[3])) || parseFloat(parts[3]) < 0 || parseFloat(parts[3]) > 1)
 			return false;
 		return true;
@@ -566,15 +523,15 @@ class KCColor {
 		const parts = color.split(',');
 		if (parts.length !== 3)
 			return false;
-		if (!parts[0].match(/^\d+$/))
+		if (!parts[0].trim().match(/^[0-9.]+$/))
 			return false;
-		if (parseInt(parts[0]) < 0 || parseInt(parts[0]) > 360)
+		if (isNaN(parts[0]) || parseFloat(parts[0]) < 0 || parseFloat(parts[0]) > 360)
 			return false;
 		for (let i = 1; i < parts.length; i++) {
-			if (!parts[i].match(/^\d+%$/))
+			if (!parts[i].trim().match(/^[0-9.]+%$/))
 				return false;
 			parts[i] = parts[i].substring(0, parts[i].length - 1);
-			if (parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
+			if (isNaN(parts[i]) || parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
 				return false;
 		}
 		return true;
@@ -593,15 +550,15 @@ class KCColor {
 		const parts = color.split(',');
 		if (parts.length !== 4)
 			return false;
-		if (!parts[0].match(/^\d+$/))
+		if (!parts[0].trim().match(/^[0-9.]+$/))
 			return false;
-		if (parseInt(parts[0]) < 0 || parseInt(parts[0]) > 360)
+		if (isNaN(parts[0]) || parseInt(parts[0]) < 0 || parseInt(parts[0]) > 360)
 			return false;
 		for (let i = 1; i < parts.length - 1; i++) {
-			if (!parts[i].match(/^\d+%$/))
+			if (!parts[i].trim().match(/^[0-9.]+%$/))
 				return false;
 			parts[i] = parts[i].substring(0, parts[i].length - 1);
-			if (parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
+			if (isNaN(parts[i]) || parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
 				return false;
 		}
 		if (isNaN(parseFloat(parts[3])) || parseFloat(parts[3]) < 0 || parseFloat(parts[3]) > 1)
@@ -622,15 +579,15 @@ class KCColor {
 		const parts = color.split(',');
 		if (parts.length !== 3)
 			return false;
-		if (!parts[0].match(/^\d+$/))
+		if (!parts[0].trim().match(/^[0-9.]+$/))
 			return false;
-		if (parseInt(parts[0]) < 0 || parseInt(parts[0]) > 360)
+		if (isNaN(parts[0]) || parseInt(parts[0]) < 0 || parseInt(parts[0]) > 360)
 			return false;
 		for (let i = 1; i < parts.length; i++) {
-			if (!parts[i].match(/^\d+%$/))
+			if (!parts[i].trim().match(/^[0-9.]+%$/))
 				return false;
 			parts[i] = parts[i].substring(0, parts[i].length - 1);
-			if (parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
+			if (isNaN(parts[i]) || parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
 				return false;
 		}
 		return true;
@@ -649,15 +606,15 @@ class KCColor {
 		const parts = color.split(',');
 		if (parts.length !== 4)
 			return false;
-		if (!parts[0].match(/^\d+$/))
+		if (!parts[0].trim().match(/^[0-9.]+$/))
 			return false;
-		if (parseInt(parts[0]) < 0 || parseInt(parts[0]) > 360)
+		if (isNaN(parts[0]) || parseInt(parts[0]) < 0 || parseInt(parts[0]) > 360)
 			return false;
 		for (let i = 1; i < parts.length - 1; i++) {
-			if (!parts[i].match(/^\d+%$/))
+			if (!parts[i].trim().match(/^[0-9.]+%$/))
 				return false;
 			parts[i] = parts[i].substring(0, parts[i].length - 1);
-			if (parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
+			if (isNaN(parts[i]) || parseInt(parts[i]) < 0 || parseInt(parts[i]) > 100)
 				return false;
 		}
 		if (isNaN(parseFloat(parts[3])) || parseFloat(parts[3]) < 0 || parseFloat(parts[3]) > 1)

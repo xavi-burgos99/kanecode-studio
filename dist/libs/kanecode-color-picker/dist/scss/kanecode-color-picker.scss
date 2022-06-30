@@ -31,7 +31,7 @@
 	width: 100%;
 	gap: $spacer;
 
-	.kc-color-picker-canvas {
+	.kc-color-picker-map {
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -39,7 +39,7 @@
 		height: 100%;
 		border-radius: $border-radius-sm;
 
-		.kc-color-picker-canvas-pointer {
+		.kc-color-picker-map-pointer {
 			cursor: grab;
 			position: absolute;
 			display: flex;
@@ -173,6 +173,27 @@
 				width: #{100% / 12 * 8};
 			}
 		}
+	}
+}
+
+.kc-color-picker-samples-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+	grid-gap: $spacer;
+	width: 100%;
+	gap: $spacer;
+
+	.kc-color-picker-sample {
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		border-radius: $border-radius-sm;
+		background: $background;
+		border: 2px solid rgba($background, .75);
+		box-shadow: $box-shadow;
+		aspect-ratio: 1;
 	}
 }
 
