@@ -178,10 +178,10 @@
 
 .kc-color-picker-samples-wrapper {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
-	grid-gap: $spacer;
+	grid-template-columns: repeat(auto-fit, minmax(24px, 32px));
+	grid-gap: $spacer / 2;
 	width: 100%;
-	gap: $spacer;
+	gap: $spacer / 2;
 
 	.kc-color-picker-sample {
 		cursor: pointer;
@@ -190,10 +190,49 @@
 		width: 100%;
 		height: 100%;
 		border-radius: $border-radius-sm;
-		background: $background;
-		border: 2px solid rgba($background, .75);
-		box-shadow: $box-shadow;
+		background: $input-background;
+		padding: $border-width;
 		aspect-ratio: 1;
+
+		.kc-color-picker-sample-color {
+			display: flex;
+			width: 100%;
+			height: 100%;
+			border-radius: $border-radius-sm - $border-width;
+		}
+	}
+
+	.kc-color-picker-sample-add {
+		position: relative;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		border-radius: $border-radius-sm;
+		padding: $border-width;
+		aspect-ratio: 1;
+		&::after,
+		&::before {
+			content: '';
+			position: absolute;
+			display: flex;
+			border-radius: 2px;
+			background: $gray;
+		}
+		&::after {
+			width: 18px;
+			height: 4px;
+		}
+		&::before {
+			width: 4px;
+			height: 18px;
+		}
+		&:hover {
+			background: $input-background;
+		}
 	}
 }
 

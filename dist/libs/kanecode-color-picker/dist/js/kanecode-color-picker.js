@@ -11,8 +11,16 @@ class KCColorPicker {
 			default: undefined,
 			samples: {
 				enabled: true,
-				colors: [],
+				colors: ['#FFF', '#CCC', '#888', '#444', '#000', '#F42', '#F82', '#FD2', '#8D2', '#2A0', '#06F', '#0CF', '#0EE', '#F6E', '#A0C', '#70D'],
 				max: 16,
+			},
+			inputs: {
+				alpha: true,
+				enabled: true,
+				hex: true,
+				hsl: false,
+				hsv: false,
+				rgb: true,
 			},
 		};
 
@@ -22,17 +30,31 @@ class KCColorPicker {
 			this.#options.default = options.default;
 		if (typeof options.samples?.enabled === 'boolean')
 			this.#options.samples.enabled = options.samples.enabled;
-		if (Array.isArray(options.samples?.colors))
+		if (Array.isArray(options.samples?.colors)) {
+			this.#options.samples.colors = [];
 			options.samples.colors.forEach(sample => {
 				if (this.kcc.getColorType(sample))
 					this.#options.samples.colors.push(sample);
 			});
+		}
 		if (typeof options.samples?.max === 'number')
 			this.#options.samples.max = (options.samples.max > 0) ? options.samples.max : 16;
 		if (typeof options.onChange === 'function')
 			this.#options.onChange = options.onchange;
 		else if (typeof options.onchange === 'function')
 			this.#options.onChange = options.onchange;
+		if (typeof options.inputs?.alpha === 'boolean')
+			this.#options.inputs.alpha = options.inputs.alpha;
+		if (typeof options.inputs?.enabled === 'boolean')
+			this.#options.inputs.enabled = options.inputs.enabled;
+		if (typeof options.inputs?.hex === 'boolean')
+			this.#options.inputs.hex = options.inputs.hex;
+		if (typeof options.inputs?.hsl === 'boolean')
+			this.#options.inputs.hsl = options.inputs.hsl;
+		if (typeof options.inputs?.hsv === 'boolean')
+			this.#options.inputs.hsv = options.inputs.hsv;
+		if (typeof options.inputs?.rgb === 'boolean')
+			this.#options.inputs.rgb = options.inputs.rgb;
 		
 		// Todo: add more options validation
 
@@ -50,18 +72,25 @@ class KCColorPicker {
 			this.samples.splice(this.samples.indexOf(color), 1);
 			this.#samplesWrapper.querySelector(`[data-color="${color}"]`).remove();
 		}
-		if (this.samples.length >= this.options.samples.max)
-			return false;
+		if (this.samples.length >= this.options.samples.max) {
+			this.#samplesWrapper.querySelector(`[data-color="${this.samples[0]}"]`).remove();
+			this.samples.shift();
+		}
 		this.samples.push(color);
 		const sample = document.createElement('div');
 		sample.classList.add('kc-color-picker-sample');
 		sample.dataset.color = color;
-		sample.style.backgroundColor = color;
-		this.#samplesWrapper.append(sample);
+		sample.innerHTML = `<div class="kc-color-picker-sample-color"</div>`;
+		sample.children[0].style.backgroundColor = color;
+		
+		const addBtn = this.#samplesWrapper.querySelector('.kc-color-picker-sample-add');
+		if (addBtn)
+			addBtn.before(sample);
+		else
+			this.#samplesWrapper.append(sample);
 
 		sample.addEventListener('click', () => {
-			this.kcc.color = color;
-			this.refresh();
+			this.color = color;
 		});
 		return color;
 	}
@@ -183,7 +212,9 @@ class KCColorPicker {
 						</div>
 					</div>
 				</div>
-				<div class="kc-color-picker-samples-wrapper"></div>
+				<div class="kc-color-picker-samples-wrapper">
+					<div class="kc-color-picker-sample-add">
+				</div>
 			</div>`;
 
 		this.#inputs = {};
@@ -210,6 +241,7 @@ class KCColorPicker {
 		this.#pointers.alphaBar = this.element.querySelector('.kc-color-picker-alpha-pointer');
 
 		this.#samplesWrapper = this.element.querySelector('.kc-color-picker-samples-wrapper');
+		this.#samplesWrapper.children[0].addEventListener('click', () => { this.addSample(this.kcc.hex); });
 		
 		this.refresh();
 
@@ -399,6 +431,37 @@ class KCColorPicker {
 				this.kcc.color = this.options.default;
 		}
 		this.create();
+
+		if (!this.options.inputs.enabled)
+			this.inputs.r.parentElement.parentElement.parentElement.parentElement.remove();
+		else {
+			if (!this.options.inputs.rgb) {
+				this.inputs.r.parentElement.parentElement.parentElement.previousElementSibling.remove();
+				this.inputs.r.parentElement.parentElement.parentElement.remove();
+			}
+			if (!this.options.inputs.hsl) {
+				this.inputs.l.parentElement.parentElement.parentElement.previousElementSibling.remove();
+				this.inputs.l.parentElement.parentElement.parentElement.remove();
+			}
+			if (!this.options.inputs.hsv) {
+				this.inputs.v.parentElement.parentElement.parentElement.previousElementSibling.remove();
+				this.inputs.v.parentElement.parentElement.parentElement.remove();
+			}
+			if (!this.options.inputs.hex && !this.options.inputs.a) {
+				this.inputs.hex.parentElement.parentElement.parentElement.previousElementSibling.remove();
+				this.inputs.hex.parentElement.parentElement.parentElement.remove();
+			} else {
+				if (!this.options.inputs.hex) {
+					this.inputs.hex.parentElement.parentElement.parentElement.previousElementSibling.children[0].remove();
+					this.inputs.hex.parentElement.parentElement.remove();
+				}
+				if (!this.options.inputs.alpha) {
+					this.inputs.a.parentElement.parentElement.parentElement.previousElementSibling.children[1].remove();
+					this.inputs.a.parentElement.parentElement.remove();
+				}
+			}
+		}
+
 		this.render();
 
 		this.#options.samples.colors.forEach((sample) => {
@@ -490,7 +553,11 @@ class KCColorPicker {
 		this.target.append(this.element);
 		return true;
 	}
-	
+	set color(color) {
+		this.kcc.color = color;
+		this.refresh();
+	}
+
 	get element() { return this.#element; }
 	get inputs() { return this.#inputs; }
 	get kcc() { return this.#kcc; }
