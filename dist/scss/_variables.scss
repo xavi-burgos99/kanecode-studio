@@ -19,7 +19,7 @@ $background2: $white !default;
 
 /* Border */
 $border-width: 1px !default;
-$border-color: #f4f4f4 !default;
+$border-color: #f0f0f0 !default;
 
 $border-radius: 6px;
 $border-radius-sm: 3px;
@@ -110,36 +110,13 @@ $segmented2-border-width: 0;
 
 
 /* Dropdowns */
-$dropdown1-color: #777 !default;
-$dropdown1-color-on: $primary !default;
-$dropdown1-color-hover: $dropdown1-color !default;
-$dropdown1-color-active: $dropdown1-color !default;
-$dropdown1-shadow: none;
-$dropdown1-shadow-on: none;
-$dropdown1-shadow-hover: none;
-$dropdown1-shadow-active: none;
+$dropdown1-color: #aaa !default;
+$dropdown1-border-width: 1px !default;
 $dropdown1-border-color: $border-color !default;
-$dropdown1-border-color-on: $dropdown1-border-color !default;
-$dropdown1-border-color-hover: #d5d5d5 !default;
-$dropdown1-border-color-active: #d5d5d5 !default;
-$dropdown1-background: #f6f6f6 !default;
-$dropdown1-background-on: $dropdown1-background !default;
-$dropdown1-background-hover: $dropdown1-background !default;
-$dropdown1-background-active: $dropdown1-border-color !default;
-$dropdown1-border-radius: $border-radius !default;
-$dropdown1-border-radius-sm: $border-radius-sm !default;
-$dropdown1-border-radius-lg: $border-radius-lg !default;
-$dropdown1-border-width: 1px;
-
-$dropdown2-color: #bbb !default;
-$dropdown2-color-on: #aaa !default;
-$dropdown2-shadow: none;
-$dropdown2-shadow-on: none;
-$dropdown2-border-color: #ddd !default;
-$dropdown2-border-color-on: #999 !default;
-$dropdown2-background: transparent !default;
-$dropdown2-background-on: transparent !default;
-$dropdown2-border-width: 0;
+$dropdown1-button-background: transparent !default;
+$dropdown1-button-color: #aaa !default;
+$dropdown1-hover-button-background: rgba($body, .05) !default;
+$dropdown1-hover-button-color: #444 !default;
 
 
 /* Separator */
@@ -158,18 +135,10 @@ $checkbox-label-color: #444 !default;
 $checkbox-label-color-checked: #444 !default;
 
 
-/* Checkbox input */
-$switch-background: rgba($body, .05) !default;
-$switch-background-hover: rgba($body, .1) !default;
-$switch-background-checked: rgba($primary, .15) !default;
-$switch-background-checked-hover: rgba($primary, .25) !default;
-$switch-color: #888 !default;
-$switch-color-checked: $primary !default;
-$switch-label-color: #444 !default;
-$switch-label-color-checked: #444 !default;
-
-
 /* Input input */
+$input-label-color: #444 !default;
+$input-label-size: 12px !default;
+
 $input-background: rgba($body, .04) !default;
 $input-background-hover: rgba($body, .08) !default;
 $input-background-active: $input-background-hover !default;
@@ -181,6 +150,16 @@ $input-shadow-active: none;
 $input-height: 30px !default;
 $input-padding-x: $spacer / 2 !default;
 $input-padding-y: 0 !default;
+
+
+/* Switch input */
+$switch-label-color: $input-label-color !default;
+$switch-label-size: $input-label-size !default;
+$switch-circle-background: #fff !default;
+$switch-background: #999 !default;
+$switch-hover-background: #777 !default;
+$switch-on-background: $primary !default;
+$switch-on-hover-background: $primary !default;
 
 
 /* Select input */

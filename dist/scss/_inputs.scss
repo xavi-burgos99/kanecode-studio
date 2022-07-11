@@ -4,13 +4,13 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex: 1 0 auto;
-	padding: 0 $spacer / 4;
+	padding: 0;
 	margin-bottom: $spacer;
 	line-height: 1;
 	.kanecode-studio-inspector-input-label {
 		margin-bottom: $spacer / 2;
-		color: $gray;
-		font-size: 14px;
+		color: $input-label-color;
+		font-size: $input-label-size;
 	}
 	.kanecode-studio-inspector-input-body {
 		display: flex;
@@ -42,9 +42,9 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			flex: 0 0 36px;
-			width: 36px;
-			height: 18px;
+			flex: 0 0 26px;
+			width: 26px;
+			height: 14px;
 			border-radius: 50px;
 			background: $switch-background;
 			font-size: 14px;
@@ -52,12 +52,13 @@
 				content: '';
 				position: absolute;
 				left: 0;
-				width: 12px;
-				height: 12px;
-				margin: 3px;
+				width: 10px;
+				height: 10px;
+				margin: 2px;
 				border-radius: 50px;
-				background: $switch-color;
-				transition: left .1s ease-in-out;
+				background: $switch-circle-background;
+				transition: .1s ease-in-out;
+				transition-property: left, width, opacity;
 			}
 		}
 		.label {
@@ -68,7 +69,7 @@
 			flex: 0 0 calc(100% - (36px + $spacer));
 			overflow: hidden;
 			white-space: nowrap;
-			font-size: 14px;
+			font-size: $switch-label-size;
 			color: $switch-label-color;
 			margin-right: $spacer;
 			span {
@@ -77,23 +78,39 @@
 				text-overflow: ellipsis;
 			}
 		}
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			.switch {
-				background: $switch-background-hover;
+				background: $switch-hover-background;
+			}
+		}
+		&:active {
+			.switch {
+				&:before {
+					width: 22px;
+					opacity: 0.75;
+				}
 			}
 		}
 	}
 	input[type="checkbox"]:checked + label {
 		.switch {
-			background: $switch-background-checked;
+			background: $switch-on-background;
 			&:before {
-				left: calc(100% - 18px);
-				background: $switch-color-checked;
+				left: calc(100% - 14px);
 			}
 		}
-		&:hover, &:focus {
+		&:hover,
+		&:focus {
 			.switch {
-				background: $switch-background-checked-hover;
+				background: $switch-on-hover-background;
+			}
+		}
+		&:active {
+			.switch {
+				&:before {
+					left: 0;
+				}
 			}
 		}
 	}
@@ -357,6 +374,21 @@
 		@include button2;
 		.ki-solid, .ki-regular, .ki-light, .ki-duotone {
 			font-size: 14px;
+		}
+	}
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="color"] {
+	.kcs-input-container {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		gap: $spacer / 2;
+
+		.preview {
+			display: flex;
+			flex-direction: row;
+			background: $input-background;
 		}
 	}
 }
