@@ -525,7 +525,7 @@ class KCStudio {
 
 					let sheetElement = this.document.body.querySelector('[data-kcs-styles]');
 					if (sheetElement === null || sheetElement?.tagName !== 'STYLE') {
-						if (typeof sheetElement.remove === 'function')
+						if (typeof sheetElement?.remove === 'function')
 							sheetElement.remove();
 						sheetElement = this.document.createElement('style');
 						sheetElement.setAttribute('data-kcs-styles', '');
@@ -2106,8 +2106,8 @@ class KCStudioInspector {
 		const inputsArray = [];
 		let inputsFailed = 0;
 		inputs.forEach((input) => {
-			if (input.type in KCSStudioInputTypes) {
-				input = new KCSStudioInputTypes[input.type](this.#studio, input.id, input.label, input.type, input.section, input.options);
+			if (input.type in KCStudioInputs) {
+				input = new KCStudioInputs[input.type](this.#studio, input.id, input.label, input.type, input.section, input.options);
 				inputsArray.push(input);
 				try {
 				} catch {
@@ -2448,7 +2448,7 @@ class KCStudioInspector {
 	};
 }
 
-class KCSStudioInput {
+class KCStudioInput {
 	constructor(studio, id, label, type, section, options = {}) {
 		this.#studio = studio;
 		this.#id = id;
@@ -2582,9 +2582,9 @@ class KCSStudioInput {
 	#value = null;
 }
 
-const KCSStudioInputTypes = {};
+const KCStudioInputs = {};
 
-KCSStudioInputTypes['switch'] = class extends KCSStudioInput {
+KCStudioInputs['switch'] = class extends KCStudioInput {
 	generator() {
 		super.generator({ label: false });
 		this.body.innerHTML = `
@@ -2613,7 +2613,7 @@ KCSStudioInputTypes['switch'] = class extends KCSStudioInput {
 	}
 }
 
-KCSStudioInputTypes['checkbox'] = class extends KCSStudioInput {
+KCStudioInputs['checkbox'] = class extends KCStudioInput {
 	generator() {
 		super.generator({ label: false });
 		this.body.innerHTML = `
@@ -2643,7 +2643,7 @@ KCSStudioInputTypes['checkbox'] = class extends KCSStudioInput {
 	}
 }
 
-KCSStudioInputTypes['width-height'] = class extends KCSStudioInput {
+KCStudioInputs['width-height'] = class extends KCStudioInput {
 	generator() {
 		super.generator();
 		this.body.innerHTML = `
@@ -2926,7 +2926,7 @@ KCSStudioInputTypes['width-height'] = class extends KCSStudioInput {
 	}
 }
 
-KCSStudioInputTypes['margin-padding'] = class extends KCSStudioInput {
+KCStudioInputs['margin-padding'] = class extends KCStudioInput {
 	generator() {
 		super.generator();
 		this.body.innerHTML = `

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>KaneCode Studio - Documentation</title>
+
+    <!-- Bootstrap core CSS -->
+		<link href="libs/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Prism.js -->
+		<link href="libs/prism.css" rel="stylesheet" />
+		
+    <style>
+			.bd-placeholder-img {
+				font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+			
+      @media (min-width: 768px) {
+				.bd-placeholder-img-lg {
+					font-size: 3.5rem;
+        }
+      }
+		</style>
+
+		<!-- Sandbox Console -->
+		<link href="libs/sandbox.css" rel="stylesheet" />
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/docs.css" rel="stylesheet">
+
+		<!-- KaneCode Studio files -->
+		<link id="kanecode-studio-stylesheet" rel="stylesheet" href="../dist/css/kanecode-studio.css">
+		<script src="../dist/js/kanecode-studio-utils.js"></script>
+		<script src="../dist/js/kanecode-studio-components.js"></script>
+		<script src="../dist/js/kanecode-studio.js"></script>
+
+		<script src="../dist/js/jss.js"></script>
+
+		<style>
+			.example-canvas {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				min-height: 200px;
+				padding: 14px;
+				padding-right: calc(100% - 314px);
+				border: 1px solid #ddd;
+			}
+		</style>
+  </head>
+  <body>
+    
+		<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+			<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="">KaneCode Studio</a>
+			<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+		</header>
+
+		<div class="container-fluid">
+			<div class="row">
+				<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+					<div class="d-flex flex-column justify-content-between h-100">
+						<div class="position-sticky pt-3">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link" href="index.html">
+										<span data-feather="home"></span>
+										Introduction
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="options.html">
+										<span data-feather="check-square"></span>
+										Options
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="methods.html">
+										<span data-feather="play"></span>
+										Methods
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active" href="playground.html" aria-current="page">
+										<span data-feather="flag"></span>
+										Playground
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="p-3">
+							<small class="text-muted">kanecode-studio v0.0.1</small>
+						</div>
+					</div>
+				</nav>
+
+				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+						<h1 class="m-0">Inputs</h1>
+					</div>
+					<p>KaneCode Studio uses a class (<code>KCStudioInput</code>) to generate the differents inputs.</p>
+
+					<div id="studio-disabled" style="display: none;"></div>
+
+					<h3 id="class" class="fw-bold" translate="no">KCStudioInput Class</h3>
+					<p>This class contains differents methods to configure any type of input with only a single piece of code (using a JSON object).</p>
+					<h6>Using JavaScript</h6>
+					<pre><code class="language-js" data-prismjs-copy="Copy">new KCStudioInput(studio, 1, 'My first input', 'text', 'general', {
+	placeholder: 'Example',
+	value: (studio) => studio.selected.id,
+	onChange: (studio, value) => { studio.selected.id = value }
+});</code></pre>
+					<br>
+					<h6>Using JSON</h6>
+					<pre><code class="language-js" data-prismjs-copy="Copy">{
+	label: {
+		"en-US": "My first input",
+		"es-ES": "Mi primer input"
+	},
+	placeholder: {
+		"en-US": "Example",
+		"es-ES": "Ejemplo",
+	},
+	type: "text",
+	order: 10,
+	section: "general",
+	value: (studio) => studio.selected.id,
+	onChange: (studio, value) => { studio.selected.id = value }
+}</code></pre>
+
+					<h4 id="options" class="fw-bold" translate="no">Options</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Option</th>
+								<th>Types</th>
+								<th>Default</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-nowrap"><code>placeholder</code></td>
+								<td class="text-nowrap"><code class="text-dark">string, number, function</code></td>
+								<td class="text-nowrap"><span class="text-muted">undefined</span></td>
+								<td>Placeholder of the input.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap"><code>value</code></td>
+								<td class="text-nowrap"><code class="text-dark">string, number, object, function</code></td>
+								<td class="text-nowrap"><span class="text-muted">undefined</span></td>
+								<td>Value of the input.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap"><code>onChange</code></td>
+								<td class="text-nowrap"><code class="text-dark">string, number, object, function</code></td>
+								<td class="text-nowrap"><span class="text-muted">undefined</span></td>
+								<td>Function to call when the value of the input changes. It accepts also the value of the input.</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<h4 id="methods" class="fw-bold" translate="no">Methods</h4>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Method</th>
+								<th>Modifiable</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-nowrap text-secondary">constructor(<code>studio</code>, <code>id</code>, <code>label</code>, <code>type</code>, <code>section</code>, <code>options</code>)</td>
+								<td class="text-nowrap">No</td>
+								<td>Constructor method.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">addTrigger(<code>element</code>, <code>eventType</code>)</td>
+								<td class="text-nowrap">No</td>
+								<td>Adds a event trigger to an input.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">checkValueFormat(<code>value</code>)</td>
+								<td class="text-nowrap">Yes</td>
+								<td>Checks if the value is correct. It accepts any type of value.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">generator(<code>options</code>)</td>
+								<td class="text-nowrap">Yes</td>
+								<td>Initializes the HTML input. Includes all the necessary elements and inputs to configure it and add the different triggers.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">elementToValue()</td>
+								<td class="text-nowrap">Yes</td>
+								<td>Stores the value obtained from the option <code>value</code> in a class variable.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">inputToValue()</td>
+								<td class="text-nowrap">Yes</td>
+								<td>Stores the value of the input in a class variable.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">refresh(<code>value</code>)</td>
+								<td class="text-nowrap">No</td>
+								<td>Refreshes the input. It accepts any type of value. If the checked value is not correct, the method will receive the value directly from the element (using the method <code>elementToValue()</code>).</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">trigger()</td>
+								<td class="text-nowrap">No</td>
+								<td>Triggers the option <code>onChange</code> if it is correct.</td>
+							</tr>
+							<tr>
+								<td class="text-nowrap">valueToInput()</td>
+								<td class="text-nowrap">Yes</td>
+								<td>Specifies the value of the input. It accepts any type of value, even if it is a function.</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3 id="types" class="fw-bold" translate="no">Input types</h3>
+					<h4>Text</h4>
+					This input type is used to enter text. The value format is of type <code>string</code>.
+					<h6>Example</h6>
+					<div class="example-canvas">
+						<div id="text-example"></div>
+					</div>
+					<h4>Switch</h4>
+					This input type is used to switch between two values. The value format is of type <code>boolean</code> and it returns <code>true</code> or <code>false</code>.
+					<h6>Example</h6>
+					<div class="example-canvas">
+						<div id="switch-example"></div>
+					</div>
+
+				</main>
+			</div>
+		</div>
+
+		<script>
+			const studio = new KCStudio(document.getElementById('studio-disabled'));
+
+			//const text_input = new KCStudioInputs['text'](studio, 'text-input', 'Text input', 'text', 'general', {});
+			//document.getElementById('text-example').append(text_input.element);
+
+			const switch_input = new KCStudioInputs['switch'](studio, 'switch-input', 'Switch input', 'switch', 'general', {});
+			document.getElementById('switch-example').append(switch_input.element);
+		</script>
+
+    <script src="libs/bootstrap.bundle.min.js"></script>
+		<script src="libs/prism.js"></script>
+		
+		<script src="libs/underscore.min.js"></script>
+		<script src="libs/backbone.min.js"></script>
+		<script src="libs/backbone-localStorage.min.js"></script>
+		<script src="libs/jquery.min.js"></script>
+		<!-- <script src="libs/sandbox-console.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+		<script src="assets/docs.js"></script>
+  </body>
+</html>
