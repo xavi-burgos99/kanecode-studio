@@ -3146,3 +3146,224 @@ KCStudioInputs['margin-padding'] = class extends KCStudioInput {
 		return true;
 	}
 }
+
+KCSStudioInputTypes['color'] = class extends KCSStudioInput {
+	generator() {
+		super.generator();
+		this.body.innerHTML = `
+			<div class="kcs-input-container">
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-up')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-right')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-down')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<input type="number" />
+					<select>
+						<option value="px">px</option>
+						<option value="%">%</option>
+						<option value="vw">vw</option>
+						<option value="vh">vh</option>
+					</select>
+					<div class="kcs-input-icon">${this.studio.icon('ki-solid ki-angle-left')}</div>
+				</div>
+				<div class="kcs-input-group">
+					<button>${this.studio.icon('ki-duotone ki-lock')}</button>
+				</div>
+			</div>`;
+
+		const minMax = (e) => {
+			if (typeof this.options.min === 'number' && parseFloat(e.target.value) < this.options.min) {
+				e.stopPropagation();
+				e.target.value = this.options.min;
+			}
+			if (typeof this.options.max === 'number' && parseFloat(e.target.value) > this.options.max) {
+				e.stopPropagation();
+				e.target.value = this.options.max;
+			}
+		}
+		const checkValue = (e) => {
+			minMax(e);
+			const lock = this.body.children[0].children[4].children[0].classList.contains('active');
+			if (lock) {
+				const index = [...e.target.parentElement.parentElement.children].indexOf(e.target.parentElement);
+				const value = e.target.value;
+				const unit = e.target.nextElementSibling.value;
+				for (let i = 0; i < 4; i++) {
+					if (i !== index) {
+						this.body.children[0].children[i].children[0].value = value;
+						this.body.children[0].children[i].children[1].value = unit;
+					}
+				}
+			}
+			this.trigger();
+		}
+		this.body.children[0].children[0].children[0].addEventListener('input', checkValue);
+		this.body.children[0].children[1].children[0].addEventListener('input', checkValue);
+		this.body.children[0].children[2].children[0].addEventListener('input', checkValue);
+		this.body.children[0].children[3].children[0].addEventListener('input', checkValue);
+
+		const checkUnit = (e) => {
+			const lock = this.body.children[0].children[4].children[0].classList.contains('active');
+			if (lock) {
+				const index = [...e.target.parentElement.parentElement.children].indexOf(e.target.parentElement);
+				const value = e.target.previousElementSibling.value;
+				const unit = e.target.value;
+				for (let i = 0; i < 4; i++) {
+					if (i !== index) {
+						this.body.children[0].children[i].children[0].value = value;
+						this.body.children[0].children[i].children[1].value = unit;
+					}
+				}
+			}
+			this.trigger();
+		}
+		this.body.children[0].children[0].children[1].addEventListener('input', checkUnit);
+		this.body.children[0].children[1].children[1].addEventListener('input', checkUnit);
+		this.body.children[0].children[2].children[1].addEventListener('input', checkUnit);
+		this.body.children[0].children[3].children[1].addEventListener('input', checkUnit);
+
+		this.body.children[0].children[4].children[0].addEventListener('click', (e) => {
+			this.body.children[0].children[4].children[0].classList.toggle('active');
+			const checked = this.body.children[0].children[4].children[0].classList.contains('active');
+			if (checked) {
+				let index = 0;
+				for (let i = 0; i < 4; i++) {
+					if (this.body.children[0].children[i].children[0].value !== '') {
+						index = i;
+						break;
+					}
+				}
+				for (let i = 0; i < 4; i++) {
+					if (i !== index) {
+						this.body.children[0].children[i].children[0].value = this.body.children[0].children[index].children[0].value;
+						this.body.children[0].children[i].children[1].value = this.body.children[0].children[index].children[1].value;
+					}
+				}
+				this.trigger();
+			}
+		});
+	}
+
+	checkValueFormat(value) {
+		if (typeof value !== 'object')
+			return false;
+		if (value.top !== null && typeof value.top !== 'string')
+			return false;
+		if (value.right !== null && typeof value.right !== 'string')
+			return false;
+		if (value.bottom !== null && typeof value.bottom !== 'string')
+			return false;
+		if (value.left !== null && typeof value.left !== 'string')
+			return false;
+		return true;
+	}
+
+	inputToValue() {
+		const values = {};
+		values.top = this.body.children[0].children[0].children[0].value;
+		values.right = this.body.children[0].children[1].children[0].value;
+		values.bottom = this.body.children[0].children[2].children[0].value;
+		values.left = this.body.children[0].children[3].children[0].value;
+		const units = {};
+		units.top = this.body.children[0].children[0].children[1].value;
+		units.right = this.body.children[0].children[1].children[1].value;
+		units.bottom = this.body.children[0].children[2].children[1].value;
+		units.left = this.body.children[0].children[3].children[1].value;
+
+		for (let k in values) {
+			if (values[k] === '' || values[k] === null)
+				continue;
+			if (typeof this.options.min === 'number' && values[k] < this.options.min)
+				values[k] = this.options.min;
+			if (typeof this.options.max === 'number' && values[k] > this.options.max)
+				values[k] = this.options.max;
+		}		
+		
+		const value = {
+			top: (values.top === null || values.top === '') ? null : `${values.top}${units.top}`,
+			right: (values.right === null || values.right === '') ? null : `${values.right}${units.right}`,
+			bottom: (values.bottom === null || values.bottom === '') ? null : `${values.bottom}${units.bottom}`,
+			left: (values.left === null || values.left === '') ? null : `${values.left}${units.left}`
+		};
+
+		if (this.checkValueFormat(value)) {
+			this.value = value;
+			return true;
+		}
+		return false;
+	}
+
+	valueToInput() {
+		if (this.value.top !== null) {
+			const top = parseFloat(this.value.top.replace(/[^0-9.]/g, ''));
+			let unit = this.value.top.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[0].children[0].value = top;
+			this.body.children[0].children[0].children[1].value = unit;
+		} else {
+			this.body.children[0].children[0].children[0].value = '';
+		}
+		if (this.value.right !== null) {
+			const right = parseFloat(this.value.right.replace(/[^0-9.]/g, ''));
+			let unit = this.value.right.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[1].children[0].value = right;
+			this.body.children[0].children[1].children[1].value = unit;
+		} else {
+			this.body.children[0].children[1].children[0].value = '';
+		}
+		if (this.value.bottom !== null) {
+			const bottom = parseFloat(this.value.bottom.replace(/[^0-9.]/g, ''));
+			let unit = this.value.bottom.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[2].children[0].value = bottom;
+			this.body.children[0].children[2].children[1].value = unit;
+		} else {
+			this.body.children[0].children[2].children[0].value = '';
+		}
+		if (this.value.left !== null) {
+			const left = parseFloat(this.value.left.replace(/[^0-9.]/g, ''));
+			let unit = this.value.left.replace(/[0-9.]/g, '');
+			if (!['px', '%', 'vw', 'vh'].includes(unit))
+				unit = 'px';
+			this.body.children[0].children[3].children[0].value = left;
+			this.body.children[0].children[3].children[1].value = unit;
+		} else {
+			this.body.children[0].children[3].children[0].value = '';
+		}
+		if (this.value.top !== null && this.value.top === this.value.right && this.value.right === this.value.bottom && this.value.bottom === this.value.left)
+			this.body.children[0].children[4].children[0].classList.add('active');
+		else
+			this.body.children[0].children[4].children[0].classList.remove('active');
+		return true;
+	}
+}

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @font-face {
   font-family: "ki-solid";
   src: url("../icons/kanecode-icons/ki-solid-v1.1/fonts/ki-solid.eot?ndwjqv");
@@ -712,15 +712,15 @@
 /* Dropdowns */
 /* Separator */
 /* Checkbox input */
-/* Checkbox input */
 /* Input input */
+/* Switch input */
 /* Select input */
 /* Spinner */
 .kcs-spinner {
   width: 20px;
   height: 20px;
   border-radius: 10px;
-  border: 2px solid #f4f4f4;
+  border: 2px solid #f0f0f0;
   border-right-color: #0bf;
   -webkit-animation: kcs-spin 1s linear infinite;
           animation: kcs-spin 1s linear infinite;
@@ -750,14 +750,6 @@
 
 .kcs-dropdown-menu {
   display: none;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  border: none;
-  border-bottom: 0 solid transparent;
-  padding-bottom: 18px;
-  margin-bottom: 12px;
 }
 
 .ki-solid,
@@ -784,15 +776,15 @@
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
-  padding: 0 3px;
+  padding: 0;
   margin-bottom: 12px;
   line-height: 1;
 }
 
 .kanecode-studio-inspector-input .kanecode-studio-inspector-input-label {
   margin-bottom: 6px;
-  color: #888;
-  font-size: 14px;
+  color: #444;
+  font-size: 12px;
 }
 
 .kanecode-studio-inspector-input .kanecode-studio-inspector-input-body {
@@ -864,12 +856,12 @@
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 36px;
-          flex: 0 0 36px;
-  width: 36px;
-  height: 18px;
+      -ms-flex: 0 0 26px;
+          flex: 0 0 26px;
+  width: 26px;
+  height: 14px;
   border-radius: 50px;
-  background: rgba(0, 0, 0, 0.05);
+  background: #999;
   font-size: 14px;
 }
 
@@ -877,13 +869,15 @@
   content: '';
   position: absolute;
   left: 0;
-  width: 12px;
-  height: 12px;
-  margin: 3px;
+  width: 10px;
+  height: 10px;
+  margin: 2px;
   border-radius: 50px;
-  background: #888;
-  -webkit-transition: left .1s ease-in-out;
-  transition: left .1s ease-in-out;
+  background: #fff;
+  -webkit-transition: .1s ease-in-out;
+  transition: .1s ease-in-out;
+  -webkit-transition-property: left, width, opacity;
+  transition-property: left, width, opacity;
 }
 
 .kanecode-studio-inspector-input[data-kcs-input-type="switch"] label .label {
@@ -905,7 +899,7 @@
           flex: 0 0 calc(100% - (36px + $spacer));
   overflow: hidden;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 12px;
   color: #444;
   margin-right: 12px;
 }
@@ -917,20 +911,28 @@
 }
 
 .kanecode-studio-inspector-input[data-kcs-input-type="switch"] label:hover .switch, .kanecode-studio-inspector-input[data-kcs-input-type="switch"] label:focus .switch {
-  background: rgba(0, 0, 0, 0.1);
+  background: #777;
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="switch"] label:active .switch:before {
+  width: 22px;
+  opacity: 0.75;
 }
 
 .kanecode-studio-inspector-input[data-kcs-input-type="switch"] input[type="checkbox"]:checked + label .switch {
-  background: rgba(0, 187, 255, 0.15);
-}
-
-.kanecode-studio-inspector-input[data-kcs-input-type="switch"] input[type="checkbox"]:checked + label .switch:before {
-  left: calc(100% - 18px);
   background: #0bf;
 }
 
+.kanecode-studio-inspector-input[data-kcs-input-type="switch"] input[type="checkbox"]:checked + label .switch:before {
+  left: calc(100% - 14px);
+}
+
 .kanecode-studio-inspector-input[data-kcs-input-type="switch"] input[type="checkbox"]:checked + label:hover .switch, .kanecode-studio-inspector-input[data-kcs-input-type="switch"] input[type="checkbox"]:checked + label:focus .switch {
-  background: rgba(0, 187, 255, 0.25);
+  background: #0bf;
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="switch"] input[type="checkbox"]:checked + label:active .switch:before {
+  left: 0;
 }
 
 .kanecode-studio-inspector-input[data-kcs-input-type="checkbox"] .kanecode-studio-inspector-input-body {
@@ -1410,6 +1412,29 @@
   font-size: 14px;
 }
 
+.kanecode-studio-inspector-input[data-kcs-input-type="color"] .kcs-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  gap: 6px;
+}
+
+.kanecode-studio-inspector-input[data-kcs-input-type="color"] .kcs-input-container .preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background: rgba(0, 0, 0, 0.04);
+}
+
 .kanecode-studio {
   position: relative;
   display: -webkit-box;
@@ -1424,7 +1449,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-color: #f4f4f4;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   outline: none;
   color: #000;
   font-size: 14px;
@@ -1482,6 +1507,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1489,33 +1518,61 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   gap: 6px;
-  padding: 0 3px 12px;
-  margin: 0;
-  margin-bottom: 12px;
-  color: #bbb;
-  outline: none;
-  text-align: center;
-  border: none;
-  border-bottom: 0 solid #f4f4f4;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  font-size: 16px;
+  padding: 6px 12px;
+  border-top: 1px solid #f0f0f0;
+  color: #aaa;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button .kcs-dropdown-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #aaa;
+  text-transform: uppercase;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button .kcs-dropdown-arrow {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background-color: transparent;
+  font-size: 10px;
 }
 
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active {
-  color: #aaa;
-  border-bottom-color: transparent;
-  margin-bottom: 0;
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button + .kcs-dropdown-menu {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 12px;
+  margin-top: 6px;
 }
 
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active .kcs-dropdown-arrow {
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:hover .kcs-dropdown-arrow {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #444;
+}
+
+.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button.active .kcs-dropdown-arrow > * {
   -webkit-transform: scaleY(-1);
           transform: scaleY(-1);
 }
@@ -1524,11 +1581,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-bottom-color: #f4f4f4;
-}
-
-.kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button:first-child {
-  margin-top: 6px;
 }
 
 .kanecode-studio .kanecode-studio-body .kanecode-studio-menu-left .kanecode-studio-components-list .kanecode-studio-components-list-button[disabled] {
@@ -1713,7 +1765,7 @@
           flex-direction: column;
   width: 100%;
   height: 100%;
-  border: 1px solid #f4f4f4;
+  border: 1px solid #f0f0f0;
   border-radius: 6px;
   overflow: hidden;
 }
@@ -1909,7 +1961,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   background-color: #fff;
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .kanecode-studio-header nav {
@@ -2058,7 +2110,7 @@
   min-width: 300px;
   max-width: 400px;
   background-color: #fff;
-  border-right: 1px solid #f4f4f4;
+  border-right: 1px solid #f0f0f0;
 }
 
 /* Menu right */
@@ -2075,7 +2127,7 @@
   min-width: 300px;
   max-width: 400px;
   background-color: #fff;
-  border-left: 1px solid #f4f4f4;
+  border-left: 1px solid #f0f0f0;
 }
 
 /* Menu bottom */
@@ -2093,7 +2145,7 @@
   min-height: 250px;
   max-height: 800px;
   background-color: #fff;
-  border-top: 1px solid #f4f4f4;
+  border-top: 1px solid #f0f0f0;
 }
 
 /* Inspector */
@@ -2111,7 +2163,7 @@
   -webkit-box-flex: 1;
       -ms-flex: 1 0 0px;
           flex: 1 0 0;
-  padding: 12px;
+  padding: 12px 0;
   overflow-y: auto;
 }
 
@@ -2225,6 +2277,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -2232,33 +2288,61 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   gap: 6px;
-  padding: 0 3px 12px;
-  margin: 0;
-  margin-bottom: 12px;
-  color: #bbb;
-  outline: none;
-  text-align: center;
-  border: none;
-  border-bottom: 0 solid #f4f4f4;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  font-size: 16px;
+  padding: 6px 12px;
+  border-top: 1px solid #f0f0f0;
+  color: #aaa;
+}
+
+.kanecode-studio-inspector .kanecode-studio-inspector-section-button .kcs-dropdown-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #aaa;
+  text-transform: uppercase;
 }
 
 .kanecode-studio-inspector .kanecode-studio-inspector-section-button .kcs-dropdown-arrow {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background-color: transparent;
+  font-size: 10px;
 }
 
-.kanecode-studio-inspector .kanecode-studio-inspector-section-button.active {
-  color: #aaa;
-  border-bottom-color: transparent;
-  margin-bottom: 0;
+.kanecode-studio-inspector .kanecode-studio-inspector-section-button + .kcs-dropdown-menu {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 12px;
+  margin-top: 6px;
 }
 
-.kanecode-studio-inspector .kanecode-studio-inspector-section-button.active .kcs-dropdown-arrow {
+.kanecode-studio-inspector .kanecode-studio-inspector-section-button:hover .kcs-dropdown-arrow {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #444;
+}
+
+.kanecode-studio-inspector .kanecode-studio-inspector-section-button.active .kcs-dropdown-arrow > * {
   -webkit-transform: scaleY(-1);
           transform: scaleY(-1);
 }
@@ -2267,11 +2351,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-bottom-color: #f4f4f4;
-}
-
-.kanecode-studio-inspector .kanecode-studio-inspector-section-button:first-child {
-  margin-top: 6px;
 }
 
 .kanecode-studio-inspector .kanecode-studio-inspector-section-button[disabled] {
@@ -2315,7 +2394,7 @@
   width: 32px;
   height: 32px;
   padding: 1.2px;
-  border: 1px solid #f4f4f4;
+  border: 1px solid #f0f0f0;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.7);
   -webkit-backdrop-filter: blur(6px);
@@ -2354,7 +2433,7 @@
 }
 
 .kanecode-studio.show-border {
-  border: 1px solid #f4f4f4;
+  border: 1px solid #f0f0f0;
 }
 
 .kanecode-studio.fullscreen {

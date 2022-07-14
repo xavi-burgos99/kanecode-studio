@@ -76,81 +76,57 @@
 	}
 }
 
-
 @mixin dropdown1() {
-	user-select: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: $spacer / 2;
-	padding: $spacer / 3 $spacer / 2;
-	color: $dropdown1-color;
-	border-radius: $dropdown1-border-radius;
-	font-weight: bold;
-	outline: none;
-	text-align: center;
-	border: $dropdown1-border-width solid $dropdown1-border-color;
-	background-color: $dropdown1-background;
-	box-shadow: $dropdown1-shadow;
-	font-size: 13px;
-	.ki-solid, .ki-regular, .ki-light, .ki-duotone {
-		font-size: 15px;
-	}
-	&:hover,
-	&:focus {
-		background-color: $dropdown1-background-hover;
-		border-color: $dropdown1-border-color-hover;
-		box-shadow: $dropdown1-shadow-hover;
-	}
-	&:active {
-		background-color: $dropdown1-background-active;
-		border-color: $dropdown1-border-color-active;
-		box-shadow: $dropdown1-shadow-active;
-	}
-	&.active {
-		color: $dropdown1-color-on;
-	}
-	&[disabled] {
-		pointer-events: none;
-		opacity: .5;
-	}
-}
-
-@mixin dropdown2() {
 	cursor: pointer;
 	user-select: none;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 	gap: $spacer / 2;
-	padding: 0 $spacer / 4 $spacer;
-	margin: 0;
-	margin-bottom: $spacer;
-	color: $dropdown2-color;
-	outline: none;
-	text-align: center;
-	border: none;
-	border-bottom: $dropdown2-border-width solid $border-color;
-	background-color: $dropdown2-background;
-	box-shadow: $dropdown2-shadow;
-	font-size: 16px;
+	padding: $spacer / 2 $spacer;
+	border-top: $dropdown1-border-width solid $dropdown1-border-color;
+	color: $dropdown1-color;
+	.kcs-dropdown-title {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		font-size: 12px;
+		font-weight: 500;
+		color: $dropdown1-color;
+		text-transform: uppercase;
+	}
 	.kcs-dropdown-arrow {
 		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		border-radius: $border-radius;
+		background-color: $dropdown1-button-background;
+		font-size: 10px;
+	}
+	+ .kcs-dropdown-menu {
+		display: none;
+		flex-direction: column;
+		padding: 0 $spacer;
+		margin-top: $spacer / 2;
+	}
+	&:hover {
+		.kcs-dropdown-arrow {
+			background-color: $dropdown1-hover-button-background;
+			color: $dropdown1-hover-button-color;
+		}
 	}
 	&.active {
-		color: $dropdown2-color-on;
-		border-bottom-color: transparent;
-		margin-bottom: 0;
 		.kcs-dropdown-arrow {
-			transform: scaleY(-1);
+			> * {
+				transform: scaleY(-1);
+			}
 		}
 		+ .kcs-dropdown-menu {
 			display: flex;
-			border-bottom-color: $border-color;
 		}
-	}
-	&:first-child {
-		margin-top: $spacer / 2;
 	}
 	&[disabled] {
 		pointer-events: none;
