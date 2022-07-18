@@ -228,20 +228,43 @@
 						</tbody>
 					</table>
 
+
 					<h3 id="types" class="fw-bold" translate="no">Input types</h3>
+
 					<h4>Text</h4>
-					This input type is used to enter text. The value format is of type <code>string</code>.
+					<p>This input type is used to enter text. The value format is of type <code>string</code>.</p>
 					<h6>Example</h6>
 					<div class="example-canvas">
 						<div id="text-example"></div>
 					</div>
+
+					<h4>Number</h4>
+					<p>This input type is used to enter a number. The value format is of type <code>number</code>.</p>
+					<h6>Example</h6>
+					<div class="example-canvas">
+						<div id="number-example"></div>
+					</div>
+
 					<h4>Switch</h4>
-					This input type is used to switch between two values. The value format is of type <code>boolean</code> and it returns <code>true</code> or <code>false</code>.
+					<p>This input type is used to switch between two values. The value format is of type <code>boolean</code> and it returns <code>true</code> or <code>false</code>.</p>
 					<h6>Example</h6>
 					<div class="example-canvas">
 						<div id="switch-example"></div>
 					</div>
 
+					<h4>Select</h4>
+					<p>This input type is used to select a value from a list. The value format is of type <code>string</code>.</p>
+					<h6>Example</h6>
+					<div class="example-canvas">
+						<div id="select-example"></div>
+					</div>
+
+					<h4>Width and Height</h4>
+					<p>This input type is used to enter the width and height of an element. The value format is of type <code>object</code> with properties <code>width</code> and <code>height</code>.</p>
+					<h6>Example</h6>
+					<div class="example-canvas">
+						<div id="width-height-example"></div>
+					</div>
 				</main>
 			</div>
 		</div>
@@ -251,9 +274,19 @@
 
 			//const text_input = new KCStudioInputs['text'](studio, 'text-input', 'Text input', 'text', 'general', {});
 			//document.getElementById('text-example').append(text_input.element);
+			
+			//const number_input = new KCStudioInputs['number'](studio, 'number-input', 'Number input', 'number', 'general', {});
+			//document.getElementById('number-example').append(number_input.element);
 
 			const switch_input = new KCStudioInputs['switch'](studio, 'switch-input', 'Switch input', 'switch', 'general', {});
 			document.getElementById('switch-example').append(switch_input.element);
+
+			//const select_input = new KCStudioInputs['select'](studio, 'select-input', 'Select input', 'select', 'general', {});
+			//document.getElementById('select-example').append(select_input.element);
+
+			const width_height_input = new KCStudioInputs['width-height'](studio, 'width-height-input', 'Width/Height input', 'width-height', 'general', {});
+			document.getElementById('width-height-example').append(width_height_input.element);
+
 		</script>
 
     <script src="libs/bootstrap.bundle.min.js"></script>
